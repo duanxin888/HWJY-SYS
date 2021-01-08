@@ -29,7 +29,7 @@ public class HttpUtil {
             value = request.getParameter(key);
         }
         if (StringUtils.isBlank(value)) {
-            value = com.duanxin.lsg.infrastructure.utils.CookieUtil.getCookie(request, key);
+            value = CookieUtil.getCookie(request, key);
         }
         return value;
     }
