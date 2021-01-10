@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.UserAddressMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.UserAddressPO" id="TUserAddressMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="userId" column="USER_ID" jdbcType="INTEGER"/>
+        <result property="province" column="PROVINCE" jdbcType="VARCHAR"/>
+        <result property="city" column="CITY" jdbcType="VARCHAR"/>
+        <result property="county" column="COUNTY" jdbcType="VARCHAR"/>
+        <result property="addressDetails" column="ADDRESS_DETAILS" jdbcType="VARCHAR"/>
+        <result property="postalCode" column="POSTAL_CODE" jdbcType="VARCHAR"/>
+        <result property="acquiescence" column="ACQUIESCENCE" jdbcType="INTEGER"/>
+        <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+        <result property="deleted" column="DELETED" jdbcType="INTEGER"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

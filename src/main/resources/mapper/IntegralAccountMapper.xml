@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.IntegralAccountMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.IntegralAccount" id="TIntegralAccountMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="integralAccountSn" column="INTEGRAL_ACCOUNT_SN" jdbcType="VARCHAR"/>
+        <result property="integralBalance" column="INTEGRAL_BALANCE" jdbcType="NUMERIC"/>
+        <result property="integralValidityDate" column="INTEGRAL_VALIDITY_DATE" jdbcType="TIMESTAMP"/>
+        <result property="status" column="STATUS" jdbcType="INTEGER"/>
+        <result property="deleted" column="DELETED" jdbcType="INTEGER"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

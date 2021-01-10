@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.UserMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.UserPO" id="TUserMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+        <result property="userImgUrl" column="USER_IMG_URL" jdbcType="VARCHAR"/>
+        <result property="nickname" column="NICKNAME" jdbcType="VARCHAR"/>
+        <result property="wxOpenid" column="WX_OPENID" jdbcType="VARCHAR"/>
+        <result property="wxSessionKey" column="WX_SESSION_KEY" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS" jdbcType="INTEGER"/>
+        <result property="deleted" column="DELETED" jdbcType="INTEGER"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>
