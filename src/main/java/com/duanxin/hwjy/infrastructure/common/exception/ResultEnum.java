@@ -13,7 +13,11 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ResultEnum {
 
-    USER_NOT_LOG_IN(403, "user not log in");
+    USER_NOT_LOG_IN(403, "user not log in"),
+
+
+    WX_MA_NOT_CONFIG(500, "WeChat configuration is not equipped"),
+    APPID_NOT_MATCH_WX_SERVICE(401, "appid not match wx service");
 
     private final int code;
     private final String desc;
