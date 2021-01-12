@@ -4,6 +4,7 @@ import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
 import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,13 @@ public class HWJYExceptionHandler {
     public ResponseResult hwjyCheckExceptionHandler(HWJYCheckException exception) {
         ResultEnum resultEnum = exception.getResultEnum();
         return ResponseResult.error(resultEnum.getCode(), resultEnum.getDesc());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseResult paramCheckException(MethodArgumentNotValidException exception) {
+        return ResponseResult.error(exception.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
