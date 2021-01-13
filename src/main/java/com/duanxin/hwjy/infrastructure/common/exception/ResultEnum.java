@@ -17,7 +17,8 @@ public enum ResultEnum {
 
 
     WX_MA_NOT_CONFIG(500, "WeChat configuration is not equipped"),
-    APPID_NOT_MATCH_WX_SERVICE(401, "appid not match wx service");
+    APPID_NOT_MATCH_WX_SERVICE(401, "appid not match wx service"),
+    REQUEST_WX_CODE2SESSION_API_FAIL(401, "failed to request wx code2session api");
 
     private final int code;
     private final String desc;
