@@ -8,6 +8,7 @@ import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYServerException;
 import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import com.duanxin.hwjy.infrastructure.config.WxMaConfig;
+import com.duanxin.hwjy.infrastructure.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.util.http.apache.DefaultApacheHttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ public class WxMaConfiguration {
     public void init() {
         List<WxMaConfig.Config> configs = this.wxMaConfig.getConfigs();
         if (CollectionUtils.isEmpty(configs)) {
+            log.error("fail to init WxMaConfiguration with config [{}] empty", JsonUtil.toString(configs));
             throw new HWJYServerException(ResultEnum.WX_MA_NOT_CONFIG);
         }
 
@@ -66,9 +68,10 @@ public class WxMaConfiguration {
         }).collect(Collectors.toMap(s -> s.getWxMaConfig().getAppid(), s -> s));
     }
 
-    public WxMaService getMaService(String appid) {
+    public static WxMaService getMaService(String appid) {
         WxMaService service = maServices.get(appid);
         if (Objects.isNull(service)) {
+            log.warn("fail to get maService by appid [{}]", appid);
             throw new HWJYCheckException(ResultEnum.APPID_NOT_MATCH_WX_SERVICE);
         }
         return service;
