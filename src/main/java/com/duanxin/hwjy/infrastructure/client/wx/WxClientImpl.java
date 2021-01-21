@@ -1,8 +1,7 @@
-package com.duanxin.hwjy.infrastructure.client.impl;
+package com.duanxin.hwjy.infrastructure.client.wx;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
-import com.duanxin.hwjy.infrastructure.client.WxClient;
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
 import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import com.duanxin.hwjy.infrastructure.configuration.WxMaConfiguration;

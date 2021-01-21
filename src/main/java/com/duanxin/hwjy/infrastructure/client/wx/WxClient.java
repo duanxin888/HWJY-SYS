@@ -1,4 +1,4 @@
-package com.duanxin.hwjy.infrastructure.client;
+package com.duanxin.hwjy.infrastructure.client.wx;
 
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 
@@ -10,5 +10,5 @@ import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
  */
 public interface WxClient {
 
-    WxMaJscode2SessionResult getSession(String openid, String code);
+    WxMaJscode2SessionResult getSession(String appid, String code);
 }
