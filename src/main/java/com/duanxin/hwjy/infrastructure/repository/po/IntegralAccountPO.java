@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  */
 @Setter
 @Getter
-public class IntegralAccount {
+public class IntegralAccountPO {
 
     private int id;
 

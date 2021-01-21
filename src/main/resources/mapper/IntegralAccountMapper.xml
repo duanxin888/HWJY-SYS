@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.IntegralAccountMapper">
 
-    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.IntegralAccount" id="TIntegralAccountMap">
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO" id="TIntegralAccountMap">
         <result property="id" column="ID" jdbcType="INTEGER"/>
         <result property="integralAccountSn" column="INTEGRAL_ACCOUNT_SN" jdbcType="VARCHAR"/>
         <result property="integralBalance" column="INTEGRAL_BALANCE" jdbcType="NUMERIC"/>
@@ -14,4 +14,23 @@
         <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
         <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <sql id="integralAccount">
+        ID, INTEGRAL_ACCOUNT_SN, INTEGRAL_BALANCE, INTEGRAL_VALIDITY_DATE, STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into T_INTEGRAL_ACCOUNT(INTEGRAL_ACCOUNT_SN, INTEGRAL_BALANCE, INTEGRAL_VALIDITY_DATE,
+         STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR)
+        values(#{integralAccount.integralAccountSn}, #{integralAccount.integralBalance}, #{integralAccount.integralValidityDate},
+        #{integralAccount.status}, #{integralAccount.deleted}, #{integralAccount.cdate}, #{integralAccount.creator},
+        #{integralAccount.edate}, #{integralAccount.editor})
+    </insert>
+
+    <select id="selectBySn" resultMap="TIntegralAccountMap">
+        select <include refid="integralAccount"/>
+        from T_INTEGRAL_ACCOUNT
+        where INTEGRAL_ACCOUNT_SN = #{integralAccountSn}
+    </select>
 </mapper>

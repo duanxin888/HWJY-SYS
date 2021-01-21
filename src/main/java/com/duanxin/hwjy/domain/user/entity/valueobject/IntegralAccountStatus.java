@@ -17,4 +17,8 @@ public enum IntegralAccountStatus {
 
     private final int code;
     private final String desc;
+
+    public static boolean isAvailable(int status) {
+        return AVAILABLE.code == status;
+    }
 }

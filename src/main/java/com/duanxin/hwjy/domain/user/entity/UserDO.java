@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author duanxin
@@ -46,4 +47,19 @@ public class UserDO {
     private String editor = Constants.EDITOR.getDesc();
 
     private List<UserAddressDO> userAddressDOS;
+
+    private String thirdSession;
+
+    public void create(String userImgUrl, String nickname, String openid,
+                       String sessionKey, IntegralAccountDO integralAccountDO) {
+        this.setUserImgUrl(userImgUrl);
+        this.setNickname(nickname);
+        this.setWxOpenid(openid);
+        this.setWxSessionKey(sessionKey);
+        this.setIntegralAccount(integralAccountDO);
+    }
+
+    public void create3SessionWithUUID() {
+        this.setThirdSession(UUID.randomUUID().toString());
+    }
 }

@@ -17,4 +17,8 @@ public enum Deleted {
 
     private final int code;
     private final String desc;
+
+    public static boolean isValid(int deleted) {
+        return VALID.code == deleted;
+    }
 }
