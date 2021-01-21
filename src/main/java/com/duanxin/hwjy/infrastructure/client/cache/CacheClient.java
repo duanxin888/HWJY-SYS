@@ -1,4 +1,4 @@
-package com.duanxin.hwjy.infrastructure.client.redis;
+package com.duanxin.hwjy.infrastructure.client.cache;
 
 import java.time.Duration;
 
@@ -8,7 +8,7 @@ import java.time.Duration;
  * @className RedisClient
  * @date 2021/01/21 09:59
  */
-public interface RedisCacheClient {
+public interface CacheClient {
 
     void refreshCache(String key, Object value, Duration ttl, String... args);
 }

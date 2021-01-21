@@ -1,4 +1,4 @@
-package com.duanxin.hwjy.infrastructure.client.redis;
+package com.duanxin.hwjy.infrastructure.client.cache;
 
 import com.duanxin.hwjy.infrastructure.common.enums.Constants;
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
@@ -21,7 +21,7 @@ import java.time.Duration;
 @Service
 @Slf4j
 @AllArgsConstructor
-public class RedisCacheClientImpl implements RedisCacheClient {
+public class RedisCacheClientImpl implements CacheClient {
 
     private final StringRedisTemplate redisTemplate;
 
