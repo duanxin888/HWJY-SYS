@@ -13,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Constants {
 
-    CREATOR("SYSTEM"), EDITOR("SYSTEM");
+    CREATOR("SYSTEM"), EDITOR("SYSTEM"), CACHE_SEP(":");
 
     private final String desc;
 }

@@ -14,13 +14,17 @@ import lombok.Getter;
 public enum ResultEnum {
 
     USER_NOT_LOG_IN(403, "user not log in"),
+    USER_IS_NOT_AVAILABLE(403, "user is not available"),
+    INTEGRAL_ACCOUNT_IS_NOT_AVAILABLE(403, "integral account is not available"),
 
 
     WX_MA_NOT_CONFIG(500, "WeChat configuration is not equipped"),
     APPID_NOT_MATCH_WX_SERVICE(401, "appid not match wx service"),
     REQUEST_WX_CODE2SESSION_API_FAIL(401, "failed to request wx code2session api"),
 
-    NO_SUPPORT_SN_GENERATOR(404, "no support sn generator");
+    NO_SUPPORT_SN_GENERATOR(404, "no support sn generator"),
+
+    REDIS_CACHE_KEY_IS_BLANK(405, "redis cache key is blank");
 
     private final int code;
     private final String desc;
