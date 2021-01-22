@@ -62,4 +62,8 @@ public class UserDO {
     public void create3SessionWithUUID() {
         this.setThirdSession(UUID.randomUUID().toString());
     }
+
+    public void create3SessionWithJwt(String token) {
+        this.setThirdSession(token);
+    }
 }

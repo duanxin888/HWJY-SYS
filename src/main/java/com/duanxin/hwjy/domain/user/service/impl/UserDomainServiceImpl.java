@@ -6,19 +6,21 @@ import com.duanxin.hwjy.domain.user.entity.UserDO;
 import com.duanxin.hwjy.domain.user.repository.IntegralAccountRepository;
 import com.duanxin.hwjy.domain.user.repository.UserRepository;
 import com.duanxin.hwjy.domain.user.service.UserDomainService;
-import com.duanxin.hwjy.infrastructure.client.cache.CacheClient;
 import com.duanxin.hwjy.infrastructure.client.sn.SnGenerateManagerService;
+import com.duanxin.hwjy.infrastructure.client.token.JwtClient;
 import com.duanxin.hwjy.infrastructure.client.wx.WxClient;
+import com.duanxin.hwjy.infrastructure.common.constants.JwtConstants;
 import com.duanxin.hwjy.infrastructure.common.enums.SnType;
 import com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO;
 import com.duanxin.hwjy.infrastructure.repository.po.UserPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -37,7 +39,7 @@ public class UserDomainServiceImpl implements UserDomainService {
     private final UserFactory userFactory;
     private final SnGenerateManagerService snGenerateManagerService;
     private final IntegralAccountRepository integralAccountRepository;
-    private final CacheClient cacheClient;
+    private final JwtClient jwtClient;
 
     @Override
     public UserDO login(UserDO userDO, String code, String appid) {
@@ -57,24 +59,19 @@ public class UserDomainServiceImpl implements UserDomainService {
         userDO = userFactory.createUserDO(userPO,
                 userFactory.createIntegralAccountDO(integralAccountRepository.selectBySn(userPO.getIntegralAccountSn())));
 
-        // create third session
-        userDO.create3SessionWithUUID();
-        // cache session
-        cache4Session(userDO);
+        // create third session (with jwt, storage userInfo)
+        String token = fetchJwtToken(userDO);
+        userDO.create3SessionWithJwt(token);
         return userDO;
     }
 
-    /**
-     * cache third session
-     * key: userID:thirdSession
-     * value: wxOpenid with sha256Hex({@link DigestUtils})
-     * @param userDO user domain object
-     * @date 2021/1/21 10:29
-     * @return void
-     */
-    private void cache4Session(UserDO userDO) {
-        String value = DigestUtils.sha256Hex(userDO.getWxOpenid());
-        cacheClient.refreshCache(String.valueOf(userDO.getId()), value, Duration.ofDays(30), userDO.getThirdSession());
+    private String fetchJwtToken(UserDO userDO) {
+        // assembler claims
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(JwtConstants.USERNAME, userDO.getNickname());
+        claims.put(JwtConstants.USERID, userDO.getId());
+        claims.put(JwtConstants.CREATED, new Date());
+        return jwtClient.generateToken(claims);
     }
 
     private UserPO createUser(UserDO userDO, WxMaJscode2SessionResult sessionResult) {
