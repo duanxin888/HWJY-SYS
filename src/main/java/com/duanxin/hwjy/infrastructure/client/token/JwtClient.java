@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.infrastructure.client.token;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -26,5 +27,5 @@ public interface JwtClient {
      * @return java.util.Map<java.lang.String,java.lang.Object>
      *     get key from {@link com.duanxin.hwjy.infrastructure.common.constants.JwtConstants}
      */
-    Map<String, Object> getInfoFromToken(String token);
+    Map<String, Object> getInfoFromRequest(HttpServletRequest request);
 }

@@ -7,10 +7,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author duanxin
@@ -49,8 +53,45 @@ public class JwtClientImpl implements JwtClient{
     }
 
     @Override
-    public Map<String, Object> getInfoFromToken(String token) {
-        return getClaimsFromToken(token);
+    public Map<String, Object> getInfoFromRequest(HttpServletRequest request) {
+        Map<String, Object> emptyMap = Collections.emptyMap();
+        // get token from request & check token
+        String token = getToken(request);
+        if (StringUtils.isBlank(token) || isTokenExpired(token)) {
+            return emptyMap;
+        }
+
+        // get claims from token & check claims
+        Claims claims = getClaimsFromToken(token);
+        if (Objects.isNull(claims) || Objects.isNull(claims.getSubject()) ||
+                validateToken(claims.getSubject(), token)) {
+            return emptyMap;
+        }
+
+        return claims;
+    }
+
+    private boolean validateToken(String username, String token) {
+        return username.equals(getClaimsFromToken(token).getSubject()) && !isTokenExpired(token);
+    }
+
+    private boolean isTokenExpired(String token) {
+        try {
+            Claims claims = getClaimsFromToken(token);
+            Date expiration = claims.getExpiration();
+            return expiration.before(new Date());
+        } catch (Exception exception) {
+            log.warn("check token [{}] is expired exception", token, exception);
+            return true;
+        }
+    }
+
+    private String getToken(HttpServletRequest request) {
+        String token = request.getHeader(jwtConfig.getHeader());
+        if (StringUtils.isNotBlank(token)) {
+            token = token.substring(jwtConfig.getTokenHead().length());
+        }
+        return token;
     }
 
     private Claims getClaimsFromToken(String token) {
