@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.Objects;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -28,6 +30,9 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public UserPO selectByOpenId(String openid) {
         UserPO userPO = userMapper.selectByOpenId(openid);
+        if (Objects.isNull(userPO)) {
+            return null;
+        }
         if (!UserStatus.isAvailable(userPO.getStatus()) || !Deleted.isValid(userPO.getDeleted())) {
             log.warn("user [{}] is not available", JsonUtil.toString(userPO));
             throw new HWJYCheckException(ResultEnum.USER_IS_NOT_AVAILABLE);
