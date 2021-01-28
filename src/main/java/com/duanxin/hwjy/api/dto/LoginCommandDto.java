@@ -16,10 +16,10 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class LoginCommandDto {
 
-    @NotBlank
+    @NotBlank(message = "nickname NotBlank")
     private String nickname;
 
-    @NotBlank
+    @NotBlank(message = "avatarUrl NotBlank")
     private String avatarUrl;
 
     private String country;
@@ -32,9 +32,9 @@ public class LoginCommandDto {
 
     private int gender;
 
-    @NotBlank
+    @NotBlank(message = "code NotBlank")
     private String code;
 
-    @NotBlank
+    @NotBlank(message = "appid NotBlank")
     private String appid;
 }

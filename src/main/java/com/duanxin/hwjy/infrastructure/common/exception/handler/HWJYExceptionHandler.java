@@ -31,7 +31,7 @@ public class HWJYExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public ResponseResult paramCheckException(MethodArgumentNotValidException exception) {
-        return ResponseResult.error(exception.getMessage());
+        return ResponseResult.error(HttpStatus.NOT_ACCEPTABLE.value(), exception.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
