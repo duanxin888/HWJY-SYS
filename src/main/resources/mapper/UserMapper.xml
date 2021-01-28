@@ -6,6 +6,7 @@
         <result property="id" column="ID" jdbcType="INTEGER"/>
         <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
         <result property="userImgUrl" column="USER_IMG_URL" jdbcType="VARCHAR"/>
+        <result property="integralAccountSn" column="INTEGRAL_ACCOUNT_SN" jdbcType="VARCHAR"/>
         <result property="nickname" column="NICKNAME" jdbcType="VARCHAR"/>
         <result property="wxOpenid" column="WX_OPENID" jdbcType="VARCHAR"/>
         <result property="wxSessionKey" column="WX_SESSION_KEY" jdbcType="VARCHAR"/>
@@ -18,14 +19,14 @@
     </resultMap>
 
     <sql id="user">
-        ID, PHONE, USER_IMG_URL, NICKNAME, WX_OPENID, WX_SESSION_KEY, STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR
+        ID, PHONE, USER_IMG_URL, NICKNAME, INTEGRAL_ACCOUNT_SN, WX_OPENID, WX_SESSION_KEY, STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR
     </sql>
 
     <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.UserPO"
             keyProperty="id" useGeneratedKeys="true">
-        insert into T_USER(PHONE, USER_IMG_URL, NICKNAME, WX_OPENID, WX_SESSION_KEY,
+        insert into T_USER(PHONE, USER_IMG_URL, NICKNAME, INTEGRAL_ACCOUNT_SN, WX_OPENID, WX_SESSION_KEY,
          STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR)
-         values(#{user.phone}, #{user.userImgUrl}, #{user.nickname}, #{user.wxOpenid}, #{user.wxSessionKey},
+         values(#{user.phone}, #{user.userImgUrl}, #{user.nickname}, #{user.integralAccountSn}, #{user.wxOpenid}, #{user.wxSessionKey},
          #{user.status}, #{user.deleted}, #{user.cdate}, #{user.creator}, #{user.edate}, #{user.editor})
     </insert>
 
