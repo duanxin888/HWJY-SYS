@@ -1,7 +1,7 @@
 package com.duanxin.hwjy.domain.user.entity;
 
 import com.duanxin.hwjy.domain.user.entity.valueobject.UserStatus;
-import com.duanxin.hwjy.infrastructure.common.enums.Constants;
+import com.duanxin.hwjy.infrastructure.common.constants.Constants;
 import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
 import lombok.Getter;
 import lombok.Setter;

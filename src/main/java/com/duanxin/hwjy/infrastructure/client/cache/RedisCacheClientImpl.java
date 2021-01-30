@@ -1,6 +1,6 @@
 package com.duanxin.hwjy.infrastructure.client.cache;
 
-import com.duanxin.hwjy.infrastructure.common.enums.Constants;
+import com.duanxin.hwjy.infrastructure.common.constants.Constants;
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
 import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;

@@ -1,4 +1,4 @@
-package com.duanxin.hwjy.infrastructure.common.enums;
+package com.duanxin.hwjy.infrastructure.common.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Constants {
 
-    CREATOR("SYSTEM"), EDITOR("SYSTEM"), CACHE_SEP(":");
+    CREATOR("SYSTEM"), EDITOR("SYSTEM"), CACHE_SEP(":"), REQUEST_ID("requestId");
 
     private final String desc;
 }

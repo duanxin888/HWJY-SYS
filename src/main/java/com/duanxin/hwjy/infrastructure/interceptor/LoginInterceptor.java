@@ -1,7 +1,9 @@
 package com.duanxin.hwjy.infrastructure.interceptor;
 
+import com.duanxin.hwjy.infrastructure.client.context.ThreadLocalContextClient;
 import com.duanxin.hwjy.infrastructure.client.token.JwtClientImpl;
 import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
+import com.duanxin.hwjy.infrastructure.common.constants.Constants;
 import com.duanxin.hwjy.infrastructure.common.constants.JwtConstants;
 import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
@@ -28,6 +30,9 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestId = UUID.randomUUID().toString();
+        String requestIdKey = Constants.REQUEST_ID.getDesc();
+        ThreadLocalContextClient contextClient = SpringContext.getBean(ThreadLocalContextClient.class);
+        contextClient.set(requestIdKey, requestId);
         try {
             log.info("verify whether the request [{}] is logged in", requestId);
             // fetch token & check
@@ -35,6 +40,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             Map<String, Object> info = jwtClient.getInfoFromRequest(request);
             if (CollectionUtils.isEmpty(info)) {
                 log.info("request [{}] is not logged in", requestId);
+                contextClient.remove(requestIdKey);
                 responseJson(response, ResultEnum.USER_NOT_LOG_IN);
                 return false;
             }
@@ -43,6 +49,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         } catch (Exception exception) {
             log.warn("check the request [{}] is logged in exception", requestId, exception);
+            contextClient.remove(requestIdKey);
             responseJson(response, ResultEnum.VERIFY_USER_LOGGED_IN_EXCEPTION);
             return false;
         }
