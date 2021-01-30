@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.UUID;
 
 /**
  * @author duanxin
@@ -45,7 +46,7 @@ public class WebLogAspect {
         String args = JsonUtil.toString(Arrays.asList(point.getArgs()));
         String methodName = point.getSignature().getName();
         String requestIdKey = Constants.REQUEST_ID.getDesc();
-        String requestId = contextClient.get(requestIdKey);
+        String requestId = contextClient.get(requestIdKey, UUID.randomUUID().toString());
         log.info("request uri [{}] requestId [{}] method [{}] args {}",
                 uri, requestId, methodName, args);
 
