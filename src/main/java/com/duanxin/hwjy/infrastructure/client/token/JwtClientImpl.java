@@ -64,7 +64,7 @@ public class JwtClientImpl implements JwtClient{
         // get claims from token & check claims
         Claims claims = getClaimsFromToken(token);
         if (Objects.isNull(claims) || Objects.isNull(claims.getSubject()) ||
-                validateToken(claims.getSubject(), token)) {
+                !validateToken(claims.getSubject(), token)) {
             return emptyMap;
         }
 
