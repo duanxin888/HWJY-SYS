@@ -41,4 +41,10 @@
         from T_USER
         where WX_OPENID = #{openid}
     </select>
+
+    <select id="selectById" resultMap="TUserMap">
+        select <include refid="user"/>
+        from T_USER
+        where ID = #{userId}
+    </select>
 </mapper>

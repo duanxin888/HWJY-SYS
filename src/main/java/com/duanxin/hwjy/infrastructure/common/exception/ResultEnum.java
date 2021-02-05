@@ -15,6 +15,7 @@ public enum ResultEnum {
 
     USER_NOT_LOG_IN(403, "user not log in"),
     USER_IS_NOT_AVAILABLE(403, "user is not available"),
+    USER_IS_NOT_EXIST(403, "user is not exist"),
     INTEGRAL_ACCOUNT_IS_NOT_AVAILABLE(403, "integral account is not available"),
     VERIFY_USER_LOGGED_IN_EXCEPTION(403, "verify user is logged in exception"),
 

@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.domain.user.repository;
 
+import com.duanxin.hwjy.domain.user.entity.UserDO;
 import com.duanxin.hwjy.infrastructure.repository.po.UserPO;
 
 /**
@@ -15,4 +16,6 @@ public interface UserRepository {
     UserPO insert(UserPO userPO);
 
     void updateSessionKey(UserPO userPO);
+
+    UserDO selectById(int userId);
 }

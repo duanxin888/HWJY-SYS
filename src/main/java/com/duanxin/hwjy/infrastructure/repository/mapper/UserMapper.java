@@ -16,4 +16,6 @@ public interface UserMapper {
 
     void updateSessionKey(@Param("id") int id,
                           @Param("wxSessionKey") String wxSessionKey);
+
+    UserPO selectById(@Param("userId") int userId);
 }
