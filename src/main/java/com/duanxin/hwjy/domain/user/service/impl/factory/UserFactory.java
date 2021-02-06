@@ -1,4 +1,4 @@
-package com.duanxin.hwjy.domain.user.service.impl;
+package com.duanxin.hwjy.domain.user.service.impl.factory;
 
 import com.duanxin.hwjy.domain.user.entity.IntegralAccountDO;
 import com.duanxin.hwjy.domain.user.entity.UserDO;

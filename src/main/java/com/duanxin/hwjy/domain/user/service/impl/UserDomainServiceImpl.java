@@ -6,6 +6,7 @@ import com.duanxin.hwjy.domain.user.entity.UserDO;
 import com.duanxin.hwjy.domain.user.repository.IntegralAccountRepository;
 import com.duanxin.hwjy.domain.user.repository.UserRepository;
 import com.duanxin.hwjy.domain.user.service.UserDomainService;
+import com.duanxin.hwjy.domain.user.service.impl.factory.UserFactory;
 import com.duanxin.hwjy.infrastructure.client.sn.SnGenerateManagerService;
 import com.duanxin.hwjy.infrastructure.client.token.JwtClient;
 import com.duanxin.hwjy.infrastructure.client.wx.WxClient;

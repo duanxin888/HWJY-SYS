@@ -4,7 +4,7 @@ import com.duanxin.hwjy.domain.user.entity.UserDO;
 import com.duanxin.hwjy.domain.user.entity.valueobject.UserStatus;
 import com.duanxin.hwjy.domain.user.repository.IntegralAccountRepository;
 import com.duanxin.hwjy.domain.user.repository.UserRepository;
-import com.duanxin.hwjy.domain.user.service.impl.UserFactory;
+import com.duanxin.hwjy.domain.user.service.impl.factory.UserFactory;
 import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
 import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
