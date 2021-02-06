@@ -1,6 +1,8 @@
 package com.duanxin.hwjy.domain.user.service.impl.factory;
 
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
+import com.duanxin.hwjy.domain.user.entity.valueobject.Acquiescence;
+import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
 import com.duanxin.hwjy.infrastructure.repository.po.UserAddressPO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -20,5 +22,13 @@ public class UserAddressFactory {
         po.setAcquiescence(userAddressDO.getAcquiescence().getCode());
         po.setDeleted(userAddressDO.getDeleted().getCode());
         return po;
+    }
+
+    public UserAddressDO createUserAddressDO(UserAddressPO po) {
+        UserAddressDO userAddressDO = new UserAddressDO();
+        BeanUtils.copyProperties(po, userAddressDO);
+        userAddressDO.setAcquiescence(Acquiescence.formatByCode(po.getAcquiescence()));
+        userAddressDO.setDeleted(Deleted.formatByCode(po.getDeleted()));
+        return userAddressDO;
     }
 }

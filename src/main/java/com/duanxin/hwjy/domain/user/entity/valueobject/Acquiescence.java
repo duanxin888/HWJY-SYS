@@ -17,4 +17,13 @@ public enum Acquiescence {
 
     private final int code;
     private final String desc;
+
+    public static Acquiescence formatByCode(int code) {
+        for (Acquiescence acquiescence : Acquiescence.values()) {
+            if (code == acquiescence.getCode()) {
+                return acquiescence;
+            }
+        }
+        return Acquiescence.NOT_ACQUIESCENCE;
+    }
 }

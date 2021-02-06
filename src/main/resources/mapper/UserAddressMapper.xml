@@ -35,4 +35,10 @@
          #{userAddress.deleted}, #{userAddress.cdate}, #{userAddress.creator},
          #{userAddress.edate}, #{userAddress.editor})
     </insert>
+
+    <select id="selectByUserId" resultMap="TUserAddressMap">
+        select <include refid="userAddress"/>
+        from T_USER_ADDRESS
+        where USER_ID = #{userId}
+    </select>
 </mapper>

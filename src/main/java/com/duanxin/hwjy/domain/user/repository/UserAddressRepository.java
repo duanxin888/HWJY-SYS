@@ -2,6 +2,8 @@ package com.duanxin.hwjy.domain.user.repository;
 
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
 
+import java.util.List;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -11,4 +13,6 @@ import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
 public interface UserAddressRepository {
 
     void addAddress(UserAddressDO addressDO);
+
+    List<UserAddressDO> selectByUserId(int userId);
 }

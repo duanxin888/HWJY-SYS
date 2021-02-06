@@ -47,4 +47,8 @@ public class UserAddressDO {
     private LocalDateTime edate = LocalDateTime.now();
 
     private String editor = Constants.EDITOR.getDesc();
+
+    public void acquiesceIn() {
+        this.setAcquiescence(Acquiescence.ACQUIESCENCE);
+    }
 }

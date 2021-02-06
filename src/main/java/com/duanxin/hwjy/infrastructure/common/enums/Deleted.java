@@ -21,4 +21,13 @@ public enum Deleted {
     public static boolean isValid(int deleted) {
         return VALID.code == deleted;
     }
+
+    public static Deleted formatByCode(int code) {
+        for (Deleted deleted : Deleted.values()) {
+            if (code == deleted.getCode()) {
+                return deleted;
+            }
+        }
+        return Deleted.INVALID;
+    }
 }

@@ -3,6 +3,7 @@ package com.duanxin.hwjy.api.facade;
 import com.duanxin.hwjy.api.assembler.UserAddressAssembler;
 import com.duanxin.hwjy.api.dto.user.address.AddressAddCommandDto;
 import com.duanxin.hwjy.application.service.command.UserAddressAppService;
+import com.duanxin.hwjy.application.service.command.UserAppService;
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
 import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,7 @@ import javax.validation.Valid;
 public class UserAddressApi {
 
     private final UserAddressAppService userAddressAppService;
+    private final UserAppService userAppService;
 
     @PostMapping
     public ResponseResult addAddress(@RequestBody @Valid AddressAddCommandDto addressAddCommandDto) {
