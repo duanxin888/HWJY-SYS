@@ -1,8 +1,8 @@
 package com.duanxin.hwjy.api.assembler;
 
-import com.duanxin.hwjy.api.dto.LoginCommandDto;
-import com.duanxin.hwjy.api.dto.LoginResponseDto;
-import com.duanxin.hwjy.api.dto.UserQueryResponseDto;
+import com.duanxin.hwjy.api.dto.user.login.LoginCommandDto;
+import com.duanxin.hwjy.api.dto.user.login.LoginResponseDto;
+import com.duanxin.hwjy.api.dto.user.UserQueryResponseDto;
 import com.duanxin.hwjy.domain.user.entity.UserDO;
 import org.springframework.beans.BeanUtils;
 

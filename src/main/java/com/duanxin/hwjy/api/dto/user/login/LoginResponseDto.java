@@ -1,4 +1,4 @@
-package com.duanxin.hwjy.api.dto;
+package com.duanxin.hwjy.api.dto.user.login;
 
 import lombok.Getter;
 import lombok.Setter;

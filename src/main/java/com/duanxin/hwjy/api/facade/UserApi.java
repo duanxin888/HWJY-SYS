@@ -1,7 +1,7 @@
 package com.duanxin.hwjy.api.facade;
 
 import com.duanxin.hwjy.api.assembler.UserAssembler;
-import com.duanxin.hwjy.api.dto.LoginCommandDto;
+import com.duanxin.hwjy.api.dto.user.login.LoginCommandDto;
 import com.duanxin.hwjy.application.service.command.UserAppService;
 import com.duanxin.hwjy.application.service.query.UserQueryAppService;
 import com.duanxin.hwjy.domain.user.entity.UserDO;
