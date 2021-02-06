@@ -3,6 +3,7 @@ package com.duanxin.hwjy.api.assembler;
 import com.duanxin.hwjy.api.dto.user.login.LoginCommandDto;
 import com.duanxin.hwjy.api.dto.user.login.LoginResponseDto;
 import com.duanxin.hwjy.api.dto.user.UserQueryResponseDto;
+import com.duanxin.hwjy.domain.user.entity.IntegralAccountDO;
 import com.duanxin.hwjy.domain.user.entity.UserDO;
 import org.springframework.beans.BeanUtils;
 
@@ -34,7 +35,10 @@ public class UserAssembler {
     public static UserQueryResponseDto do2UserQueryResponseDto(UserDO userDO) {
         UserQueryResponseDto dto = new UserQueryResponseDto();
         BeanUtils.copyProperties(userDO, dto);
-        BeanUtils.copyProperties(userDO.getIntegralAccount(), dto);
+        IntegralAccountDO integralAccount = userDO.getIntegralAccount();
+        dto.setIntegralAccountSn(integralAccount.getIntegralAccountSn());
+        dto.setIntegralBalance(integralAccount.getIntegralBalance());
+        dto.setIntegralValidityDate(integralAccount.getIntegralValidityDate());
         return dto;
     }
 }
