@@ -36,7 +36,7 @@ public class UserAddressDO {
 
     private String phone;
 
-    private Acquiescence acquiescence = Acquiescence.ACQUIESCENCE;
+    private Acquiescence acquiescence = Acquiescence.NOT_ACQUIESCENCE;
 
     private Deleted deleted = Deleted.VALID;
 

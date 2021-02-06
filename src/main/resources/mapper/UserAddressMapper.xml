@@ -19,4 +19,20 @@
         <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
         <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <sql id="userAddress">
+        ID, NAME, USER_ID, PROVINCE, CITY, COUNTY, ADDRESS_DETAILS, POSTAL_CODE, ACQUIESCENCE,
+         PHONE, DELETED, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.UserAddressPO"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into T_USER_ADDRESS(NAME, USER_ID, PROVINCE, CITY, COUNTY, ADDRESS_DETAILS, POSTAL_CODE, ACQUIESCENCE,
+         PHONE, DELETED, CDATE, CREATOR, EDATE, EDITOR)
+         values(#{userAddress.name}, #{userAddress.userId}, #{userAddress.province},
+         #{userAddress.city}, #{userAddress.county}, #{userAddress.addressDetails},
+         #{userAddress.postalCode}, #{userAddress.acquiescence}, #{userAddress.phone},
+         #{userAddress.deleted}, #{userAddress.cdate}, #{userAddress.creator},
+         #{userAddress.edate}, #{userAddress.editor})
+    </insert>
 </mapper>
