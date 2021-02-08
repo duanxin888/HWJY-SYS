@@ -56,4 +56,9 @@ public class UserAddressDO {
         this.setEdate(LocalDateTime.now());
         this.setEditor(String.valueOf(this.getUserId()));
     }
+
+    public void updateAcquiescence() {
+        this.setEdate(LocalDateTime.now());
+        this.setEditor(String.valueOf(this.getUserId()));
+    }
 }

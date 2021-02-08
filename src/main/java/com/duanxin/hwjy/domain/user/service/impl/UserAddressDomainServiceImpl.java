@@ -41,7 +41,10 @@ public class UserAddressDomainServiceImpl implements UserAddressDomainService {
         if (dos.size() != 2) {
             throw new HWJYCheckException(ResultEnum.USER_ADDRESS_UPDATE_ACQUIESCENCE_FAILED);
         }
-        dos.forEach(userAddressRepository::updateAcquiescence);
+        dos.forEach(address -> {
+            address.updateAcquiescence();
+            userAddressRepository.updateAcquiescence(address);
+        });
     }
 
     @Override
