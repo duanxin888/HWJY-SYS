@@ -3,15 +3,12 @@ package com.duanxin.hwjy.api.facade;
 import com.duanxin.hwjy.api.assembler.UserAddressAssembler;
 import com.duanxin.hwjy.api.dto.user.address.AddressAddCommandDto;
 import com.duanxin.hwjy.application.service.command.UserAddressAppService;
-import com.duanxin.hwjy.application.service.command.UserAppService;
+import com.duanxin.hwjy.application.service.query.UserQueryAppService;
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
 import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -28,12 +25,18 @@ import javax.validation.Valid;
 public class UserAddressApi {
 
     private final UserAddressAppService userAddressAppService;
-    private final UserAppService userAppService;
+    private final UserQueryAppService userQueryAppService;
 
     @PostMapping
     public ResponseResult addAddress(@RequestBody @Valid AddressAddCommandDto addressAddCommandDto) {
         UserAddressDO addressDO = UserAddressAssembler.addCommandDto2DO(addressAddCommandDto);
         userAddressAppService.addAddress(addressDO);
         return ResponseResult.success();
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseResult queryAddress(@PathVariable int userId) {
+        return ResponseResult.success(UserAddressAssembler.userDO2QueryDto(
+                userQueryAppService.queryAddress(userId)));
     }
 }

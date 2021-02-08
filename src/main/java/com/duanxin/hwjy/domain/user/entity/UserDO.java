@@ -66,4 +66,8 @@ public class UserDO {
     public void create3SessionWithJwt(String token) {
         this.setThirdSession(token);
     }
+
+    public void fillAddress(List<UserAddressDO> userAddressDOS) {
+        this.setUserAddressDOS(userAddressDOS);
+    }
 }
