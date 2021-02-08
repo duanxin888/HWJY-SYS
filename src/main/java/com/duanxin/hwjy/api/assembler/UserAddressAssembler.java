@@ -43,7 +43,7 @@ public class UserAddressAssembler {
         return dto;
     }
 
-    private static UserAddressDto do2Dto(UserAddressDO userAddressDO) {
+    public static UserAddressDto do2Dto(UserAddressDO userAddressDO) {
         UserAddressDto dto = new UserAddressDto();
         BeanUtils.copyProperties(userAddressDO, dto);
         dto.setAcquiescence(userAddressDO.getAcquiescence().getDesc());

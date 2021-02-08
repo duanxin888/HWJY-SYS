@@ -14,4 +14,6 @@ public interface UserAddressDomainService {
     void addAddress(UserAddressDO addressDO);
 
     void updateAcquiescence(List<UserAddressDO> dos);
+
+    void updateAddress(UserAddressDO userAddressDO);
 }

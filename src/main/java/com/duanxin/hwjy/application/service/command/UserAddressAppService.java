@@ -28,4 +28,8 @@ public class UserAddressAppService {
     public void updateAcquiescence(List<UserAddressDO> dos) {
         userAddressDomainService.updateAcquiescence(dos);
     }
+
+    public void updateAddress(UserAddressDO userAddressDO) {
+        userAddressDomainService.updateAddress(userAddressDO);
+    }
 }

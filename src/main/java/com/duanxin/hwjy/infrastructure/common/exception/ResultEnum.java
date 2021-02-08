@@ -28,7 +28,8 @@ public enum ResultEnum {
 
     REDIS_CACHE_KEY_IS_BLANK(405, "redis cache key is blank"),
 
-    USER_ADDRESS_UPDATE_ACQUIESCENCE_FAILED(406, "user address update acquiescence failed");
+    USER_ADDRESS_UPDATE_ACQUIESCENCE_FAILED(406, "user address update acquiescence failed"),
+    USER_ADDRESS_UPDATE_FAILED(406, "user address update failed");
 
     private final int code;
     private final String desc;

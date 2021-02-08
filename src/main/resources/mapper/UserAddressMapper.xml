@@ -42,9 +42,47 @@
         where ID = #{userAddress.id}
     </update>
 
+    <update id="updateAddress">
+        update T_USER_ADDRESS
+        set
+        <if test="userAddress.name != null">
+            `NAME` = #{userAddress.name},
+        </if>
+        <if test="userAddress.province != null">
+            PROVINCE = #{userAddress.province},
+        </if>
+        <if test="userAddress.city != null">
+            CITY = #{userAddress.city},
+        </if>
+        <if test="userAddress.county != null">
+            COUNTY = #{userAddress.county},
+        </if>
+        <if test="userAddress.addressDetails != null">
+            ADDRESS_DETAILS = #{userAddress.addressDetails},
+        </if>
+        <if test="userAddress.postalCode != null">
+            POSTAL_CODE = #{userAddress.postalCode},
+        </if>
+        <if test="userAddress.phone != null">
+            PHONE = #{userAddress.phone},
+        </if>
+        <if test="userAddress.edate != null">
+            EDATE = #{userAddress.edate},
+        </if>
+        <if test="userAddress.editor != null">
+            EDITOR = #{userAddress.editor}
+        </if>
+    </update>
+
     <select id="selectByUserId" resultMap="TUserAddressMap">
         select <include refid="userAddress"/>
         from T_USER_ADDRESS
         where USER_ID = #{userId}
+    </select>
+
+    <select id="selectById" resultMap="TUserAddressMap">
+        select <include refid="userAddress"/>
+        from T_USER_ADDRESS
+        where ID = #{id}
     </select>
 </mapper>

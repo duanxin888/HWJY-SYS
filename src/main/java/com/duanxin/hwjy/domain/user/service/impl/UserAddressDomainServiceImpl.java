@@ -43,4 +43,10 @@ public class UserAddressDomainServiceImpl implements UserAddressDomainService {
         }
         dos.forEach(userAddressRepository::updateAcquiescence);
     }
+
+    @Override
+    public void updateAddress(UserAddressDO userAddressDO) {
+        userAddressDO.updateAddress();
+        userAddressRepository.updateAddress(userAddressDO);
+    }
 }

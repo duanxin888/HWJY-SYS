@@ -17,4 +17,6 @@ public interface UserAddressRepository {
     List<UserAddressDO> selectByUserId(int userId);
 
     void updateAcquiescence(UserAddressDO userAddressDO);
+
+    void updateAddress(UserAddressDO userAddressDO);
 }

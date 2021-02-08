@@ -4,6 +4,8 @@ import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
 import com.duanxin.hwjy.domain.user.repository.UserAddressRepository;
 import com.duanxin.hwjy.domain.user.service.impl.factory.UserAddressFactory;
 import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import com.duanxin.hwjy.infrastructure.repository.mapper.UserAddressMapper;
 import com.duanxin.hwjy.infrastructure.repository.po.UserAddressPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
@@ -12,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -48,5 +51,21 @@ public class UserAddressRepositoryImpl implements UserAddressRepository {
         userAddressMapper.updateAcquiescence(userAddressFactory.createUserAddressPO(userAddressDO));
         log.info("success to update user [{}] acquiescence address [{}]",
                 userAddressDO.getUserId(), JsonUtil.toString(userAddressDO));
+    }
+
+    @Override
+    public void updateAddress(UserAddressDO userAddressDO) {
+        UserAddressPO po = selectById(userAddressDO.getId());
+        userAddressMapper.updateAddress(userAddressFactory.createUserAddressPO(userAddressDO));
+        log.info("success to update user [{}] address [{}] to [{}]",
+                userAddressDO.getUserId(), JsonUtil.toString(po), JsonUtil.toString(userAddressDO));
+    }
+
+    private UserAddressPO selectById(int id) {
+        UserAddressPO po = userAddressMapper.selectById(id);
+        if (Objects.isNull(po)) {
+            throw new HWJYCheckException(ResultEnum.USER_ADDRESS_UPDATE_FAILED);
+        }
+        return po;
     }
 }

@@ -50,4 +50,10 @@ public class UserAddressApi {
         userAddressAppService.updateAcquiescence(dos);
         return ResponseResult.success();
     }
+
+    @PutMapping
+    public ResponseResult updateAddress(@RequestBody UserAddressDto dto) {
+        userAddressAppService.updateAddress(UserAddressAssembler.dto2DO(dto));
+        return ResponseResult.success();
+    }
 }
