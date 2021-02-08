@@ -15,4 +15,6 @@ public interface UserAddressMapper {
     void insert(@Param("userAddress") UserAddressPO userAddress);
 
     List<UserAddressPO> selectByUserId(@Param("userId") int userId);
+
+    void updateAcquiescence(@Param("userAddress") UserAddressPO userAddress);
 }

@@ -26,4 +26,13 @@ public enum Acquiescence {
         }
         return Acquiescence.NOT_ACQUIESCENCE;
     }
+
+    public static Acquiescence formatByDesc(String desc) {
+        for (Acquiescence acquiescence : Acquiescence.values()) {
+            if (desc.equals(acquiescence.getDesc())) {
+                return acquiescence;
+            }
+        }
+        return NOT_ACQUIESCENCE;
+    }
 }

@@ -42,4 +42,11 @@ public class UserAddressRepositoryImpl implements UserAddressRepository {
                 map(userAddressFactory::createUserAddressDO).
                 collect(Collectors.toList());
     }
+
+    @Override
+    public void updateAcquiescence(UserAddressDO userAddressDO) {
+        userAddressMapper.updateAcquiescence(userAddressFactory.createUserAddressPO(userAddressDO));
+        log.info("success to update user [{}] acquiescence address [{}]",
+                userAddressDO.getUserId(), JsonUtil.toString(userAddressDO));
+    }
 }

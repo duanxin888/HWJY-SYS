@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -21,5 +23,9 @@ public class UserAddressAppService {
 
     public void addAddress(UserAddressDO addressDO) {
         userAddressDomainService.addAddress(addressDO);
+    }
+
+    public void updateAcquiescence(List<UserAddressDO> dos) {
+        userAddressDomainService.updateAcquiescence(dos);
     }
 }

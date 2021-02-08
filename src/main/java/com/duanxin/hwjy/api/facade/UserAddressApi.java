@@ -2,6 +2,7 @@ package com.duanxin.hwjy.api.facade;
 
 import com.duanxin.hwjy.api.assembler.UserAddressAssembler;
 import com.duanxin.hwjy.api.dto.user.address.AddressAddCommandDto;
+import com.duanxin.hwjy.api.dto.user.address.UserAddressDto;
 import com.duanxin.hwjy.application.service.command.UserAddressAppService;
 import com.duanxin.hwjy.application.service.query.UserQueryAppService;
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
@@ -11,6 +12,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author duanxin
@@ -38,5 +41,13 @@ public class UserAddressApi {
     public ResponseResult queryAddress(@PathVariable int userId) {
         return ResponseResult.success(UserAddressAssembler.userDO2QueryDto(
                 userQueryAppService.queryAddress(userId)));
+    }
+
+    @PutMapping("/acquiescence")
+    public ResponseResult updateAcquiescence(@RequestBody List<UserAddressDto> userAddressDtos) {
+        List<UserAddressDO> dos = userAddressDtos.stream().
+                map(UserAddressAssembler::dto2DO).collect(Collectors.toList());
+        userAddressAppService.updateAcquiescence(dos);
+        return ResponseResult.success();
     }
 }

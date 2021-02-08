@@ -26,7 +26,9 @@ public enum ResultEnum {
 
     NO_SUPPORT_SN_GENERATOR(404, "no support sn generator"),
 
-    REDIS_CACHE_KEY_IS_BLANK(405, "redis cache key is blank");
+    REDIS_CACHE_KEY_IS_BLANK(405, "redis cache key is blank"),
+
+    USER_ADDRESS_UPDATE_ACQUIESCENCE_FAILED(406, "user address update acquiescence failed");
 
     private final int code;
     private final String desc;

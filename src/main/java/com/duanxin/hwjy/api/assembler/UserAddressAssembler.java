@@ -5,6 +5,7 @@ import com.duanxin.hwjy.api.dto.user.address.AddressQueryDto;
 import com.duanxin.hwjy.api.dto.user.address.UserAddressDto;
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
 import com.duanxin.hwjy.domain.user.entity.UserDO;
+import com.duanxin.hwjy.domain.user.entity.valueobject.Acquiescence;
 import org.springframework.beans.BeanUtils;
 
 import java.util.stream.Collectors;
@@ -19,6 +20,13 @@ public class UserAddressAssembler {
 
     private UserAddressAssembler() {
 
+    }
+
+    public static UserAddressDO dto2DO(UserAddressDto dto) {
+        UserAddressDO userAddressDO = new UserAddressDO();
+        BeanUtils.copyProperties(dto, userAddressDO);
+        userAddressDO.setAcquiescence(Acquiescence.formatByDesc(dto.getAcquiescence()));
+        return userAddressDO;
     }
 
     public static UserAddressDO addCommandDto2DO(AddressAddCommandDto dto) {

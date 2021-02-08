@@ -36,6 +36,12 @@
          #{userAddress.edate}, #{userAddress.editor})
     </insert>
 
+    <update id="updateAcquiescence">
+        update T_USER_ADDRESS
+        set ACQUIESCENCE = #{userAddress.acquiescence}
+        where ID = #{userAddress.id}
+    </update>
+
     <select id="selectByUserId" resultMap="TUserAddressMap">
         select <include refid="userAddress"/>
         from T_USER_ADDRESS
