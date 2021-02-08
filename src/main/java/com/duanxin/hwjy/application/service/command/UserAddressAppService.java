@@ -32,4 +32,8 @@ public class UserAddressAppService {
     public void updateAddress(UserAddressDO userAddressDO) {
         userAddressDomainService.updateAddress(userAddressDO);
     }
+
+    public void deleteAddress(int addressId) {
+        userAddressDomainService.deleteAddress(addressId);
+    }
 }

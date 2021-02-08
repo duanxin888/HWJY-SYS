@@ -48,6 +48,7 @@ public class UserAddressRepositoryImpl implements UserAddressRepository {
 
     @Override
     public void updateAcquiescence(UserAddressDO userAddressDO) {
+        this.selectById(userAddressDO.getId());
         userAddressMapper.updateAcquiescence(userAddressFactory.createUserAddressPO(userAddressDO));
         log.info("success to update user [{}] acquiescence address [{}]",
                 userAddressDO.getUserId(), JsonUtil.toString(userAddressDO));
@@ -55,17 +56,25 @@ public class UserAddressRepositoryImpl implements UserAddressRepository {
 
     @Override
     public void updateAddress(UserAddressDO userAddressDO) {
-        UserAddressPO po = selectById(userAddressDO.getId());
+        UserAddressDO oldAddressDO = selectById(userAddressDO.getId());
         userAddressMapper.updateAddress(userAddressFactory.createUserAddressPO(userAddressDO));
         log.info("success to update user [{}] address [{}] to [{}]",
-                userAddressDO.getUserId(), JsonUtil.toString(po), JsonUtil.toString(userAddressDO));
+                userAddressDO.getUserId(), JsonUtil.toString(oldAddressDO), JsonUtil.toString(userAddressDO));
     }
 
-    private UserAddressPO selectById(int id) {
+    public UserAddressDO selectById(int id) {
         UserAddressPO po = userAddressMapper.selectById(id);
-        if (Objects.isNull(po)) {
+        if (Objects.isNull(po) || !Deleted.isValid(po.getDeleted())) {
+            log.warn("user address [{}] is null or deleted", JsonUtil.toString(po));
             throw new HWJYCheckException(ResultEnum.USER_ADDRESS_UPDATE_FAILED);
         }
-        return po;
+        return userAddressFactory.createUserAddressDO(po);
+    }
+
+    @Override
+    public void updateWithDelete(UserAddressDO userAddressDO) {
+        userAddressMapper.updateWithDelete(userAddressFactory.createUserAddressPO(userAddressDO));
+        log.info("success to delete user [{}] address [{}]",
+                userAddressDO.getUserId(), JsonUtil.toString(userAddressDO));
     }
 }

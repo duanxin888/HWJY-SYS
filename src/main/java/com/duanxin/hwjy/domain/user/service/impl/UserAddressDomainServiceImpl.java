@@ -52,4 +52,11 @@ public class UserAddressDomainServiceImpl implements UserAddressDomainService {
         userAddressDO.updateAddress();
         userAddressRepository.updateAddress(userAddressDO);
     }
+
+    @Override
+    public void deleteAddress(int addressId) {
+        UserAddressDO userAddressDO = userAddressRepository.selectById(addressId);
+        userAddressDO.deleteAddress();
+        userAddressRepository.updateWithDelete(userAddressDO);
+    }
 }

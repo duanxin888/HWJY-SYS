@@ -38,7 +38,7 @@
 
     <update id="updateAcquiescence">
         update T_USER_ADDRESS
-        set ACQUIESCENCE = #{userAddress.acquiescence}
+        set ACQUIESCENCE = #{userAddress.acquiescence}, EDATE = #{userAddress.edate}, EDITOR = #{userAddress.editor}
         where ID = #{userAddress.id}
     </update>
 
@@ -72,6 +72,12 @@
         <if test="userAddress.editor != null">
             EDITOR = #{userAddress.editor}
         </if>
+    </update>
+
+    <update id="updateWithDelete">
+        update T_USER_ADDRESS
+        set DELETED = #{userAddress.deleted}, EDATE = #{userAddress.edate}, EDITOR = #{userAddress.editor}
+        where ID = #{userAddress.id}
     </update>
 
     <select id="selectByUserId" resultMap="TUserAddressMap">

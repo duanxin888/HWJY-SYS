@@ -56,4 +56,10 @@ public class UserAddressApi {
         userAddressAppService.updateAddress(UserAddressAssembler.dto2DO(dto));
         return ResponseResult.success();
     }
+
+    @DeleteMapping("/{addressId}")
+    public ResponseResult deleteAddress(@PathVariable int addressId) {
+        userAddressAppService.deleteAddress(addressId);
+        return ResponseResult.success();
+    }
 }

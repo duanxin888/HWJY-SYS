@@ -19,4 +19,8 @@ public interface UserAddressRepository {
     void updateAcquiescence(UserAddressDO userAddressDO);
 
     void updateAddress(UserAddressDO userAddressDO);
+
+    UserAddressDO selectById(int id);
+
+    void updateWithDelete(UserAddressDO userAddressDO);
 }

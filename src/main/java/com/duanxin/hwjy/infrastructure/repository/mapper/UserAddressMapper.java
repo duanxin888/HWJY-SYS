@@ -21,4 +21,6 @@ public interface UserAddressMapper {
     void updateAddress(@Param("userAddress") UserAddressPO userAddress);
 
     UserAddressPO selectById(@Param("id") int id);
+
+    void updateWithDelete(@Param("userAddress") UserAddressPO userAddress);
 }

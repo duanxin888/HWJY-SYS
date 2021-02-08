@@ -53,11 +53,19 @@ public class UserAddressDO {
     }
 
     public void updateAddress() {
-        this.setEdate(LocalDateTime.now());
-        this.setEditor(String.valueOf(this.getUserId()));
+        updateCommon();
     }
 
     public void updateAcquiescence() {
+        updateCommon();
+    }
+
+    public void deleteAddress() {
+        this.setDeleted(Deleted.INVALID);
+        updateCommon();
+    }
+
+    private void updateCommon() {
         this.setEdate(LocalDateTime.now());
         this.setEditor(String.valueOf(this.getUserId()));
     }
