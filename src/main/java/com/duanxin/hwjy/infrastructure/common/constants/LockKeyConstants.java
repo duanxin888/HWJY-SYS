@@ -13,7 +13,8 @@ import lombok.Getter;
 @Getter
 public enum LockKeyConstants {
 
-    COUNTER_RESET_JOB_KEY("JOB_KEY:COUNTER_RESET");
+    COUNTER_RESET_JOB_KEY("JOB_KEY:COUNTER_RESET"),
+    GARBAGE_NEWS_COLLECT_JOB_KEY("JOB_KEY:GARBAGE_NEWS_COLLECT");
 
     private final String key;
 }
