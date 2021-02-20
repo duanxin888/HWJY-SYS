@@ -3,6 +3,7 @@ package com.duanxin.hwjy;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author duanxin
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan(basePackages = "com.duanxin.hwjy.infrastructure.repository.mapper")
+@EnableScheduling
 public class HWJYServiceApplication {
 
     public static void main(String[] args) {

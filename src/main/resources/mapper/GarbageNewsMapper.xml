@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.GarbageNewsMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.GarbageNewsPO" id="GarbageNewsMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="newsTitle" column="NEWS_TITLE" jdbcType="VARCHAR"/>
+        <result property="newsDetails" column="NEWS_DETAILS" jdbcType="VARCHAR"/>
+        <result property="picUrl" column="PIC_URL" jdbcType="VARCHAR"/>
+        <result property="newsUrl" column="NEWS_URL" jdbcType="VARCHAR"/>
+        <result property="newsCtime" column="NEWS_CTIME" jdbcType="VARCHAR"/>
+        <result property="sourceType" column="SOURCE_TYPE" jdbcType="INTEGER"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="user">
+        ID, NEWS_TITLE, NEWS_DETAILS, PIC_URL, NEWS_URL, NEWS_CTIME, SOURCE_TYPE, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.GarbageNewsPO"
+            keyProperty="id" useGeneratedKeys="true">
+        insert into T_GARBAGE_NEWS(NEWS_TITLE, NEWS_DETAILS, PIC_URL, NEWS_URL, NEWS_CTIME, SOURCE_TYPE,
+         CDATE, CREATOR, EDATE, EDITOR)
+         values(#{garbageNews.newsTitle}, #{garbageNews.newsDetails}, #{garbageNews.picUrl}, #{garbageNews.newsUrl},
+         #{garbageNews.newsCtime}, #{garbageNews.sourceType}, #{garbageNews.cdate}, #{garbageNews.creator},
+         #{garbageNews.edate}, #{garbageNews.editor})
+    </insert>
+
+</mapper>
