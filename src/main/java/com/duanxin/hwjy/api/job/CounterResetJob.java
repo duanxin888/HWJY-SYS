@@ -26,7 +26,7 @@ public class CounterResetJob {
     private final CounterClient counterClient;
     private final LockClient lockClient;
 
-    @Scheduled(cron = "0 0 0 * * ? *")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void counterReset() {
         log.info("begin to execute CounterResetJob");
         for (CounterConstants value : CounterConstants.values()) {
