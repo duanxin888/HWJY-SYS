@@ -48,7 +48,7 @@ public class TxGarbageNewsRequestClient implements NewsRequestClient{
 
             if (!response.getStatusCode().is2xxSuccessful()) {
                 log.warn("failed to fetch txGarbageNews [{}] by [{}], response [{}] status [{}]",
-                        url, body, requestJson, response.getStatusCodeValue());
+                        url, requestJson, body, response.getStatusCodeValue());
                 return Optional.empty();
             }
 
@@ -59,8 +59,15 @@ public class TxGarbageNewsRequestClient implements NewsRequestClient{
                 return Optional.empty();
             }
 
+            TxGarbageNewsResponse txGarbageNewsResponse = result.get();
+            if (txGarbageNewsResponse.code != HttpStatus.OK.value()) {
+                log.warn("failed to fetch txGarbageNews [{}] by [{}], response [{}] status [{}]",
+                        url, requestJson, body, response.getStatusCodeValue());
+                return Optional.empty();
+            }
+
             log.info("success to fetch txGarbageNews [{}] by [{}]", url, requestJson);
-            return Optional.ofNullable(result.get().getNewsList());
+            return Optional.ofNullable(txGarbageNewsResponse.getNewsList());
         } catch (Exception exception) {
             log.warn("failed to fetch txGarbageNews [{}] by [{}] exception", url, requestJson, exception);
             return Optional.empty();
