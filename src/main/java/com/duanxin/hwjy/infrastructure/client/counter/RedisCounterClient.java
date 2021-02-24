@@ -37,6 +37,11 @@ public class RedisCounterClient implements CounterClient {
 
     @Override
     public void reset(String key) {
-        redisTemplate.delete(key);
+        try {
+            redisTemplate.delete(key);
+            log.info("success to reset key [{}]", key);
+        } catch (Exception exception) {
+            log.warn("failed to reset key [{}] exception", key, exception);
+        }
     }
 }
