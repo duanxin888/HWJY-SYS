@@ -32,11 +32,11 @@ public class TxGarbageNewsRequestClient implements NewsRequestClient{
 
     @Override
     public Optional<List<NewsResponseDto>> fetchNews(NewsRequestDto dto) {
-        String url = txGarbageNewsConfig.getTxBaseConfig().getBaseUrl() + txGarbageNewsConfig.getResource();
+        String url = txGarbageNewsConfig.getTxBaseConfig().getBaseUrl() + txGarbageNewsConfig.getResource() +
+                "?key=" + txGarbageNewsConfig.getTxBaseConfig().getApiKey();
         String requestJson = JsonUtil.toString(dto);
         log.info("begin to request txGarbageNews [{}] by [{}]", url, requestJson);
         LinkedMultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-        param.set("key", txGarbageNewsConfig.getTxBaseConfig().getApiKey());
         param.set("num", dto.getNum());
         param.set("page", dto.getPage());
         param.set("word", dto.getWord());
@@ -67,7 +67,7 @@ public class TxGarbageNewsRequestClient implements NewsRequestClient{
             }
 
             log.info("success to fetch txGarbageNews [{}] by [{}]", url, requestJson);
-            return Optional.ofNullable(txGarbageNewsResponse.getNewsList());
+            return Optional.ofNullable(txGarbageNewsResponse.getNewslist());
         } catch (Exception exception) {
             log.warn("failed to fetch txGarbageNews [{}] by [{}] exception", url, requestJson, exception);
             return Optional.empty();
@@ -88,6 +88,6 @@ public class TxGarbageNewsRequestClient implements NewsRequestClient{
 
         private String msg;
 
-        private List<NewsResponseDto> newsList;
+        private List<NewsResponseDto> newslist;
     }
 }
