@@ -12,4 +12,6 @@ import org.apache.ibatis.annotations.Param;
 public interface GarbageNewsMapper {
 
     void insert(@Param("garbageNews") GarbageNewsPO garbageNews);
+
+    GarbageNewsPO selectByNewsTitle(@Param("newsTitle") String newsTitle);
 }

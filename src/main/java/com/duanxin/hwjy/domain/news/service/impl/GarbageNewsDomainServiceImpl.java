@@ -40,7 +40,7 @@ public class GarbageNewsDomainServiceImpl implements GarbageNewsDomainService {
             return ;
         }
         // storage data
-        optional.get().stream().map(garbageNewsFactory::responseDto2DO).forEach(garbageNewsRepository::insert);
+        optional.get().stream().map(garbageNewsFactory::responseDto2DO).filter(s -> !garbageNewsRepository.isExisted(s)).forEach(garbageNewsRepository::insert);
     }
 
     private NewsRequestDto assemblyRequestParam(int count) {

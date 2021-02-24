@@ -11,4 +11,6 @@ import com.duanxin.hwjy.domain.news.entity.GarbageNewsDO;
 public interface GarbageNewsRepository {
 
     void insert(GarbageNewsDO garbageNewsDO);
+
+    boolean isExisted(GarbageNewsDO garbageNewsDO);
 }

@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -33,17 +32,14 @@ public class TxGarbageNewsRequestClient implements NewsRequestClient{
     @Override
     public Optional<List<NewsResponseDto>> fetchNews(NewsRequestDto dto) {
         String url = txGarbageNewsConfig.getTxBaseConfig().getBaseUrl() + txGarbageNewsConfig.getResource() +
-                "?key=" + txGarbageNewsConfig.getTxBaseConfig().getApiKey();
+                "?key=" + txGarbageNewsConfig.getTxBaseConfig().getApiKey() +
+                "&num=" + dto.getNum() + "&page=" + dto.getPage();
         String requestJson = JsonUtil.toString(dto);
         log.info("begin to request txGarbageNews [{}] by [{}]", url, requestJson);
-        LinkedMultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-        param.set("num", dto.getNum());
-        param.set("page", dto.getPage());
-        param.set("word", dto.getWord());
 
         HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders());
         try {
-            ResponseEntity<String> response = txRestTemplate.exchange(url, HttpMethod.POST, entity, String.class, param);
+            ResponseEntity<String> response = txRestTemplate.exchange(url, HttpMethod.POST, entity, String.class);
             String body = response.getBody();
 
             if (!response.getStatusCode().is2xxSuccessful()) {
@@ -66,7 +62,7 @@ public class TxGarbageNewsRequestClient implements NewsRequestClient{
                 return Optional.empty();
             }
 
-            log.info("success to fetch txGarbageNews [{}] by [{}]", url, requestJson);
+            log.info("success to fetch [{}] txGarbageNews [{}] by [{}]", txGarbageNewsResponse.getNewslist().size(), url, requestJson);
             return Optional.ofNullable(txGarbageNewsResponse.getNewslist());
         } catch (Exception exception) {
             log.warn("failed to fetch txGarbageNews [{}] by [{}] exception", url, requestJson, exception);
