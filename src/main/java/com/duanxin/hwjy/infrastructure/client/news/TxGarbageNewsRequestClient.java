@@ -36,7 +36,7 @@ public class TxGarbageNewsRequestClient implements NewsRequestClient{
         String requestJson = JsonUtil.toString(dto);
         log.info("begin to request txGarbageNews [{}] by [{}]", url, requestJson);
         LinkedMultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-        param.set("key", txGarbageNewsConfig.getTxBaseConfig().getApiKey());
+        param.set("key", txGarbageNewsConfig.getTxBaseConfig().getAppKey());
         param.set("num", dto.getNum());
         param.set("page", dto.getPage());
         param.set("word", dto.getWord());

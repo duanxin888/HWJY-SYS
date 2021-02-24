@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 public class TxBaseConfig {
 
-    private String apiKey;
+    private String appKey;
 
     private String baseUrl;
 }
