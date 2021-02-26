@@ -1,8 +1,19 @@
 package com.duanxin.hwjy.api.facade;
 
+import com.duanxin.hwjy.api.assembler.GarbageNewsAssembler;
+import com.duanxin.hwjy.api.dto.PageRequestDto;
+import com.duanxin.hwjy.application.service.query.GarbageNewsQueryAppService;
+import com.duanxin.hwjy.domain.news.entity.GarbageNewsDO;
+import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
+import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author duanxin
@@ -13,5 +24,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Validated
 @RequestMapping("/api/v1/news")
+@AllArgsConstructor
 public class GarbageNewsApi {
+
+    private final GarbageNewsQueryAppService garbageNewsQueryAppService;
+
+    @GetMapping
+    public ResponseResult getGarbageNews(@RequestBody PageRequestDto dto) {
+        List<GarbageNewsDO> dos = garbageNewsQueryAppService.getGarbageNews(dto.getPageNum(), dto.getPageSize());
+        return ResponseResult.success(dos.stream().
+                map(GarbageNewsAssembler::do2QueryResponseDto).
+                collect(Collectors.toList()));
+    }
 }

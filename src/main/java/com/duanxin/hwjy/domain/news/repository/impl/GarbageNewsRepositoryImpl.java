@@ -10,7 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author duanxin
@@ -36,5 +38,11 @@ public class GarbageNewsRepositoryImpl implements GarbageNewsRepository {
     @Override
     public boolean isExisted(GarbageNewsDO garbageNewsDO) {
         return Objects.nonNull(garbageNewsMapper.selectByNewsTitle(garbageNewsDO.getNewsTitle()));
+    }
+
+    @Override
+    public List<GarbageNewsDO> getGarbageNews(int pageNum, int pageSize) {
+        List<GarbageNewsPO> pos = garbageNewsMapper.selectGarbageNewsWithPage((pageNum * pageSize) + 1, pageSize);
+        return pos.stream().map(garbageNewsFactory::po2DO).collect(Collectors.toList());
     }
 }

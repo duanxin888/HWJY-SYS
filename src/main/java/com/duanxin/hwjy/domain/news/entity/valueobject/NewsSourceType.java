@@ -17,4 +17,13 @@ public enum NewsSourceType {
 
     private final int code;
     private final String type;
+
+    public static NewsSourceType formatByCode(int code) {
+        for (NewsSourceType value : values()) {
+            if (code == value.code) {
+                return value;
+            }
+        }
+        return THIRD_PARTY;
+    }
 }

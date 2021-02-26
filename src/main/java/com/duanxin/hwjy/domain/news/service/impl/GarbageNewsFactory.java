@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.domain.news.service.impl;
 
 import com.duanxin.hwjy.domain.news.entity.GarbageNewsDO;
+import com.duanxin.hwjy.domain.news.entity.valueobject.NewsSourceType;
 import com.duanxin.hwjy.infrastructure.client.news.NewsResponseDto;
 import com.duanxin.hwjy.infrastructure.repository.po.GarbageNewsPO;
 import org.springframework.beans.BeanUtils;
@@ -30,5 +31,12 @@ public class GarbageNewsFactory {
         BeanUtils.copyProperties(garbageNewsDO, po);
         po.setSourceType(garbageNewsDO.getSourceType().getCode());
         return po;
+    }
+
+    public GarbageNewsDO po2DO(GarbageNewsPO po) {
+        GarbageNewsDO garbageNewsDO = new GarbageNewsDO();
+        BeanUtils.copyProperties(po, garbageNewsDO);
+        garbageNewsDO.setSourceType(NewsSourceType.formatByCode(po.getSourceType()));
+        return garbageNewsDO;
     }
 }

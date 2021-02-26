@@ -33,5 +33,11 @@
         from T_GARBAGE_NEWS
         where NEWS_TITLE = #{newsTitle}
     </select>
+    <select id="selectGarbageNewsWithPage" resultMap="GarbageNewsMap">
+        select <include refid="garbageNews"/>
+        from T_GARBAGE_NEWS
+        order by NEWS_CTIME desc
+        limit #{offset}, #{rows}
+    </select>
 
 </mapper>
