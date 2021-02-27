@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.IntegralLogMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.IntegralLogPO" id="TIntegralLogMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="userId" column="USER_ID" jdbcType="INTEGER"/>
+        <result property="integralAccountSn" column="INTEGRAL_ACCOUNT_SN" jdbcType="VARCHAR"/>
+        <result property="operateType" column="OPERATE_TYPE" jdbcType="VARCHAR"/>
+        <result property="integralOperateChannel" column="INTEGER_OPERATE_CHANNEL" jdbcType="VARCHAR"/>
+        <result property="integralNumber" column="INTEGRAL_NUMBER" jdbcType="NUMERIC"/>
+        <result property="operateParam" column="OPERATE_PARAM" jdbcType="VARCHAR"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="integralAccount">
+        ID, USER_ID, INTEGRAL_ACCOUNT_SN, OPERATE_TYPE, INTEGER_OPERATE_CHANNEL,
+        INTEGRAL_NUMBER, OPERATE_PARAM, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+
+</mapper>
