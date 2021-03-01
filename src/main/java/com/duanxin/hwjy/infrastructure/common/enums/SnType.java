@@ -13,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum SnType {
 
-    INTEGRAL_ACCOUNT_SN_TYPE("01");
+    INTEGRAL_ACCOUNT_SN_TYPE("01"), DICTIONARY_SN_TYPE("02");
 
     private final String typeId;
 }
