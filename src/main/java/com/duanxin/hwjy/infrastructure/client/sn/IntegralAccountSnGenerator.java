@@ -26,6 +26,11 @@ public class IntegralAccountSnGenerator extends AbsSnGenerator {
         super(SnType.INTEGRAL_ACCOUNT_SN_TYPE);
     }
 
+    /**
+     * integral account sn:
+     *      year(4) + month(2) + day(2) + hour(2) + minute(2) + second(2)
+     *      + STEPPER(11) + randomizer(8)
+     * */
     @Override
     public String generate() {
         LocalDateTime now = LocalDateTime.now();
