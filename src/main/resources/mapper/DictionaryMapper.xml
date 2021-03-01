@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.DictionaryMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.DictionaryPO" id="TDictionaryMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="dictionarySn" column="DICTIONARY_SN" jdbcType="VARCHAR"/>
+        <result property="dictionaryStatus" column="DICTIONARY_STATUS" jdbcType="VARCHAR"/>
+        <result property="dictionaryName" column="DICTIONARY_NAME" jdbcType="VARCHAR"/>
+        <result property="dictionaryItem" column="DICTIONARY_ITEM" jdbcType="VARCHAR"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="integralAccount">
+        ID, DICTIONARY_SN, DICTIONARY_STATUS, DICTIONARY_NAME, DICTIONARY_ITEM, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.DictionaryPO"
+     useGeneratedKeys="true" keyProperty="id">
+        insert into T_DICTIONARY(DICTIONARY_SN, DICTIONARY_STATUS, DICTIONARY_NAME, DICTIONARY_ITEM,
+        CDATE, CREATOR, EDATE, EDITOR)
+        values (#{po.dictionarySn}, #{po.dictionaryStatus}, #{po.dictionaryName}, #{po.dictionaryItem},
+        #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
+
+
+</mapper>
