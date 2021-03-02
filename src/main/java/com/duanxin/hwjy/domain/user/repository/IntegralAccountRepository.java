@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.domain.user.repository;
 
+import com.duanxin.hwjy.domain.user.entity.IntegralAccountDO;
 import com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO;
 
 /**
@@ -12,5 +13,5 @@ public interface IntegralAccountRepository {
 
     IntegralAccountPO insert(IntegralAccountPO integralAccountPO);
 
-    IntegralAccountPO selectBySn(String integralAccountSn);
+    IntegralAccountDO selectBySn(String integralAccountSn);
 }

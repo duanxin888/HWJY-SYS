@@ -57,8 +57,7 @@ public class UserDomainServiceImpl implements UserDomainService {
             userPO.setWxSessionKey(sessionResult.getSessionKey());
             userRepository.updateSessionKey(userPO);
         }
-        userDO = userFactory.createUserDO(userPO,
-                userFactory.createIntegralAccountDO(integralAccountRepository.selectBySn(userPO.getIntegralAccountSn())));
+        userDO = userFactory.createUserDO(userPO, integralAccountRepository.selectBySn(userPO.getIntegralAccountSn()));
 
         // create third session (with jwt, storage userInfo)
         String token = fetchJwtToken(userDO);

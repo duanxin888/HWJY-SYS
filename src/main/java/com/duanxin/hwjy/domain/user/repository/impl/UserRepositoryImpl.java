@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.domain.user.repository.impl;
 
+import com.duanxin.hwjy.domain.user.entity.IntegralAccountDO;
 import com.duanxin.hwjy.domain.user.entity.UserDO;
 import com.duanxin.hwjy.domain.user.entity.valueobject.UserStatus;
 import com.duanxin.hwjy.domain.user.repository.IntegralAccountRepository;
@@ -9,7 +10,6 @@ import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
 import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import com.duanxin.hwjy.infrastructure.repository.mapper.UserMapper;
-import com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO;
 import com.duanxin.hwjy.infrastructure.repository.po.UserPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
 import lombok.AllArgsConstructor;
@@ -69,8 +69,8 @@ public class UserRepositoryImpl implements UserRepository {
             log.warn("user [{}] is not available", JsonUtil.toString(userPO));
             throw new HWJYCheckException(ResultEnum.USER_IS_NOT_AVAILABLE);
         }
-        IntegralAccountPO integralAccountPO =
+        IntegralAccountDO integralAccountDO =
                 integralAccountRepository.selectBySn(userPO.getIntegralAccountSn());
-        return userFactory.createUserDO(userPO, userFactory.createIntegralAccountDO(integralAccountPO));
+        return userFactory.createUserDO(userPO, integralAccountDO);
     }
 }
