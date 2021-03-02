@@ -10,6 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -42,5 +45,10 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
     @Override
     public DictionaryDO selectBySn(String dictionarySn) {
         return dictionaryFactory.po2DO(dictionaryMapper.selectBySn(dictionarySn));
+    }
+
+    @Override
+    public List<DictionaryDO> getDictionary() {
+        return dictionaryMapper.select().stream().map(dictionaryFactory::po2DO).collect(Collectors.toList());
     }
 }

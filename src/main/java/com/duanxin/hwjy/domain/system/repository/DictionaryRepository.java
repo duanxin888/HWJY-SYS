@@ -2,6 +2,8 @@ package com.duanxin.hwjy.domain.system.repository;
 
 import com.duanxin.hwjy.domain.system.entity.DictionaryDO;
 
+import java.util.List;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -15,4 +17,6 @@ public interface DictionaryRepository {
     DictionaryDO selectBySn(String dictionarySn);
 
     void updateItem(DictionaryDO dictionaryDO);
+
+    List<DictionaryDO> getDictionary();
 }

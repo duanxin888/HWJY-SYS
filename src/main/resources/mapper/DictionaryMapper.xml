@@ -35,6 +35,10 @@
         from T_DICTIONARY
         where DICTIONARY_SN = #{dictionarySn}
     </select>
+    <select id="select" resultMap="TDictionaryMap">
+        select <include refid="dictionary"/>
+        from T_DICTIONARY
+    </select>
 
 
 </mapper>
