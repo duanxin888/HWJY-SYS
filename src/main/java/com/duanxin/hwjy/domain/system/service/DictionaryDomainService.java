@@ -11,4 +11,6 @@ import com.duanxin.hwjy.domain.system.entity.DictionaryDO;
 public interface DictionaryDomainService {
 
     DictionaryDO addDictionary(DictionaryDO dictionaryDO);
+
+    void updateItem(DictionaryDO dictionaryDO);
 }

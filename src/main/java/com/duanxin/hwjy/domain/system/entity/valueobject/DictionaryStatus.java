@@ -8,5 +8,18 @@ package com.duanxin.hwjy.domain.system.entity.valueobject;
  */
 public enum DictionaryStatus {
 
-    AVAILABLE, DISABLE
+    AVAILABLE, DISABLE;
+
+    public static boolean isAvailable(DictionaryStatus dictionaryStatus) {
+        return DictionaryStatus.AVAILABLE.equals(dictionaryStatus);
+    }
+
+    public static DictionaryStatus formatByName(String name) {
+        for (DictionaryStatus value : values()) {
+            if (value.name().equals(name)) {
+                return value;
+            }
+        }
+        return AVAILABLE;
+    }
 }

@@ -1,6 +1,8 @@
 package com.duanxin.hwjy.domain.system.service.impl;
 
 import com.duanxin.hwjy.domain.system.entity.DictionaryDO;
+import com.duanxin.hwjy.domain.system.entity.valueobject.DictionaryItem;
+import com.duanxin.hwjy.domain.system.entity.valueobject.DictionaryStatus;
 import com.duanxin.hwjy.infrastructure.repository.po.DictionaryPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
 import org.springframework.beans.BeanUtils;
@@ -21,5 +23,13 @@ public class DictionaryFactory {
         po.setDictionaryStatus(dictionaryDO.getDictionaryStatus().name());
         po.setDictionaryItem(JsonUtil.toString(dictionaryDO.getDictionaryItems()));
         return po;
+    }
+
+    public DictionaryDO po2DO(DictionaryPO po) {
+        DictionaryDO dictionaryDO = new DictionaryDO();
+        BeanUtils.copyProperties(po, dictionaryDO);
+        dictionaryDO.setDictionaryStatus(DictionaryStatus.formatByName(po.getDictionaryStatus()));
+        dictionaryDO.setDictionaryItems(JsonUtil.toObjectList(po.getDictionaryItem(), DictionaryItem.class).get());
+        return dictionaryDO;
     }
 }

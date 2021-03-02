@@ -14,7 +14,7 @@
         <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="integralAccount">
+    <sql id="dictionary">
         ID, DICTIONARY_SN, DICTIONARY_STATUS, DICTIONARY_NAME, DICTIONARY_ITEM, CDATE, CREATOR, EDATE, EDITOR
     </sql>
 
@@ -25,6 +25,16 @@
         values (#{po.dictionarySn}, #{po.dictionaryStatus}, #{po.dictionaryName}, #{po.dictionaryItem},
         #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
     </insert>
+    <update id="updateItem">
+        update T_DICTIONARY
+        set DICTIONARY_ITEM = #{po.dictionaryItem}
+        where DICTIONARY_SN = #{po.dictionarySn}
+    </update>
+    <select id="selectBySn" resultMap="TDictionaryMap">
+        select <include refid="dictionary"/>
+        from T_DICTIONARY
+        where DICTIONARY_SN = #{dictionarySn}
+    </select>
 
 
 </mapper>

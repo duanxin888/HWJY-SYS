@@ -32,7 +32,9 @@ public enum ResultEnum {
     USER_ADDRESS_UPDATE_FAILED(406, "user address update failed"),
 
 
-    JOB_ACTION_NOT_SUPPORT_SERVICE(407, "job action not support service");
+    JOB_ACTION_NOT_SUPPORT_SERVICE(407, "job action not support service"),
+
+    DICTIONARY_NOT_EXIST(408, "dictionary not exist");
 
     private final int code;
     private final String desc;

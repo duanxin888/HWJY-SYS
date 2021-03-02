@@ -11,4 +11,8 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface DictionaryMapper {
     void insert(@Param("po") DictionaryPO po);
+
+    DictionaryPO selectBySn(@Param("dictionarySn") String dictionarySn);
+
+    void updateItem(@Param("po") DictionaryPO po);
 }

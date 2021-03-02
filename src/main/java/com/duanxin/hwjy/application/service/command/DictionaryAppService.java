@@ -22,4 +22,8 @@ public class DictionaryAppService {
     public DictionaryDO addDictionary(DictionaryDO dictionaryDO) {
         return dictionaryDomainService.addDictionary(dictionaryDO);
     }
+
+    public void updateItem(DictionaryDO dictionaryDO) {
+        dictionaryDomainService.updateItem(dictionaryDO);
+    }
 }

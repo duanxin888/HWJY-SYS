@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.api.assembler;
 
 import com.duanxin.hwjy.api.dto.dictionary.DictionaryAddCommandDto;
+import com.duanxin.hwjy.api.dto.dictionary.DictionaryItemCommandDto;
 import com.duanxin.hwjy.api.dto.dictionary.DictionaryQueryResponseDto;
 import com.duanxin.hwjy.domain.system.entity.DictionaryDO;
 import org.springframework.beans.BeanUtils;
@@ -27,5 +28,11 @@ public class DictionaryAssembler {
         BeanUtils.copyProperties(dictionaryDO, dto);
         dto.setDictionaryStatus(dictionaryDO.getDictionaryStatus().name());
         return dto;
+    }
+
+    public static DictionaryDO itemCommand2DO(DictionaryItemCommandDto dto) {
+        DictionaryDO dictionaryDO = new DictionaryDO();
+        BeanUtils.copyProperties(dto, dictionaryDO);
+        return dictionaryDO;
     }
 }

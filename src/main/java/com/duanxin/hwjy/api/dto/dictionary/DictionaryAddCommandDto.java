@@ -3,6 +3,8 @@ package com.duanxin.hwjy.api.dto.dictionary;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -13,5 +15,6 @@ import lombok.Setter;
 @Setter
 public class DictionaryAddCommandDto {
 
+    @NotBlank(message = "dictionaryName NotBlank")
     private String dictionaryName;
 }

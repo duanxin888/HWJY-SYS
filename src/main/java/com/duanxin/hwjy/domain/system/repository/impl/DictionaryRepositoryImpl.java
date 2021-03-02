@@ -32,4 +32,15 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
         dictionaryDO.setId(po.getId());
         return dictionaryDO;
     }
+
+    @Override
+    public void updateItem(DictionaryDO dictionaryDO) {
+        dictionaryMapper.updateItem(dictionaryFactory.do2PO(dictionaryDO));
+        log.info("success to update item [{}]", JsonUtil.toString(dictionaryDO));
+    }
+
+    @Override
+    public DictionaryDO selectBySn(String dictionarySn) {
+        return dictionaryFactory.po2DO(dictionaryMapper.selectBySn(dictionarySn));
+    }
 }

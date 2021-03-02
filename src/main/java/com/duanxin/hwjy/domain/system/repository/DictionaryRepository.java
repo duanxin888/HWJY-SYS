@@ -11,4 +11,8 @@ import com.duanxin.hwjy.domain.system.entity.DictionaryDO;
 public interface DictionaryRepository {
 
     DictionaryDO addDictionary(DictionaryDO dictionaryDO);
+
+    DictionaryDO selectBySn(String dictionarySn);
+
+    void updateItem(DictionaryDO dictionaryDO);
 }
