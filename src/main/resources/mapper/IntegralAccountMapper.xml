@@ -27,6 +27,11 @@
         #{integralAccount.status}, #{integralAccount.deleted}, #{integralAccount.cdate}, #{integralAccount.creator},
         #{integralAccount.edate}, #{integralAccount.editor})
     </insert>
+    <update id="updateBalanceBySn">
+        update T_INTEGRAL_ACCOUNT
+        set INTEGRAL_BALANCE = #{integralBalance}
+        where INTEGRAL_ACCOUNT_SN = #{integralAccountSn}
+    </update>
 
     <select id="selectBySn" resultMap="TIntegralAccountMap">
         select <include refid="integralAccount"/>

@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.domain.system.service.impl;
 
 import com.duanxin.hwjy.domain.system.entity.DictionaryDO;
+import com.duanxin.hwjy.domain.system.entity.valueobject.DictionaryItem;
 import com.duanxin.hwjy.domain.system.entity.valueobject.DictionaryStatus;
 import com.duanxin.hwjy.domain.system.repository.DictionaryRepository;
 import com.duanxin.hwjy.domain.system.service.DictionaryDomainService;
@@ -37,15 +38,27 @@ public class DictionaryDomainServiceImpl implements DictionaryDomainService {
 
     @Override
     public void updateItem(DictionaryDO dictionaryDO) {
-        checkValidity(dictionaryDO.getDictionarySn());
+        checkValidityBySn(dictionaryDO.getDictionarySn());
         dictionaryRepository.updateItem(dictionaryDO);
     }
 
-    private void checkValidity(String dictionarySn) {
-        DictionaryDO dictionaryDO = dictionaryRepository.selectBySn(dictionarySn);
+    @Override
+    public String getItemValue(String dictionaryName, String itemName) {
+        DictionaryDO dictionaryDO = dictionaryRepository.selectByName(dictionaryName);
+        checkValidity(dictionaryDO);
+        DictionaryItem dictionaryItem = dictionaryDO.fetchItemByName(itemName);
+        return dictionaryItem.getValue();
+    }
+
+    private void checkValidity(DictionaryDO dictionaryDO) {
         if (Objects.isNull(dictionaryDO) || !DictionaryStatus.isAvailable(dictionaryDO.getDictionaryStatus())) {
             log.warn("dictionary [{}] is not exist or invalidity", JsonUtil.toString(dictionaryDO));
             throw new HWJYCheckException(ResultEnum.DICTIONARY_NOT_EXIST);
         }
+    }
+
+    private void checkValidityBySn(String dictionarySn) {
+        DictionaryDO dictionaryDO = dictionaryRepository.selectBySn(dictionarySn);
+        checkValidity(dictionaryDO);
     }
 }

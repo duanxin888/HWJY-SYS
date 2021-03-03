@@ -56,4 +56,9 @@ public class IntegralAccountDO {
         return DateUtil.getYearLast(LocalDateTime.now().getYear()).
                 toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
+
+    public void increaseIncome(BigDecimal integralNumber) {
+        this.setIntegralBalance(this.getIntegralBalance().add(integralNumber).setScale(2));
+        this.setEdate(LocalDateTime.now());
+    }
 }

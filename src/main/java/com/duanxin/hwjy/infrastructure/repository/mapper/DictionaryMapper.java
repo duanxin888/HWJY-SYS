@@ -19,4 +19,6 @@ public interface DictionaryMapper {
     void updateItem(@Param("po") DictionaryPO po);
 
     List<DictionaryPO> select();
+
+    DictionaryPO selectByName(@Param("dictionaryName") String dictionaryName);
 }

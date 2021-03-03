@@ -14,6 +14,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -38,11 +41,18 @@ public class IntegralAccountRepositoryImpl implements IntegralAccountRepository 
     @Override
     public IntegralAccountDO selectBySn(String integralAccountSn) {
         IntegralAccountPO integralAccount = integralAccountMapper.selectBySn(integralAccountSn);
-        if (!IntegralAccountStatus.isAvailable(integralAccount.getStatus()) ||
+        if (Objects.isNull(integralAccount) || !IntegralAccountStatus.isAvailable(integralAccount.getStatus()) ||
                 !Deleted.isValid(integralAccount.getDeleted())) {
-            log.warn("integralAccount [{}] is not available", JsonUtil.toString(integralAccount));
+            log.warn("integralAccount [{}] is not available or null", JsonUtil.toString(integralAccount));
             throw new HWJYCheckException(ResultEnum.INTEGRAL_ACCOUNT_IS_NOT_AVAILABLE);
         }
         return userFactory.createIntegralAccountDO(integralAccount);
+    }
+
+    @Override
+    public void updateBalanceBySn(String integralAccountSn, BigDecimal integralBalance) {
+        integralAccountMapper.updateBalanceBySn(integralAccountSn, integralBalance);
+        log.info("success to update integralBalance [{}] by integralAccountSn [{}]",
+                integralBalance, integralAccountSn);
     }
 }

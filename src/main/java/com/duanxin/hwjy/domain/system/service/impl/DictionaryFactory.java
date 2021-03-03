@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DictionaryFactory {
 
-    public DictionaryPO do2PO(DictionaryDO dictionaryDO) {
+    public DictionaryPO createDictionaryPO(DictionaryDO dictionaryDO) {
         DictionaryPO po = new DictionaryPO();
         BeanUtils.copyProperties(dictionaryDO, po);
         po.setDictionaryStatus(dictionaryDO.getDictionaryStatus().name());
@@ -25,7 +25,7 @@ public class DictionaryFactory {
         return po;
     }
 
-    public DictionaryDO po2DO(DictionaryPO po) {
+    public DictionaryDO creDictionaryDO(DictionaryPO po) {
         DictionaryDO dictionaryDO = new DictionaryDO();
         BeanUtils.copyProperties(po, dictionaryDO);
         dictionaryDO.setDictionaryStatus(DictionaryStatus.formatByName(po.getDictionaryStatus()));

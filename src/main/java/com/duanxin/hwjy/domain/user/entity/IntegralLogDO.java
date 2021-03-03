@@ -40,4 +40,9 @@ public class IntegralLogDO {
     private LocalDateTime edate = LocalDateTime.now();
 
     private String editor = Constants.EDITOR.getDesc();
+
+    public void create4Collect(BigDecimal integralNumber) {
+        this.setOperateType(IntegralOperateType.POINTS_COLLECTION);
+        this.setIntegralNumber(integralNumber);
+    }
 }

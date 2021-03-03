@@ -65,6 +65,11 @@ public class UserDomainServiceImpl implements UserDomainService {
         return userDO;
     }
 
+    @Override
+    public UserDO selectById(int userId) {
+        return userRepository.selectById(userId);
+    }
+
     private String fetchJwtToken(UserDO userDO) {
         // assembler claims
         Map<String, Object> claims = new HashMap<>();

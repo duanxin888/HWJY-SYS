@@ -3,6 +3,8 @@ package com.duanxin.hwjy.domain.user.repository;
 import com.duanxin.hwjy.domain.user.entity.IntegralAccountDO;
 import com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO;
 
+import java.math.BigDecimal;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -14,4 +16,6 @@ public interface IntegralAccountRepository {
     IntegralAccountPO insert(IntegralAccountPO integralAccountPO);
 
     IntegralAccountDO selectBySn(String integralAccountSn);
+
+    void updateBalanceBySn(String integralAccountSn, BigDecimal integralBalance);
 }

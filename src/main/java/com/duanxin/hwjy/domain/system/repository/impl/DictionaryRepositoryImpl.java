@@ -29,7 +29,7 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
 
     @Override
     public DictionaryDO addDictionary(DictionaryDO dictionaryDO) {
-        DictionaryPO po = dictionaryFactory.do2PO(dictionaryDO);
+        DictionaryPO po = dictionaryFactory.createDictionaryPO(dictionaryDO);
         dictionaryMapper.insert(po);
         log.info("success to insert dictionary [{}]", JsonUtil.toString(po));
         dictionaryDO.setId(po.getId());
@@ -38,17 +38,22 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
 
     @Override
     public void updateItem(DictionaryDO dictionaryDO) {
-        dictionaryMapper.updateItem(dictionaryFactory.do2PO(dictionaryDO));
+        dictionaryMapper.updateItem(dictionaryFactory.createDictionaryPO(dictionaryDO));
         log.info("success to update item [{}]", JsonUtil.toString(dictionaryDO));
     }
 
     @Override
     public DictionaryDO selectBySn(String dictionarySn) {
-        return dictionaryFactory.po2DO(dictionaryMapper.selectBySn(dictionarySn));
+        return dictionaryFactory.creDictionaryDO(dictionaryMapper.selectBySn(dictionarySn));
     }
 
     @Override
     public List<DictionaryDO> getDictionary() {
-        return dictionaryMapper.select().stream().map(dictionaryFactory::po2DO).collect(Collectors.toList());
+        return dictionaryMapper.select().stream().map(dictionaryFactory::creDictionaryDO).collect(Collectors.toList());
+    }
+
+    @Override
+    public DictionaryDO selectByName(String dictionaryName) {
+        return dictionaryFactory.creDictionaryDO(dictionaryMapper.selectByName(dictionaryName));
     }
 }

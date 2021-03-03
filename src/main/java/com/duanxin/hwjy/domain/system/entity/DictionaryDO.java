@@ -3,6 +3,8 @@ package com.duanxin.hwjy.domain.system.entity;
 import com.duanxin.hwjy.domain.system.entity.valueobject.DictionaryItem;
 import com.duanxin.hwjy.domain.system.entity.valueobject.DictionaryStatus;
 import com.duanxin.hwjy.infrastructure.common.constants.Constants;
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,5 +43,10 @@ public class DictionaryDO {
     public void create(String dictionarySn) {
         this.setDictionarySn(dictionarySn);
         this.setDictionaryItems(new ArrayList<>());
+    }
+
+    public DictionaryItem fetchItemByName(String itemName) {
+        return this.getDictionaryItems().stream().filter(f -> f.getName().equals(itemName)).
+                findFirst().orElseThrow(() -> new HWJYCheckException(ResultEnum.DICTIONARY_ITEM_NOT_EXIST));
     }
 }

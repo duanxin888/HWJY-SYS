@@ -13,4 +13,6 @@ public interface DictionaryDomainService {
     DictionaryDO addDictionary(DictionaryDO dictionaryDO);
 
     void updateItem(DictionaryDO dictionaryDO);
+
+    String getItemValue(String dictionaryName, String itemName);
 }

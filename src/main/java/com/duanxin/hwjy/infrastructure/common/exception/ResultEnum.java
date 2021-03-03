@@ -34,7 +34,10 @@ public enum ResultEnum {
 
     JOB_ACTION_NOT_SUPPORT_SERVICE(407, "job action not support service"),
 
-    DICTIONARY_NOT_EXIST(408, "dictionary not exist");
+    DICTIONARY_NOT_EXIST(408, "dictionary not exist"),
+    DICTIONARY_ITEM_NOT_EXIST(408, "dictionary item not exist"),
+
+    INTEGRAL_COLLECT_IS_INVALIDITY(410, "integral collect is invalidity");
 
     private final int code;
     private final String desc;

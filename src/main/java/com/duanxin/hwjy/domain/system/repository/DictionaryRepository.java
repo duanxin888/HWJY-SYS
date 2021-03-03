@@ -19,4 +19,6 @@ public interface DictionaryRepository {
     void updateItem(DictionaryDO dictionaryDO);
 
     List<DictionaryDO> getDictionary();
+
+    DictionaryDO selectByName(String dictionaryName);
 }

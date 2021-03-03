@@ -16,10 +16,25 @@
         <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="integralAccount">
-        ID, USER_ID, INTEGRAL_ACCOUNT_SN, OPERATE_TYPE, INTEGER_OPERATE_CHANNEL,
+    <sql id="integralLog">
+        ID, USER_ID, INTEGRAL_ACCOUNT_SN, OPERATE_TYPE, INTEGRAL_OPERATE_CHANNEL,
         INTEGRAL_NUMBER, OPERATE_PARAM, CDATE, CREATOR, EDATE, EDITOR
     </sql>
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.IntegralLogPO"
+    useGeneratedKeys="true" keyProperty="id">
+        insert into T_INTEGRAL_LOG(USER_ID, INTEGRAL_ACCOUNT_SN, OPERATE_TYPE, INTEGRAL_OPERATE_CHANNEL,
+        INTEGRAL_NUMBER, OPERATE_PARAM, CDATE, CREATOR, EDATE, EDITOR)
+        values(#{po.userId}, #{po.integralAccountSn}, #{po.operateType}, #{po.integralOperateChannel},
+        #{po.integralNumber}, #{po.operateParam}, #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
+    <select id="checkIntegralValidity" resultMap="TIntegralLogMap">
+        select <include refid="integralLog"/>
+        from T_INTEGRAL_LOG
+        where USER_ID = #{logDO.userId} and
+        OPERATE_TYPE = 'POINTS_COLLECTION' and
+        INTEGRAL_OPERATE_CHANNEL = #{logDO.integralOperateChannel} and
+        OPERATE_PARAM = #{logDO.operateParam}
+    </select>
 
 
 </mapper>

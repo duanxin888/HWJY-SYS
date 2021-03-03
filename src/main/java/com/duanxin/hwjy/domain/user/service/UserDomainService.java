@@ -11,4 +11,7 @@ import com.duanxin.hwjy.domain.user.entity.UserDO;
 public interface UserDomainService {
 
     UserDO login(UserDO userDO, String code, String appid);
+
+    UserDO selectById(int userId);
+
 }
