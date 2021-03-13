@@ -3,6 +3,7 @@ package com.duanxin.hwjy.infrastructure.configuration;
 import com.duanxin.hwjy.infrastructure.config.RestClientConfig;
 import com.duanxin.hwjy.infrastructure.config.tx.TxBaseConfig;
 import com.duanxin.hwjy.infrastructure.config.tx.TxGarbageNewsConfig;
+import com.duanxin.hwjy.infrastructure.config.tx.TxGarbageTestConfig;
 import com.duanxin.hwjy.infrastructure.util.RestClientUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -41,5 +42,11 @@ public class TxClientConfiguration {
     @ConfigurationProperties(prefix = "tx.api.news.garbage")
     public TxGarbageNewsConfig txGarbageNewsConfig(TxBaseConfig baseConfig) {
         return new TxGarbageNewsConfig(baseConfig);
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix = "tx.api.test.garbage")
+    public TxGarbageTestConfig txGarbageTestConfig(TxBaseConfig baseConfig) {
+        return new TxGarbageTestConfig(baseConfig);
     }
 }

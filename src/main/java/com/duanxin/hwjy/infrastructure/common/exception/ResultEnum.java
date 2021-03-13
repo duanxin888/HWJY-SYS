@@ -13,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ResultEnum {
 
-    USER_NOT_LOG_IN(403, "user not log in"),
+    USER_NOT_LOG_IN(400, "user not log in"),
     USER_IS_NOT_AVAILABLE(403, "user is not available"),
     USER_IS_NOT_EXIST(403, "user is not exist"),
     INTEGRAL_ACCOUNT_IS_NOT_AVAILABLE(403, "integral account is not available"),
@@ -37,7 +37,9 @@ public enum ResultEnum {
     DICTIONARY_NOT_EXIST(408, "dictionary not exist"),
     DICTIONARY_ITEM_NOT_EXIST(408, "dictionary item not exist"),
 
-    INTEGRAL_COLLECT_IS_INVALIDITY(410, "integral collect is invalidity");
+    INTEGRAL_COLLECT_IS_INVALIDITY(410, "integral collect is invalidity"),
+
+    TEST_COLLECT_BY_THIRD_PARTY_ERROR_CODE(411, "test collect by third party error code");
 
     private final int code;
     private final String desc;

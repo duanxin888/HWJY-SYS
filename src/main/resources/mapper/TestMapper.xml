@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.TestMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.TestPO" id="TestMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="testType" column="TEST_TYPE" jdbcType="INTEGER"/>
+        <result property="testQuestion" column="TEST_QUESTION" jdbcType="VARCHAR"/>
+        <result property="testOptions" column="TEST_OPTIONS" jdbcType="VARCHAR"/>
+        <result property="testResult" column="TEST_RESULT" jdbcType="VARCHAR"/>
+        <result property="testSource" column="TEST_SOURCE" jdbcType="INTEGER"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="user">
+        ID, TEST_TYPE, TEST_QUESTION, TEST_OPTIONS, TEST_RESULT, TEST_SOURCE, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.TestPO"
+            keyProperty="id" useGeneratedKeys="true">
+        insert into T_TEST(TEST_TYPE, TEST_QUESTION, TEST_OPTIONS, TEST_RESULT, TEST_SOURCE,
+        CDATE, CREATOR, EDATE, EDITOR)
+        values (#{po.testType}, #{po.testQuestion, #{po.testOptions}, #{po.testResult}, #{po.testSource},
+        #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
+
+
+</mapper>
