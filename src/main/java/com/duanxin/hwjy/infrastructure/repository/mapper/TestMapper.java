@@ -12,4 +12,6 @@ import org.apache.ibatis.annotations.Param;
 public interface TestMapper {
 
     void insert(@Param("po") TestPO po);
+
+    TestPO selectByTestQuestion(@Param("testQuestion") String testQuestion);
 }

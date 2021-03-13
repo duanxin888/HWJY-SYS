@@ -15,7 +15,7 @@
         <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="user">
+    <sql id="test">
         ID, TEST_TYPE, TEST_QUESTION, TEST_OPTIONS, TEST_RESULT, TEST_SOURCE, CDATE, CREATOR, EDATE, EDITOR
     </sql>
 
@@ -23,9 +23,15 @@
             keyProperty="id" useGeneratedKeys="true">
         insert into T_TEST(TEST_TYPE, TEST_QUESTION, TEST_OPTIONS, TEST_RESULT, TEST_SOURCE,
         CDATE, CREATOR, EDATE, EDITOR)
-        values (#{po.testType}, #{po.testQuestion, #{po.testOptions}, #{po.testResult}, #{po.testSource},
+        values (#{po.testType}, #{po.testQuestion}, #{po.testOptions}, #{po.testResult}, #{po.testSource},
         #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
     </insert>
+
+    <select id="selectByTestQuestion" resultMap="TestMap">
+        select <include refid="test"/>
+        from T_TEST
+        where TEST_QUESTION = #{testQuestion}
+    </select>
 
 
 </mapper>

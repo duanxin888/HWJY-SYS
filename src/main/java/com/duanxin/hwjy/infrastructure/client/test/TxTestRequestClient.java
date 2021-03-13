@@ -2,6 +2,7 @@ package com.duanxin.hwjy.infrastructure.client.test;
 
 import com.duanxin.hwjy.infrastructure.config.tx.TxGarbageTestConfig;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +33,7 @@ public class TxTestRequestClient implements TestRequestClient{
     @Override
     public Optional<List<TestResponseDto>> fetchTest() {
         String url = testConfig.getBaseConfig().getBaseUrl() + testConfig.getResource() +
-                "&key=" + testConfig.getBaseConfig().getApiKey();
+                "?key=" + testConfig.getBaseConfig().getApiKey();
         log.info("begin to request TxTestRequestClient url [{}]", url);
         HttpEntity<String> entity = new HttpEntity<>(null, headers());
         try {
@@ -58,7 +59,7 @@ public class TxTestRequestClient implements TestRequestClient{
             }
 
             log.info("success to request TxTestRequestClient url [{}] response [{}]", url, body);
-            return Optional.ofNullable(responseOptional.get().getNewlist());
+            return Optional.ofNullable(responseOptional.get().getResponseDtos());
         } catch (Exception exception) {
             log.warn("failed to request TxTestRequestClient url [{}] exception", url, exception);
             return Optional.empty();
@@ -79,6 +80,7 @@ public class TxTestRequestClient implements TestRequestClient{
 
         private String msg;
 
-        private List<TestResponseDto> newlist;
+        @JsonProperty("newslist")
+        private List<TestResponseDto> responseDtos;
     }
 }

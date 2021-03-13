@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.Objects;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -27,5 +29,10 @@ public class TestRepositoryImpl implements TestRepository {
     public void insert(TestDO testDO) {
         testMapper.insert(testFactory.do2PO(testDO));
         log.info("success to insert test [{}]", JsonUtil.toString(testDO));
+    }
+
+    @Override
+    public boolean isExisted(TestDO testDO) {
+        return Objects.nonNull(testMapper.selectByTestQuestion(testDO.getTestQuestion()));
     }
 }

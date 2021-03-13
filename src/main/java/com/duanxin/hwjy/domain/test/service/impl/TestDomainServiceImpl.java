@@ -32,6 +32,7 @@ public class TestDomainServiceImpl implements TestDomainService {
         if (!optional.isPresent()) {
             return ;
         }
-        optional.get().stream().map(testFactory::responseDto2DO).forEach(testRepository::insert);
+        optional.get().stream().map(testFactory::responseDto2DO).
+                filter(f -> !testRepository.isExisted(f)).forEach(testRepository::insert);
     }
 }

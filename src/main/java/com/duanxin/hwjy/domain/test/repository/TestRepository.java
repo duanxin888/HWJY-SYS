@@ -11,4 +11,6 @@ import com.duanxin.hwjy.domain.test.entity.TestDO;
 public interface TestRepository {
 
     void insert(TestDO testDO);
+
+    boolean isExisted(TestDO testDO);
 }
