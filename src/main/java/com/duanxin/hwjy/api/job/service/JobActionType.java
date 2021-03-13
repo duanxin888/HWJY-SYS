@@ -8,5 +8,5 @@ package com.duanxin.hwjy.api.job.service;
  */
 public enum JobActionType {
 
-    COUNTER_RESET, GARBAGE_NEWS_COLLECT
+    COUNTER_RESET, GARBAGE_NEWS_COLLECT, TEST_COLLECT
 }
