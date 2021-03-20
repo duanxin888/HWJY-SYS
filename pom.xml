@@ -54,6 +54,12 @@
                 <artifactId>wx-java-miniapp-spring-boot-starter</artifactId>
                 <version>3.9.0</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.github.tobato</groupId>
+                <artifactId>fastdfs-client</artifactId>
+                <version>1.27.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -146,6 +152,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.tobato</groupId>
+            <artifactId>fastdfs-client</artifactId>
+            <version>1.27.2</version>
         </dependency>
     </dependencies>
 
