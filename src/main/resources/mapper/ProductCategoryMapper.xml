@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.ProductCategoryMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.ProductCategoryPO" id="ProductCategoryMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="pid" column="PID" jdbcType="INTEGER"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="picUrl" column="PIC_URL" jdbcType="VARCHAR"/>
+        <result property="level" column="LEVEL" jdbcType="VARCHAR"/>
+        <result property="details" column="DETAILS" jdbcType="VARCHAR"/>
+        <result property="sorted" column="SORTED" jdbcType="INTEGER"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="test">
+        ID, PID, `NAME`, PIC_URL, `LEVEL`, DETAILS, SORTED, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.ProductCategoryPO"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into T_PRODUCT_CATEGORY(PID, `NAME`, PIC_URL, `LEVEL`, DETAILS, SORTED,
+        CDATE, CREATOR, EDATE, EDITOR)
+        values (#{po.pid}, #{po.name}, #{po.picUrl}, #{po.level}, #{po.details}, #{po.sorted},
+        #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
+
+    <select id="selectAll" resultMap="ProductCategoryMap">
+        select *
+        from T_PRODUCT_CATEGORY
+    </select>
+
+
+</mapper>
