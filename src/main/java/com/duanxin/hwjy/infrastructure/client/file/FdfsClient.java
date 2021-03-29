@@ -7,11 +7,8 @@ import com.github.tobato.fastdfs.domain.upload.FastImageFile;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -31,15 +28,15 @@ public class FdfsClient implements FileClient{
     private final FastFileStorageClient storageClient;
 
     @Override
-    public String uploadFile(File file, InputStream is) {
-        FastFile fastFile = createFile(file, is);
+    public String uploadFile(FileUploadRequestDto requestDto) {
+        FastFile fastFile = createFile(requestDto);
         StorePath path = doUploadFile(fastFile);
         return Objects.requireNonNull(path).getFullPath();
     }
 
     @Override
-    public String uploadImage(File imageFile, InputStream is) {
-        FastImageFile fastImageFile = createImageFile(imageFile, is);
+    public String uploadImage(FileUploadRequestDto requestDto) {
+        FastImageFile fastImageFile = createImageFile(requestDto);
         StorePath path = doUploadImage(fastImageFile);
         return Objects.requireNonNull(path).getFullPath();
     }
@@ -48,11 +45,10 @@ public class FdfsClient implements FileClient{
         return storageClient.uploadFile(fastFile);
     }
 
-    private FastFile createFile(File file, InputStream is) {
+    private FastFile createFile(FileUploadRequestDto requestDto) {
         Set<MetaData> metaDataSet = createMetaData();
-        String fileExtName = FilenameUtils.getExtension(file.getName());
         return new FastFile.Builder().
-                withFile(is, file.length(), fileExtName).
+                withFile(requestDto.getIs(), requestDto.getFileSize(), requestDto.getFileExtName()).
                 withMetaData(metaDataSet).build();
     }
 
@@ -60,11 +56,10 @@ public class FdfsClient implements FileClient{
         return storageClient.uploadImage(fastImageFile);
     }
 
-    private FastImageFile createImageFile(File imageFile, InputStream is) {
+    private FastImageFile createImageFile(FileUploadRequestDto requestDto) {
         Set<MetaData> metaDataSet = createMetaData();
-        String fileExtName = FilenameUtils.getExtension(imageFile.getName());
         return new FastImageFile.Builder().
-                withFile(is, imageFile.length(), fileExtName).
+                withFile(requestDto.getIs(), requestDto.getFileSize(), requestDto.getFileExtName()).
                 withMetaData(metaDataSet).build();
     }
 
