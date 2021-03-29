@@ -39,7 +39,10 @@ public enum ResultEnum {
 
     INTEGRAL_COLLECT_IS_INVALIDITY(410, "integral collect is invalidity"),
 
-    TEST_COLLECT_BY_THIRD_PARTY_ERROR_CODE(411, "test collect by third party error code");
+    TEST_COLLECT_BY_THIRD_PARTY_ERROR_CODE(411, "test collect by third party error code"),
+
+    MATCH_IMAGE_FILE_FAILED(412, "match image file failed"),
+    ASSEMBLER_FILE2DTO_FAILED(412, "assembler file2dto failed");
 
     private final int code;
     private final String desc;

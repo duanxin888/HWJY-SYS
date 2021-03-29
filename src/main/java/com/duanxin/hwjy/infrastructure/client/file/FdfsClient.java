@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.infrastructure.client.file;
 
+import com.duanxin.hwjy.infrastructure.config.FastDfsConfig;
 import com.github.tobato.fastdfs.domain.fdfs.MetaData;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.domain.upload.FastFile;
@@ -26,19 +27,20 @@ import java.util.Set;
 public class FdfsClient implements FileClient{
 
     private final FastFileStorageClient storageClient;
+    private final FastDfsConfig config;
 
     @Override
     public String uploadFile(FileUploadRequestDto requestDto) {
         FastFile fastFile = createFile(requestDto);
         StorePath path = doUploadFile(fastFile);
-        return Objects.requireNonNull(path).getFullPath();
+        return config.getStorageResource() + Objects.requireNonNull(path).getFullPath();
     }
 
     @Override
     public String uploadImage(FileUploadRequestDto requestDto) {
         FastImageFile fastImageFile = createImageFile(requestDto);
         StorePath path = doUploadImage(fastImageFile);
-        return Objects.requireNonNull(path).getFullPath();
+        return config.getStorageResource() + Objects.requireNonNull(path).getFullPath();
     }
 
     private StorePath doUploadFile(FastFile fastFile) {
