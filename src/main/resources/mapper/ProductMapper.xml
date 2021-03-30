@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.ProductMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.ProductPO" id="ProductMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="cid" column="CID" jdbcType="INTEGER"/>
+        <result property="picUrl" column="PIC_URL" jdbcType="VARCHAR"/>
+        <result property="productSn" column="PRODUCT_SN" jdbcType="VARCHAR"/>
+        <result property="details" column="DETAILS" jdbcType="VARCHAR"/>
+        <result property="sorted" column="SORTED" jdbcType="INTEGER"/>
+        <result property="transactionRule" column="TRANSACTION_RULE" jdbcType="VARCHAR"/>
+        <result property="brief" column="BRIEF" jdbcType="VARCHAR"/>
+        <result property="onSale" column="ON_SALE" jdbcType="VARCHAR"/>
+        <result property="deleted" column="DELETED" jdbcType="INTEGER"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="test">
+        ID, NAME, CID, PIC_URL, PRODUCT_SN, DETAILS, SORTED, TRANSACTION_RULE,
+        BRIEF, ON_SALE, DELETED, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+</mapper>
