@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.domain.mall.product.service;
 
 import com.duanxin.hwjy.domain.mall.product.entity.ProductCategoryDO;
+import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
 
 /**
  * @author duanxin
@@ -10,4 +11,6 @@ import com.duanxin.hwjy.domain.mall.product.entity.ProductCategoryDO;
  */
 public interface ProductDomainService {
     void addProductCategory(ProductCategoryDO categoryDO);
+
+    void addProduct(ProductDO productDO);
 }

@@ -38,4 +38,8 @@ public class ProductSpecificationDO {
     private LocalDateTime edate = LocalDateTime.now();
 
     private String editor = Constants.EDITOR.getDesc();
+
+    public void fillProductId(int productId) {
+        this.setProductId(productId);
+    }
 }

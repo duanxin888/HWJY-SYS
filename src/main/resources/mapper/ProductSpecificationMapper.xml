@@ -19,4 +19,12 @@
         ID, PRODUCT_ID, SPECIFICATION, VALUE, GALLERY, DELETED, CDATE, CREATOR, EDATE, EDITOR
     </sql>
 
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.ProductSpecificationPO"
+    useGeneratedKeys="true" keyProperty="id">
+        insert into T_PRODUCT_SPECIFICATION(PRODUCT_ID, SPECIFICATION, VALUE, GALLERY,
+        DELETED, CDATE, CREATOR, EDATE, EDITOR)
+        values(#{po.productId}, #{po.specification}, #{po.value}, #{po.gallery},
+        #{po.deleted}, #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
+
 </mapper>

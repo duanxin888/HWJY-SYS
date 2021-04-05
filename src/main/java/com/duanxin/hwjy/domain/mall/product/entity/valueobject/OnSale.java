@@ -18,4 +18,13 @@ public enum OnSale {
 
     private final int code;
     private final String desc;
+
+    public static OnSale formatByCode(int code) {
+        for (OnSale value : values()) {
+            if (value.code == code) {
+                return value;
+            }
+        }
+        return ON_SALE;
+    }
 }

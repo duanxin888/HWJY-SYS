@@ -3,6 +3,8 @@ package com.duanxin.hwjy.domain.mall.product.entity.valueobject;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -12,4 +14,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class TransactionRule {
+
+    private TransactionType transactionType;
+
+    private BigDecimal transactionNum;
 }

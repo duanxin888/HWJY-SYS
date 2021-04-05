@@ -42,7 +42,9 @@ public enum ResultEnum {
     TEST_COLLECT_BY_THIRD_PARTY_ERROR_CODE(411, "test collect by third party error code"),
 
     MATCH_IMAGE_FILE_FAILED(412, "match image file failed"),
-    ASSEMBLER_FILE2DTO_FAILED(412, "assembler file2dto failed");
+    ASSEMBLER_FILE2DTO_FAILED(412, "assembler file2dto failed"),
+
+    PRODUCT_IS_EXIST_BY_NAME(413, "product is exist by name");
 
     private final int code;
     private final String desc;

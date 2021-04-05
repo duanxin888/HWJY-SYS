@@ -18,4 +18,10 @@
         ID, PRODUCT_ID, ATTRIBUTE, VALUE, DELETED, CDATE, CREATOR, EDATE, EDITOR
     </sql>
 
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.ProductAttributePO"
+            keyProperty="id" useGeneratedKeys="true">
+        insert into T_PRODUCT_ATTRIBUTE(PRODUCT_ID, ATTRIBUTE, VALUE, DELETED, CDATE, CREATOR, EDATE, EDITOR)
+        values(#{po.productId}, #{po.attribute}, #{po.value}, #{po.deleted}, #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
+
 </mapper>

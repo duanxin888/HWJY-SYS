@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author duanxin
@@ -49,9 +50,13 @@ public class ProductDO {
 
     private String editor = Constants.EDITOR.getDesc();
 
-    private ProductSpecificationDO productSpecification;
+    private List<ProductSpecificationDO> productSpecifications;
 
-    private ProductAttributeDO productAttribute;
+    private List<ProductAttributeDO> productAttributes;
 
-    private ProductStockDO productStock;
+    private List<ProductStockDO> productStocks;
+
+    public void fillSn(String sn) {
+        this.setProductSn(sn);
+    }
 }

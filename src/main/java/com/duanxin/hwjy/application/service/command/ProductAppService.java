@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.application.service.command;
 
 import com.duanxin.hwjy.domain.mall.product.entity.ProductCategoryDO;
+import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
 import com.duanxin.hwjy.domain.mall.product.service.ProductDomainService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,9 @@ public class ProductAppService {
 
     public void addProductCategory(ProductCategoryDO categoryDO) {
         productDomainService.addProductCategory(categoryDO);
+    }
+
+    public void addProduct(ProductDO productDO) {
+        productDomainService.addProduct(productDO);
     }
 }
