@@ -27,4 +27,8 @@ public enum OnSale {
         }
         return ON_SALE;
     }
+
+    public static boolean isOnSale(int code) {
+        return ON_SALE.code == code;
+    }
 }

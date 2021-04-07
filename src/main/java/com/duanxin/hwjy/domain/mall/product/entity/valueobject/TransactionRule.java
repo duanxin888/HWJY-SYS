@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Getter
 public class TransactionRule {
 
-    private TransactionType transactionType;
+    private TransactionType transactionType = TransactionType.POINTS_TRANSACTION;
 
-    private BigDecimal transactionNum;
+    private BigDecimal transactionNum = BigDecimal.ZERO;
 }

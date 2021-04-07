@@ -1,7 +1,9 @@
 package com.duanxin.hwjy.application.service.query;
 
 import com.duanxin.hwjy.domain.mall.product.entity.ProductCategoryDO;
+import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
 import com.duanxin.hwjy.domain.mall.product.repository.ProductCategoryRepository;
+import com.duanxin.hwjy.domain.mall.product.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,13 @@ import java.util.List;
 public class ProductQueryAppService {
 
     private final ProductCategoryRepository productCategoryRepository;
+    private final ProductRepository productRepository;
 
     public List<ProductCategoryDO> getCategories() {
         return productCategoryRepository.getCategories();
+    }
+
+    public List<ProductDO> getProductsByCid(int cid) {
+        return productRepository.getProductsByCid(cid);
     }
 }

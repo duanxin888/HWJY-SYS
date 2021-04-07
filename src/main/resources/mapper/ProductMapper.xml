@@ -39,4 +39,10 @@
         where NAME = #{name}
     </select>
 
+    <select id="selectProductsByCid" resultMap="ProductMap">
+        select <include refid="product"/>
+        from T_PRODUCT
+        where CID = #{cid}
+    </select>
+
 </mapper>

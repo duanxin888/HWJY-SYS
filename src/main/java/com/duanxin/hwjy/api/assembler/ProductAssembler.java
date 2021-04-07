@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.api.assembler;
 
 import com.duanxin.hwjy.api.dto.product.ProductAddCommandDto;
+import com.duanxin.hwjy.api.dto.product.ProductsQueryResponseDto;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductAttributeDO;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductSpecificationDO;
@@ -43,5 +44,11 @@ public class ProductAssembler {
         productDO.setProductAttributes(attributeDOS);
         productDO.setOnSale(OnSale.formatByCode(dto.getOnSale()));
         return productDO;
+    }
+
+    public static ProductsQueryResponseDto do2ProductsQueryResponseDto(ProductDO productDO) {
+        ProductsQueryResponseDto dto = new ProductsQueryResponseDto();
+        BeanUtils.copyProperties(productDO, dto);
+        return dto;
     }
 }
