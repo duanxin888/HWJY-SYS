@@ -28,8 +28,9 @@ public class ProductApi {
     private final ProductQueryAppService productQueryAppService;
 
     @GetMapping("/category/{cid}")
-    public ResponseResult getProductsByCid(@PathVariable int cid) {
-        return ResponseResult.success(productQueryAppService.getProductsByCid(cid).
+    public ResponseResult getProductsByCid(@PathVariable int cid,
+                                           int pageNum, int pageSize) {
+        return ResponseResult.success(productQueryAppService.getProductsByCid(cid, pageNum, pageSize).
                 stream().map(ProductAssembler::do2ProductsQueryResponseDto).
                 collect(Collectors.toList()));
     }

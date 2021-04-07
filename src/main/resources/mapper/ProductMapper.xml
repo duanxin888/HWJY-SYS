@@ -26,7 +26,7 @@
     </sql>
 
     <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.ProductPO"
-    useGeneratedKeys="true" keyProperty="id">
+            useGeneratedKeys="true" keyProperty="id">
         insert into T_PRODUCT(NAME, CID, PIC_URL, PRODUCT_SN, DETAILS, SORTED, TRANSACTION_RULE,
         BRIEF, ON_SALE, DELETED, CDATE, CREATOR, EDATE, EDITOR)
         values(#{po.name}, #{po.cid}, #{po.picUrl}, #{po.productSn}, #{po.details}, #{po.sorted}, #{po.transactionRule},
@@ -34,15 +34,19 @@
     </insert>
 
     <select id="selectByName" resultMap="ProductMap">
-        select <include refid="product"/>
+        select
+        <include refid="product"/>
         from T_PRODUCT
         where NAME = #{name}
     </select>
 
     <select id="selectProductsByCid" resultMap="ProductMap">
-        select <include refid="product"/>
+        select
+        <include refid="product"/>
         from T_PRODUCT
         where CID = #{cid}
+        order by SORTED
+        limit #{offset}, #{rows}
     </select>
 
 </mapper>

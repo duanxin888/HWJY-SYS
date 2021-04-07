@@ -16,5 +16,7 @@ public interface ProductMapper {
 
     ProductPO selectByName(@Param("name") String name);
 
-    List<ProductPO> selectProductsByCid(@Param("cid") int cid);
+    List<ProductPO> selectProductsByCid(@Param("cid") int cid,
+                                        @Param("offset") int offset,
+                                        @Param("rows") int rows);
 }

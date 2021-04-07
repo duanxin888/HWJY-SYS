@@ -45,8 +45,8 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<ProductDO> getProductsByCid(int cid) {
-        List<ProductPO> pos = productMapper.selectProductsByCid(cid);
+    public List<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize) {
+        List<ProductPO> pos = productMapper.selectProductsByCid(cid, (pageNum - 1) * pageSize, pageSize);
         return pos.stream().filter(f -> Deleted.isValid(f.getDeleted()) && OnSale.isOnSale(f.getOnSale())).
                 map(productFactory::po2DO).collect(Collectors.toList());
     }
