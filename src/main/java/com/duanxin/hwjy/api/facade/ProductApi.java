@@ -1,15 +1,15 @@
 package com.duanxin.hwjy.api.facade;
 
 import com.duanxin.hwjy.api.assembler.ProductAssembler;
-import com.duanxin.hwjy.api.dto.product.ProductAddCommandDto;
-import com.duanxin.hwjy.application.service.command.ProductAppService;
 import com.duanxin.hwjy.application.service.query.ProductQueryAppService;
 import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.stream.Collectors;
 
 /**
@@ -24,14 +24,8 @@ import java.util.stream.Collectors;
 @Validated
 public class ProductApi {
 
-    private final ProductAppService productAppService;
-    private final ProductQueryAppService productQueryAppService;
 
-    @PostMapping
-    public ResponseResult addProduct(@RequestBody @Valid ProductAddCommandDto dto) {
-        productAppService.addProduct(ProductAssembler.addCommand2DO(dto));
-        return ResponseResult.success();
-    }
+    private final ProductQueryAppService productQueryAppService;
 
     @GetMapping("/category/{cid}")
     public ResponseResult getProductsByCid(@PathVariable int cid) {

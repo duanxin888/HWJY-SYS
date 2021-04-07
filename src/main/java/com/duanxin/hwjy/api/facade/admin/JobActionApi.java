@@ -1,4 +1,4 @@
-package com.duanxin.hwjy.api.facade;
+package com.duanxin.hwjy.api.facade.admin;
 
 import com.duanxin.hwjy.api.job.service.JobActionManagerService;
 import com.duanxin.hwjy.api.job.service.JobActionType;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/02/20 22:03
  */
 @RestController
-@RequestMapping("/api/v1/job")
+@RequestMapping("/api/v1/admin/job")
 @AllArgsConstructor
 public class JobActionApi {
 

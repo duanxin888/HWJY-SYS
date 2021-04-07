@@ -1,4 +1,4 @@
-package com.duanxin.hwjy.api.facade;
+package com.duanxin.hwjy.api.facade.admin;
 
 import com.duanxin.hwjy.api.assembler.DictionaryAssembler;
 import com.duanxin.hwjy.api.dto.dictionary.DictionaryAddCommandDto;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @date 2021/02/27 14:51
  */
 @RestController
-@RequestMapping("/api/v1/dictionary")
+@RequestMapping("/api/v1/admin/dictionary")
 @AllArgsConstructor
 @Validated
 public class DictionaryApi {
