@@ -16,4 +16,6 @@ public interface ProductRepository {
     ProductDO selectByName(String name);
 
     List<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize);
+
+    ProductDO detailsProduct(int id);
 }

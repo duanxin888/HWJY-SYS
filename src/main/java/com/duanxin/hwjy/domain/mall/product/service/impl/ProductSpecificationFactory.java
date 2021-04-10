@@ -1,10 +1,17 @@
 package com.duanxin.hwjy.domain.mall.product.service.impl;
 
 import com.duanxin.hwjy.domain.mall.product.entity.ProductSpecificationDO;
+import com.duanxin.hwjy.domain.mall.product.entity.valueobject.ProductGallery;
+import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import com.duanxin.hwjy.infrastructure.repository.po.ProductSpecificationPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
+import java.util.Objects;
 
 /**
  * @author duanxin
@@ -21,5 +28,17 @@ public class ProductSpecificationFactory {
         po.setDeleted(specificationDO.getDeleted().getCode());
         po.setGallery(JsonUtil.toString(specificationDO.getGallery()));
         return po;
+    }
+
+    public ProductSpecificationDO po2DO(ProductSpecificationPO po) {
+        if (Objects.isNull(po)) {
+            throw new HWJYCheckException(ResultEnum.PRODUCT_SPECIFICATION_NOT_EXIST);
+        }
+        ProductSpecificationDO specificationDO = new ProductSpecificationDO();
+        BeanUtils.copyProperties(po, specificationDO);
+        specificationDO.setDeleted(Deleted.formatByCode(po.getDeleted()));
+        specificationDO.setGallery(JsonUtil.toObjectList(po.getGallery(), ProductGallery.class).
+                orElse(Collections.emptyList()));
+        return specificationDO;
     }
 }

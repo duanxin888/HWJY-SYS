@@ -1,7 +1,6 @@
 package com.duanxin.hwjy.api.assembler;
 
-import com.duanxin.hwjy.api.dto.product.ProductAddCommandDto;
-import com.duanxin.hwjy.api.dto.product.ProductsQueryResponseDto;
+import com.duanxin.hwjy.api.dto.product.*;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductAttributeDO;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductSpecificationDO;
@@ -49,6 +48,39 @@ public class ProductAssembler {
     public static ProductsQueryResponseDto do2ProductsQueryResponseDto(ProductDO productDO) {
         ProductsQueryResponseDto dto = new ProductsQueryResponseDto();
         BeanUtils.copyProperties(productDO, dto);
+        return dto;
+    }
+
+    public static ProductQueryResponseDto do2ProductQueryResponseDto(ProductDO productDO) {
+        ProductQueryResponseDto dto = new ProductQueryResponseDto();
+        BeanUtils.copyProperties(productDO, dto);
+
+        // assembler attribute dto
+        List<ProductAttributeDto> attributeDtos = new ArrayList<>(productDO.getProductAttributes().size());
+        productDO.getProductAttributes().forEach(f -> {
+            ProductAttributeDto attributeDto = new ProductAttributeDto();
+            BeanUtils.copyProperties(f, attributeDto);
+            attributeDtos.add(attributeDto);
+        });
+        dto.setAttributeDtos(attributeDtos);
+
+        // assembler specification dto
+        List<ProductSpecificationDto> specificationDtos = new ArrayList<>(productDO.getProductSpecifications().size());
+        productDO.getProductSpecifications().forEach(f -> {
+            ProductSpecificationDto specificationDto = new ProductSpecificationDto();
+            BeanUtils.copyProperties(f, specificationDto);
+            specificationDtos.add(specificationDto);
+        });
+        dto.setSpecificationDtos(specificationDtos);
+
+        // assembler stock dto
+        List<ProductStockDto> stockDtos = new ArrayList<>(productDO.getProductStocks().size());
+        productDO.getProductStocks().forEach(f -> {
+            ProductStockDto stockDto = new ProductStockDto();
+            BeanUtils.copyProperties(f, stockDto);
+            stockDtos.add(stockDto);
+        });
+        dto.setStockDtos(stockDtos);
         return dto;
     }
 }

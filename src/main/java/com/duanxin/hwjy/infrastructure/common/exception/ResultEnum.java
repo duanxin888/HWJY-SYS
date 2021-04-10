@@ -44,7 +44,12 @@ public enum ResultEnum {
     MATCH_IMAGE_FILE_FAILED(412, "match image file failed"),
     ASSEMBLER_FILE2DTO_FAILED(412, "assembler file2dto failed"),
 
-    PRODUCT_IS_EXIST_BY_NAME(413, "product is exist by name");
+    PRODUCT_IS_EXIST_BY_NAME(413, "product is exist by name"),
+    PRODUCT_NOT_EXIST(413, "product not exist"),
+    PRODUCT_ATTRIBUTE_NOT_EXIST(413, "product attribute not exist"),
+    PRODUCT_SPECIFICATION_NOT_EXIST(413, "product specification not exist"),
+    PRODUCT_STOCK_NOT_EXIST(413, "product stock not exist"),
+    PRODUCT_IS_OFF_SALE(413, "product is off sale");
 
     private final int code;
     private final String desc;

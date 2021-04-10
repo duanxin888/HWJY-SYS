@@ -29,4 +29,8 @@ public class ProductQueryAppService {
     public List<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize) {
         return productRepository.getProductsByCid(cid, pageNum, pageSize);
     }
+
+    public ProductDO detailsProduct(int id) {
+        return productRepository.detailsProduct(id);
+    }
 }

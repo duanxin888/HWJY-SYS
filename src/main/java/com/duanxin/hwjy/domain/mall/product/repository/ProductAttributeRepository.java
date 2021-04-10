@@ -2,6 +2,8 @@ package com.duanxin.hwjy.domain.mall.product.repository;
 
 import com.duanxin.hwjy.domain.mall.product.entity.ProductAttributeDO;
 
+import java.util.List;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -10,4 +12,6 @@ import com.duanxin.hwjy.domain.mall.product.entity.ProductAttributeDO;
  */
 public interface ProductAttributeRepository {
     void insert(ProductAttributeDO attribute);
+
+    List<ProductAttributeDO> selectByPid(int pid);
 }

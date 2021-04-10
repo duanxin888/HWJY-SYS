@@ -2,6 +2,7 @@ package com.duanxin.hwjy.api.facade;
 
 import com.duanxin.hwjy.api.assembler.ProductAssembler;
 import com.duanxin.hwjy.application.service.query.ProductQueryAppService;
+import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
 import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +25,6 @@ import java.util.stream.Collectors;
 @Validated
 public class ProductApi {
 
-
     private final ProductQueryAppService productQueryAppService;
 
     @GetMapping("/category/{cid}")
@@ -33,5 +33,11 @@ public class ProductApi {
         return ResponseResult.success(productQueryAppService.getProductsByCid(cid, pageNum, pageSize).
                 stream().map(ProductAssembler::do2ProductsQueryResponseDto).
                 collect(Collectors.toList()));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseResult detailsProduct(@PathVariable int id) {
+        ProductDO productDO = productQueryAppService.detailsProduct(id);
+        return ResponseResult.success(ProductAssembler.do2ProductQueryResponseDto(productDO));
     }
 }

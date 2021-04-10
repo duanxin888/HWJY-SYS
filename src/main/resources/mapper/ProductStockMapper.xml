@@ -14,8 +14,16 @@
         <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="test">
-        ID, PRODUCT_ID, SPECIFICATION_ID, ATTRIBUTE_ID, STOCK, CDATE, CREATOR, EDATE, EDITOR
+    <sql id="stock">
+        ID
+        , PRODUCT_ID, SPECIFICATION_ID, ATTRIBUTE_ID, STOCK, CDATE, CREATOR, EDATE, EDITOR
     </sql>
+
+    <select id="selectByPid" resultMap="ProductStockMap">
+        select
+        <include refid="stock"/>
+        from T_PRODUCT_STOCK
+        where PRODUCT_ID = #{pid}
+    </select>
 
 </mapper>
