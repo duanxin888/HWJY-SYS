@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.UserCartMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.UserCartPO" id="UserCartMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="userId" column="USER_ID" javaType="INTEGER"/>
+        <result property="cartStatus" column="CART_STATUS" javaType="INTEGER"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="userCart">
+        ID, USER_ID, CART_STATUS, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+</mapper>
