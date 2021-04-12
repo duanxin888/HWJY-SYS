@@ -49,7 +49,10 @@ public enum ResultEnum {
     PRODUCT_ATTRIBUTE_NOT_EXIST(413, "product attribute not exist"),
     PRODUCT_SPECIFICATION_NOT_EXIST(413, "product specification not exist"),
     PRODUCT_STOCK_NOT_EXIST(413, "product stock not exist"),
-    PRODUCT_IS_OFF_SALE(413, "product is off sale");
+    PRODUCT_IS_OFF_SALE(413, "product is off sale"),
+
+    CART_OPERATE_TYPE_CODE_ERROR(414, "cart operate type code error"),
+    CART_STATUS_CODE_NOT_EXIST(414, "cart status code not exist");
 
     private final int code;
     private final String desc;

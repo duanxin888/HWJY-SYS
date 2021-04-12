@@ -1,5 +1,7 @@
 package com.duanxin.hwjy.domain.mall.order.entity.valueobject;
 
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,4 +20,13 @@ public enum CartOperateType {
 
     private final int code;
     private final String desc;
+
+    public static CartOperateType formatByCode(Integer operateType) {
+        for (CartOperateType value : values()) {
+            if (value.code == operateType) {
+                return value;
+            }
+        }
+        throw new HWJYCheckException(ResultEnum.CART_OPERATE_TYPE_CODE_ERROR);
+    }
 }

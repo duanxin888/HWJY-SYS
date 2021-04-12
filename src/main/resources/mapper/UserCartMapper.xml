@@ -13,7 +13,22 @@
     </resultMap>
 
     <sql id="userCart">
-        ID, USER_ID, CART_STATUS, CDATE, CREATOR, EDATE, EDITOR
+        ID
+        , USER_ID, CART_STATUS, CDATE, CREATOR, EDATE, EDITOR
     </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.UserCartPO"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into T_USER_CART(USER_ID, CART_STATUS, CDATE, CREATOR, EDATE, EDITOR)
+        values (#{po.userId}, #{po.cartStatus}, #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
+
+    <select id="selectValidCart" resultMap="UserCartMap">
+        select
+        <include refid="userCart"/>
+        from T_USER_CART
+        where USER_ID = #{userId} and
+        CART_STATUS = #{cartStatus}
+    </select>
 
 </mapper>

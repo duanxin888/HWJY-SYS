@@ -15,7 +15,16 @@
     </resultMap>
 
     <sql id="cartEventLog">
-        ID, CART_ID, PRODUCT_INFO, OPERATE_TYPE, OPERATE_QUANTITY, CDATE, CREATOR, EDATE, EDITOR
+        ID
+        , CART_ID, PRODUCT_INFO, OPERATE_TYPE, OPERATE_QUANTITY, CDATE, CREATOR, EDATE, EDITOR
     </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.CartEventLogPO"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into T_CART_EVENT_LOG(CART_ID, PRODUCT_INFO, OPERATE_TYPE, OPERATE_QUANTITY,
+                                     CDATE, CREATOR, EDATE, EDITOR)
+        values (#{po.cartId}, #{po.productInfo}, #{po.operateType}, #{po.operateQuantity},
+                #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
 
 </mapper>

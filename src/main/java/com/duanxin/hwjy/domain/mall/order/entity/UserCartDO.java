@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Setter
 @Getter
-public class UserOrderDO {
+public class UserCartDO {
 
     private int id;
 
@@ -33,4 +33,13 @@ public class UserOrderDO {
     private String editor = Constants.EDITOR.getDesc();
 
     private List<CartEventLogDO> eventLogs;
+
+    public UserCartDO() {
+
+    }
+
+    public UserCartDO(Integer userId) {
+        this.userId = userId;
+        this.cartStatus = CartStatus.VALID;
+    }
 }

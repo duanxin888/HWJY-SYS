@@ -35,4 +35,8 @@ public class CartEventLogDO {
     private LocalDateTime edate = LocalDateTime.now();
 
     private String editor = Constants.EDITOR.getDesc();
+
+    public void create(int cartId) {
+        this.setCartId(cartId);
+    }
 }

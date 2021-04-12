@@ -1,5 +1,7 @@
 package com.duanxin.hwjy.domain.mall.order.entity.valueobject;
 
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,4 +20,13 @@ public enum CartStatus {
 
     private final int code;
     private final String desc;
+
+    public static CartStatus formatByCode(int cartStatus) {
+        for (CartStatus value : values()) {
+            if (value.code == cartStatus) {
+                return value;
+            }
+        }
+        throw new HWJYCheckException(ResultEnum.CART_STATUS_CODE_NOT_EXIST);
+    }
 }
