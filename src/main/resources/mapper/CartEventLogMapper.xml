@@ -4,10 +4,10 @@
 
     <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.CartEventLogPO" id="CartEventLogMap">
         <result property="id" column="ID" jdbcType="INTEGER"/>
-        <result property="cartId" column="CART_ID" javaType="INTEGER"/>
-        <result property="productInfo" column="PRODUCT_INFO" javaType="VARCHAR"/>
-        <result property="operateType" column="OPERATE_TYPE" javaType="INTEGER"/>
-        <result property="operateQuantity" column="OPERATE_QUANTITY" javaType="INTEGER"/>
+        <result property="cartId" column="CART_ID" jdbcType="INTEGER"/>
+        <result property="productInfo" column="PRODUCT_INFO" jdbcType="VARCHAR"/>
+        <result property="operateType" column="OPERATE_TYPE" jdbcType="INTEGER"/>
+        <result property="operateQuantity" column="OPERATE_QUANTITY" jdbcType="INTEGER"/>
         <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
         <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
         <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
