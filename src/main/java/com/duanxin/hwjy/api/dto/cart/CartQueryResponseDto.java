@@ -1,6 +1,5 @@
-package com.duanxin.hwjy.domain.mall.order.entity.valueobject;
+package com.duanxin.hwjy.api.dto.cart;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,13 +8,14 @@ import java.math.BigDecimal;
 /**
  * @author duanxin
  * @version 1.0
- * @className ProductInfo
- * @date 2021/04/11 10:10
+ * @className CartQueryResponseDto
+ * @date 2021/04/12 17:55
  */
 @Setter
 @Getter
-@EqualsAndHashCode
-public class ProductInfo {
+public class CartQueryResponseDto {
+
+    private int cartId;
 
     private String productSn;
 
@@ -32,4 +32,6 @@ public class ProductInfo {
     private String attribute;
 
     private String attValue;
+
+    private int quantity;
 }

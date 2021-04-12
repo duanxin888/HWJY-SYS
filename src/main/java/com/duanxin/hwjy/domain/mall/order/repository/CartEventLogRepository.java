@@ -2,6 +2,8 @@ package com.duanxin.hwjy.domain.mall.order.repository;
 
 import com.duanxin.hwjy.domain.mall.order.entity.CartEventLogDO;
 
+import java.util.List;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -11,4 +13,6 @@ import com.duanxin.hwjy.domain.mall.order.entity.CartEventLogDO;
 public interface CartEventLogRepository {
 
     void appendLog(CartEventLogDO eventLogDO);
+
+    List<CartEventLogDO> selectByCartId(int cartId);
 }

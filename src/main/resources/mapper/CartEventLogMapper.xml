@@ -27,4 +27,11 @@
                 #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
     </insert>
 
+    <select id="selectByCartId" resultMap="CartEventLogMap">
+        select
+        <include refid="cartEventLog"/>
+        from T_CART_EVENT_LOG
+        where CART_ID = #{cartId}
+    </select>
+
 </mapper>

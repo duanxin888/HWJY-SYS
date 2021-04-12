@@ -10,6 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -29,5 +32,11 @@ public class CartEventLogRepositoryImpl implements CartEventLogRepository {
         CartEventLogPO po = cartEventLogFactory.do2PO(eventLogDO);
         cartEventLogMapper.insert(po);
         log.info("success to insert CartEventLog [{}]", JsonUtil.toString(po));
+    }
+
+    @Override
+    public List<CartEventLogDO> selectByCartId(int cartId) {
+        List<CartEventLogPO> pos = cartEventLogMapper.selectByCartId(cartId);
+        return pos.stream().map(cartEventLogFactory::po2DO).collect(Collectors.toList());
     }
 }

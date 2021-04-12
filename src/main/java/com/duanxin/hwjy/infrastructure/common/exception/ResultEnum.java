@@ -52,7 +52,9 @@ public enum ResultEnum {
     PRODUCT_IS_OFF_SALE(413, "product is off sale"),
 
     CART_OPERATE_TYPE_CODE_ERROR(414, "cart operate type code error"),
-    CART_STATUS_CODE_NOT_EXIST(414, "cart status code not exist");
+    CART_STATUS_CODE_NOT_EXIST(414, "cart status code not exist"),
+    USER_VALID_CART_NOT_EXIST(414, "user valid cart not exist"),
+    USER_CART_PRODUCT_TRANS_ERROR(414, "user cart product trans error");
 
     private final int code;
     private final String desc;

@@ -13,4 +13,6 @@ public interface UserCartRepository {
     UserCartDO selectValidCart(Integer userId);
 
     int insert(UserCartDO cartDO);
+
+    UserCartDO selectCartByUserId(int userId);
 }

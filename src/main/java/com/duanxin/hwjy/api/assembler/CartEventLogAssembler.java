@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.api.assembler;
 
+import com.duanxin.hwjy.api.dto.cart.CartQueryResponseDto;
 import com.duanxin.hwjy.api.dto.cart.CartUpdateCommandDto;
 import com.duanxin.hwjy.domain.mall.order.entity.CartEventLogDO;
 import com.duanxin.hwjy.domain.mall.order.entity.valueobject.CartOperateType;
@@ -25,5 +26,13 @@ public class CartEventLogAssembler {
         logDO.setOperateQuantity(dto.getQuantity());
         logDO.setOperateType(CartOperateType.formatByCode(dto.getOperateType()));
         return logDO;
+    }
+
+    public static CartQueryResponseDto do2QueryResDto(CartEventLogDO logDO) {
+        CartQueryResponseDto dto = new CartQueryResponseDto();
+        BeanUtils.copyProperties(logDO.getProductInfo(), dto);
+        dto.setCartId(logDO.getCartId());
+        dto.setQuantity(logDO.getOperateQuantity());
+        return dto;
     }
 }
