@@ -25,6 +25,8 @@ public class ProductInfo {
 
     private BigDecimal price;
 
+    private int quantity;
+
     private String specification;
 
     private String specValue;

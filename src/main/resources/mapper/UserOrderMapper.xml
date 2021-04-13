@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanxin.hwjy.infrastructure.repository.mapper.UserOrderMapper">
+
+    <resultMap type="com.duanxin.hwjy.infrastructure.repository.po.UserOrderPO" id="UserOrderMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="userId" column="USER_ID" jdbcType="INTEGER"/>
+        <result property="orderSn" column="ORDER_SN" jdbcType="VARCHAR"/>
+        <result property="totalPrice" column="TOTAL_PRICE" jdbcType="NUMERIC"/>
+        <result property="totalQuantity" column="TOTAL_QUANTITY" jdbcType="INTEGER"/>
+        <result property="orderStatus" column="ORDER_STATUS" jdbcType="VARCHAR"/>
+        <result property="addressInfo" column="ADDRESS_INFO" jdbcType="VARCHAR"/>
+        <result property="payInfo" column="PAY_INFO" jdbcType="VARCHAR"/>
+        <result property="shipInfo" column="SHIP_INFO" jdbcType="VARCHAR"/>
+        <result property="refundTime" column="REFUND_TIME" jdbcType="TIMESTAMP"/>
+        <result property="confirmTime" column="CONFIRM_TIME" jdbcType="TIMESTAMP"/>
+        <result property="orderCloseTime" column="ORDER_CLOSE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="orderDetails" column="ORDER_DETAILS" jdbcType="TEXT"/>
+        <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
+        <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
+        <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="userOrder">
+        ID
+        , USER_ID, ORDER_SN, TOTAL_PRICE, TOTAL_QUANTITY, ORDER_STATUS,
+        ADDRESS_INFO, PAY_INFO, SHIP_INFO, REFUND_TIME, CONFIRM_TIME,
+        ORDER_CLOSE_TIME, ORDER_DETAILS, CDATE, CREATOR, EDATE, EDITOR
+    </sql>
+
+</mapper>
