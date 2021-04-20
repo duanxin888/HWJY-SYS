@@ -15,7 +15,7 @@
         <result property="refundTime" column="REFUND_TIME" jdbcType="TIMESTAMP"/>
         <result property="confirmTime" column="CONFIRM_TIME" jdbcType="TIMESTAMP"/>
         <result property="orderCloseTime" column="ORDER_CLOSE_TIME" jdbcType="TIMESTAMP"/>
-        <result property="orderDetails" column="ORDER_DETAILS" jdbcType="TEXT"/>
+        <result property="orderDetails" column="ORDER_DETAILS" jdbcType="VARCHAR"/>
         <result property="cdate" column="CDATE" jdbcType="TIMESTAMP"/>
         <result property="creator" column="CREATOR" jdbcType="VARCHAR"/>
         <result property="edate" column="EDATE" jdbcType="TIMESTAMP"/>
@@ -28,5 +28,15 @@
         ADDRESS_INFO, PAY_INFO, SHIP_INFO, REFUND_TIME, CONFIRM_TIME,
         ORDER_CLOSE_TIME, ORDER_DETAILS, CDATE, CREATOR, EDATE, EDITOR
     </sql>
+
+    <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.UserOrderPO"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into T_USER_ORDER(USER_ID, ORDER_SN, TOTAL_PRICE, TOTAL_QUANTITY, ORDER_STATUS,
+                                 ADDRESS_INFO, PAY_INFO, SHIP_INFO, REFUND_TIME, CONFIRM_TIME,
+                                 ORDER_CLOSE_TIME, ORDER_DETAILS, CDATE, CREATOR, EDATE, EDITOR)
+        values (#{po.userId}, #{po.orderSn}, #{po.totalPrice}, #{po.totalQuantity}, #{po.orderStatus},
+                #{po.addressInfo}, #{po.payInfo}, #{po.shipInfo}, #{po.refundTime}, #{po.confirmTime},
+                #{po.orderCloseTime}, #{po.orderDetails}, #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+    </insert>
 
 </mapper>

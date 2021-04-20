@@ -39,4 +39,17 @@ public class CartEventLogDO {
     public void create(int cartId) {
         this.setCartId(cartId);
     }
+
+    public CartEventLogDO() {
+    }
+
+    public CartEventLogDO(ProductInfo productInfo, int cartId) {
+        this.cartId = cartId;
+        this.productInfo = productInfo;
+        this.operateQuantity = productInfo.getQuantity();
+    }
+
+    public void operate4Delete() {
+        this.setOperateType(CartOperateType.PRODUCT_DELETED);
+    }
 }

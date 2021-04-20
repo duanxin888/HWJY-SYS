@@ -23,6 +23,12 @@
         values (#{po.userId}, #{po.cartStatus}, #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
     </insert>
 
+    <update id="updateStatus2Invalid">
+        update T_USER_CART
+        set CART_STATUS = #{status}
+        where ID = #{id}
+    </update>
+
     <select id="selectValidCart" resultMap="UserCartMap">
         select
         <include refid="userCart"/>

@@ -69,4 +69,12 @@ public class UserCartDO {
                 CartOperateType.PRODUCT_ADD : CartOperateType.PRODUCT_DELETED);
         return logDO;
     }
+
+    public boolean check4Order(List<CartEventLogDO> orderLogs) {
+        int cartOperateQuantity = this.getEventLogs().stream().
+                map(CartEventLogDO::getOperateQuantity).reduce(0, Integer::sum);
+        int orderOperateQuantity = orderLogs.stream().
+                map(CartEventLogDO::getOperateQuantity).reduce(0, Integer::sum);
+        return cartOperateQuantity == orderOperateQuantity;
+    }
 }

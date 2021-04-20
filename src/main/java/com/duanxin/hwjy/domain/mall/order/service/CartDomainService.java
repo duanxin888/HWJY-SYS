@@ -1,6 +1,9 @@
 package com.duanxin.hwjy.domain.mall.order.service;
 
 import com.duanxin.hwjy.domain.mall.order.entity.CartEventLogDO;
+import com.duanxin.hwjy.domain.mall.order.entity.valueobject.ProductInfo;
+
+import java.util.List;
 
 /**
  * @author duanxin
@@ -11,4 +14,6 @@ import com.duanxin.hwjy.domain.mall.order.entity.CartEventLogDO;
 public interface CartDomainService {
 
     void modifyCart(Integer userId, CartEventLogDO eventLogDO);
+
+    void dealCarts4Order(int userId, List<ProductInfo> productInfos);
 }

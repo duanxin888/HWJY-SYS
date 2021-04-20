@@ -15,4 +15,6 @@ public interface UserCartRepository {
     int insert(UserCartDO cartDO);
 
     UserCartDO selectCartByUserId(int userId);
+
+    void updateStatus2Invalid(UserCartDO cartDO);
 }

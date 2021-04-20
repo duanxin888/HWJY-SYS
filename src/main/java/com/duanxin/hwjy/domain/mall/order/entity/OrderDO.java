@@ -51,4 +51,13 @@ public class OrderDO {
     private LocalDateTime edate = LocalDateTime.now();
 
     private String editor = Constants.EDITOR.getDesc();
+
+    public void init(String orderSn) {
+        this.setOrderSn(orderSn);
+        this.setTotalQuantity(this.getOrderDetails().getProductInfos().stream().
+                map(ProductInfo::getQuantity).reduce(0, Integer::sum));
+        this.setTotalPrice(this.getOrderDetails().getProductInfos().stream().
+                map(ProductInfo::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
+        this.setOrderStatus(OrderStatus.UNPAY);
+    }
 }

@@ -14,4 +14,7 @@ public interface UserCartMapper {
                                @Param("cartStatus") int validCartStatus);
 
     void insert(@Param("po") UserCartPO po);
+
+    void updateStatus2Invalid(@Param("id") int id,
+                              @Param("status") int status);
 }

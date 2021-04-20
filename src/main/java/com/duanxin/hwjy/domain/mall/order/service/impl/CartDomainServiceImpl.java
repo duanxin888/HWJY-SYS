@@ -2,6 +2,7 @@ package com.duanxin.hwjy.domain.mall.order.service.impl;
 
 import com.duanxin.hwjy.domain.mall.order.entity.CartEventLogDO;
 import com.duanxin.hwjy.domain.mall.order.entity.UserCartDO;
+import com.duanxin.hwjy.domain.mall.order.entity.valueobject.ProductInfo;
 import com.duanxin.hwjy.domain.mall.order.repository.CartEventLogRepository;
 import com.duanxin.hwjy.domain.mall.order.repository.UserCartRepository;
 import com.duanxin.hwjy.domain.mall.order.service.CartDomainService;
@@ -10,7 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author duanxin
@@ -34,6 +37,22 @@ public class CartDomainServiceImpl implements CartDomainService {
         int validCartId = fetchUserValidCart(userId);
         // append cart event log
         appendLog(validCartId, eventLogDO);
+    }
+
+    @Override
+    public void dealCarts4Order(int userId, List<ProductInfo> productInfos) {
+        UserCartDO cartDO = userCartRepository.selectCartByUserId(userId);
+        List<CartEventLogDO> logDOS = productInfos.stream().
+                map(p -> new CartEventLogDO(p, cartDO.getId())).collect(Collectors.toList());
+        logDOS.forEach(CartEventLogDO::operate4Delete);
+        // check cart
+        if (cartDO.check4Order(logDOS)) {
+            // cart is invalid --> update status
+            userCartRepository.updateStatus2Invalid(cartDO);
+            return ;
+        }
+        // append log
+        logDOS.forEach(cartEventLogRepository::appendLog);
     }
 
     private void appendLog(int cartId, CartEventLogDO eventLogDO) {

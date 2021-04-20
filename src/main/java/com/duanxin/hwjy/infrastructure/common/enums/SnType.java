@@ -15,7 +15,8 @@ public enum SnType {
 
     INTEGRAL_ACCOUNT_SN_TYPE("01"),
     DICTIONARY_SN_TYPE("02"),
-    PRODUCT_SN_TYPE("03");
+    PRODUCT_SN_TYPE("03"),
+    ORDER_SN_TYPE("04");
 
     private final String typeId;
 }

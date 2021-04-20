@@ -60,6 +60,12 @@ public class UserCartRepositoryImpl implements UserCartRepository {
         return userCartDO;
     }
 
+    @Override
+    public void updateStatus2Invalid(UserCartDO cartDO) {
+        userCartMapper.updateStatus2Invalid(cartDO.getId(), CartStatus.INVALID.getCode());
+        log.info("success to update cart [{}] status to invalid", JsonUtil.toString(cartDO));
+    }
+
     private List<CartEventLogDO> fetchEventLog(UserCartDO cartDO) {
         List<CartEventLogDO> logDOS = cartEventLogRepository.selectByCartId(cartDO.getId());
         if (CollectionUtils.isEmpty(logDOS)) {
