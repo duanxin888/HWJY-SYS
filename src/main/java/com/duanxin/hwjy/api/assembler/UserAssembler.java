@@ -26,8 +26,8 @@ public class UserAssembler {
 
     public static LoginResponseDto do2LoginResponse(UserDO userDO, LoginCommandDto dto) {
         LoginResponseDto response = new LoginResponseDto();
-        BeanUtils.copyProperties(userDO, response);
         BeanUtils.copyProperties(userDO.getIntegralAccount(), response);
+        BeanUtils.copyProperties(userDO, response);
         BeanUtils.copyProperties(dto, response);
         return response;
     }
