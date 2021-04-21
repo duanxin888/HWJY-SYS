@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.infrastructure.repository.mapper;
 
+import com.duanxin.hwjy.infrastructure.repository.OrderCountsDto;
 import com.duanxin.hwjy.infrastructure.repository.po.UserOrderPO;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,4 +12,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface UserOrderMapper {
     void insert(@Param("po") UserOrderPO po);
+
+    OrderCountsDto selectOrderCounts(@Param("userId") int userId);
 }

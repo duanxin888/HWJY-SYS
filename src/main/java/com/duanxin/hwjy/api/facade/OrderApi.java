@@ -3,13 +3,11 @@ package com.duanxin.hwjy.api.facade;
 import com.duanxin.hwjy.api.assembler.OrderAssembler;
 import com.duanxin.hwjy.api.dto.order.OrderSubmitCommandDto;
 import com.duanxin.hwjy.application.service.command.OrderAppService;
+import com.duanxin.hwjy.application.service.query.OrderQueryAppService;
 import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -26,10 +24,16 @@ import javax.validation.Valid;
 public class OrderApi {
 
     private final OrderAppService orderAppService;
+    private final OrderQueryAppService orderQueryAppService;
 
     @PostMapping
     public ResponseResult submitOrder(@RequestBody @Valid OrderSubmitCommandDto dto) {
         orderAppService.submitOrder(OrderAssembler.submitCommandDto2DO(dto));
         return ResponseResult.success();
+    }
+
+    @GetMapping("/counts/{userId}")
+    public ResponseResult orderCounts(@PathVariable int userId) {
+        return ResponseResult.success(orderQueryAppService.orderCounts(userId));
     }
 }

@@ -1,8 +1,10 @@
 package com.duanxin.hwjy.domain.mall.order.repository.impl;
 
 import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
+import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderCounts;
 import com.duanxin.hwjy.domain.mall.order.repository.UserOrderRepository;
 import com.duanxin.hwjy.domain.mall.order.service.impl.UserOrderFactory;
+import com.duanxin.hwjy.infrastructure.repository.OrderCountsDto;
 import com.duanxin.hwjy.infrastructure.repository.mapper.UserOrderMapper;
 import com.duanxin.hwjy.infrastructure.repository.po.UserOrderPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
@@ -29,5 +31,11 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
         UserOrderPO po = userOrderFactory.do2PO(orderDO);
         userOrderMapper.insert(po);
         log.info("success to insert order [{}]", JsonUtil.toString(po));
+    }
+
+    @Override
+    public OrderCounts selectOrderCounts(int userId) {
+        OrderCountsDto dto = userOrderMapper.selectOrderCounts(userId);
+        return userOrderFactory.dto2Counts(dto);
     }
 }

@@ -1,6 +1,8 @@
 package com.duanxin.hwjy.domain.mall.order.service.impl;
 
 import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
+import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderCounts;
+import com.duanxin.hwjy.infrastructure.repository.OrderCountsDto;
 import com.duanxin.hwjy.infrastructure.repository.po.UserOrderPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
 import org.springframework.beans.BeanUtils;
@@ -24,5 +26,11 @@ public class UserOrderFactory {
         po.setShipInfo(JsonUtil.toString(orderDO.getShipInfo()));
         po.setOrderDetails(JsonUtil.toString(orderDO.getOrderDetails()));
         return po;
+    }
+
+    public OrderCounts dto2Counts(OrderCountsDto dto) {
+        OrderCounts orderCounts = new OrderCounts();
+        BeanUtils.copyProperties(dto, orderCounts);
+        return orderCounts;
     }
 }

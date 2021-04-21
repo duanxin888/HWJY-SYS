@@ -52,6 +52,8 @@ public class OrderDO {
 
     private String editor = Constants.EDITOR.getDesc();
 
+    private OrderCounts orderCounts;
+
     public void init(String orderSn) {
         this.setOrderSn(orderSn);
         this.setTotalQuantity(this.getOrderDetails().getProductInfos().stream().

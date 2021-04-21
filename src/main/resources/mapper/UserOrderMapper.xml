@@ -39,4 +39,16 @@
                 #{po.orderCloseTime}, #{po.orderDetails}, #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
     </insert>
 
+    <select id="selectOrderCounts" resultType="com.duanxin.hwjy.infrastructure.repository.OrderCountsDto">
+        select COUNT(o.ID)                                                             AS allCount,
+               COUNT(CASE WHEN o.ORDER_STATUS = 'UNPAY' THEN o.ID ELSE NULL END)       AS unPay,
+               COUNT(CASE WHEN o.ORDER_STATUS = 'PADYED' THEN o.ID ELSE NULL END)      AS payed,
+               COUNT(CASE WHEN o.ORDER_STATUS = 'CONSIGNMENT' THEN o.ID ELSE NULL END) AS consignment,
+               COUNT(CASE WHEN o.ORDER_STATUS = 'CONFIRM' THEN o.ID ELSE NULL END)     AS confirm,
+               COUNT(CASE WHEN o.ORDER_STATUS = 'SUCCESS' THEN o.ID ELSE NULL END)     AS success,
+               COUNT(CASE WHEN o.ORDER_STATUS = 'CLOSE' THEN o.ID ELSE NULL END)       AS `close`
+        FROM T_USER_ORDER o
+        where o.USER_ID = #{userId}
+    </select>
+
 </mapper>
