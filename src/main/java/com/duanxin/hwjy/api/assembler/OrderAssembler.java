@@ -26,6 +26,7 @@ public class OrderAssembler {
         OrderListResponseDto dto = new OrderListResponseDto();
         BeanUtils.copyProperties(orderDO, dto);
         dto.setOrderDetails(orderDO.getOrderDetails().getProductInfos());
+        dto.setOrderStatus(orderDO.getOrderStatus().getCode());
         return dto;
     }
 }

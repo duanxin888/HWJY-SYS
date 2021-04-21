@@ -31,7 +31,7 @@ public class UserOrderFactory {
     public UserOrderPO do2PO(OrderDO orderDO) {
         UserOrderPO po = new UserOrderPO();
         BeanUtils.copyProperties(orderDO, po);
-        po.setOrderStatus(orderDO.getOrderStatus().name());
+        po.setOrderStatus(orderDO.getOrderStatus().getDesc());
         po.setAddressInfo(JsonUtil.toString(orderDO.getAddressInfo()));
         po.setPayInfo(JsonUtil.toString(orderDO.getPayInfo()));
         po.setShipInfo(JsonUtil.toString(orderDO.getShipInfo()));

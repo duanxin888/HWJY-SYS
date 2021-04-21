@@ -1,6 +1,5 @@
 package com.duanxin.hwjy.api.dto.order;
 
-import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderStatus;
 import com.duanxin.hwjy.domain.mall.order.entity.valueobject.ProductInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +25,7 @@ public class OrderListResponseDto {
 
     private int totalQuantity;
 
-    private OrderStatus orderStatus;
+    private int orderStatus;
 
     private List<ProductInfo> orderDetails;
 }

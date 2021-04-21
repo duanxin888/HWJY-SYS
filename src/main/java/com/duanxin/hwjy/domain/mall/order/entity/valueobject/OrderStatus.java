@@ -2,6 +2,8 @@ package com.duanxin.hwjy.domain.mall.order.entity.valueobject;
 
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
 import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * @author duanxin
@@ -9,42 +11,47 @@ import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
  * @className OrderStatus
  * @date 2021/04/13 09:02
  */
+@Getter
+@AllArgsConstructor
 public enum OrderStatus {
 
     /**
      * 没有付款.待付款
      */
-    UNPAY,
+    UNPAY(1, "UNPAY"),
 
     /**
      * 已经付款,但卖家没有发货.待发货
      */
-    PADYED,
+    PADYED(2, "PADYED"),
 
     /**
      * 发货，导致实际库存减少，没有确认收货.待收货
      */
-    CONSIGNMENT,
+    CONSIGNMENT(3, "CONSIGNMENT"),
 
     /**
      * 收货，没有评价.待评价
      */
-    CONFIRM,
+    CONFIRM(4, "CONFIRM"),
 
     /**
      * 评价后交易成功，购买数增加1.
      */
-    SUCCESS,
+    SUCCESS(5, "SUCCESS"),
 
     /**
      * 交易失败.,还原库存
      */
-    CLOSE,
+    CLOSE(6, "CLOSE"),
 
     /**
      * 所有订单
      * */
-    ALL;
+    ALL(0, "ALL");
+
+    private final int code;
+    private final String desc;
 
     public static OrderStatus fetchByName(String name) {
         for (OrderStatus value : values()) {
