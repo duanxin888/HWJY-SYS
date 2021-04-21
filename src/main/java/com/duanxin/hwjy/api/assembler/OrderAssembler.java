@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.api.assembler;
 
+import com.duanxin.hwjy.api.dto.order.OrderListResponseDto;
 import com.duanxin.hwjy.api.dto.order.OrderSubmitCommandDto;
 import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
 import org.springframework.beans.BeanUtils;
@@ -19,5 +20,12 @@ public class OrderAssembler {
         OrderDO orderDO = new OrderDO();
         BeanUtils.copyProperties(dto, orderDO);
         return orderDO;
+    }
+
+    public static OrderListResponseDto do2ListResponseDto(OrderDO orderDO) {
+        OrderListResponseDto dto = new OrderListResponseDto();
+        BeanUtils.copyProperties(orderDO, dto);
+        dto.setOrderDetails(orderDO.getOrderDetails().getProductInfos());
+        return dto;
     }
 }

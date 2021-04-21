@@ -51,4 +51,21 @@
         where o.USER_ID = #{userId}
     </select>
 
+    <select id="selectAll" resultMap="UserOrderMap">
+        select
+        <include refid="userOrder"/>
+        from T_USER_ORDER
+        where USER_ID = #{userId}
+        order by CDATE
+        limit #{pageNum}, #{pageSize}
+    </select>
+
+    <select id="selectByStatus" resultMap="UserOrderMap">
+        select
+        <include refid="userOrder"/>
+        from T_USER_ORDER
+        where USER_ID = #{userId} and ORDER_STATUS = #{orderStatus}
+        order by CDATE limit #{pageNum}, #{pageSize}
+    </select>
+
 </mapper>
