@@ -1,5 +1,8 @@
 package com.duanxin.hwjy.domain.mall.order.entity.valueobject;
 
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -36,5 +39,19 @@ public enum OrderStatus {
     /**
      * 交易失败.,还原库存
      */
-    CLOSE;
+    CLOSE,
+
+    /**
+     * 所有订单
+     * */
+    ALL;
+
+    public static OrderStatus fetchByName(String name) {
+        for (OrderStatus value : values()) {
+            if (value.name().equals(name)) {
+                return value;
+            }
+        }
+        throw new HWJYCheckException(ResultEnum.USER_ORDER_STATUS_NOT_EXIST);
+    }
 }

@@ -21,10 +21,7 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author duanxin
@@ -111,6 +108,9 @@ public class JsonUtil {
     }
 
     public static String toString(Object obj) {
+        if (Objects.isNull(obj)) {
+            return StringUtils.EMPTY;
+        }
         try {
             return OBJECT_MAPPER.writeValueAsString(obj);
         } catch (IOException ex) {
