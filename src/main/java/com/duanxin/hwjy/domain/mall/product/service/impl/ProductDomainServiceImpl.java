@@ -38,7 +38,7 @@ public class ProductDomainServiceImpl implements ProductDomainService {
     @Override
     public void addProductCategory(ProductCategoryDO categoryDO) {
         // valid duplicate category
-        if (Objects.isNull(productCategoryRepository.selectByName(categoryDO.getName()))) {
+        if (Objects.nonNull(productCategoryRepository.selectByName(categoryDO.getName()))) {
             log.info("product category [{}] is exist", categoryDO.getName());
             throw new HWJYCheckException(ResultEnum.PRODUCT_CATEGORY_IS_EXIST);
         }
