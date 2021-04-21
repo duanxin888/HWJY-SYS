@@ -5,10 +5,9 @@ import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderCounts;
 import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderStatus;
 import com.duanxin.hwjy.domain.mall.order.repository.UserOrderRepository;
 import com.duanxin.hwjy.domain.user.repository.UserRepository;
+import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author duanxin
@@ -30,8 +29,8 @@ public class OrderQueryAppService {
         return userOrderRepository.selectOrderCounts(userId);
     }
 
-    public List<OrderDO> listOrder(Integer userId, OrderStatus orderStatus,
-                                   Integer pageNum, Integer pageSize) {
+    public PageInfo<OrderDO> listOrder(Integer userId, OrderStatus orderStatus,
+                                       Integer pageNum, Integer pageSize) {
         // check user exist
         checkUser(userId);
         // fetch order list by userId

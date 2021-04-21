@@ -9,6 +9,8 @@ import com.duanxin.hwjy.infrastructure.repository.OrderCountsDto;
 import com.duanxin.hwjy.infrastructure.repository.mapper.UserOrderMapper;
 import com.duanxin.hwjy.infrastructure.repository.po.UserOrderPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -44,14 +46,17 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     }
 
     @Override
-    public List<OrderDO> listOrder(Integer userId, OrderStatus orderStatus,
-                                   Integer pageNum, Integer pageSize) {
+    public PageInfo<OrderDO> listOrder(Integer userId, OrderStatus orderStatus,
+                                       Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<OrderDO> res = null;
         if (OrderStatus.ALL.equals(orderStatus)) {
             // fetch all orders
-            return userOrderMapper.selectAll(userId, pageNum, pageSize).stream().
+            res =  userOrderMapper.selectAll(userId).stream().
                     map(userOrderFactory::po2DO).collect(Collectors.toList());
         }
-        return userOrderMapper.selectByStatus(userId, orderStatus.name(), pageNum, pageSize).
+        res = userOrderMapper.selectByStatus(userId, orderStatus.name()).
                 stream().map(userOrderFactory::po2DO).collect(Collectors.toList());
+        return new PageInfo<OrderDO>(res);
     }
 }

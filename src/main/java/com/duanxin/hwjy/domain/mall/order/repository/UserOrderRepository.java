@@ -3,8 +3,7 @@ package com.duanxin.hwjy.domain.mall.order.repository;
 import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
 import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderCounts;
 import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderStatus;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 /**
  * @author duanxin
@@ -17,6 +16,6 @@ public interface UserOrderRepository {
 
     OrderCounts selectOrderCounts(int userId);
 
-    List<OrderDO> listOrder(Integer userId, OrderStatus orderStatus,
-                            Integer pageNum, Integer pageSize);
+    PageInfo<OrderDO> listOrder(Integer userId, OrderStatus orderStatus,
+                                Integer pageNum, Integer pageSize);
 }

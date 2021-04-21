@@ -1,9 +1,13 @@
 package com.duanxin.hwjy.api.assembler;
 
 import com.duanxin.hwjy.api.dto.order.OrderListResponseDto;
+import com.duanxin.hwjy.api.dto.order.OrderPageResponseDto;
 import com.duanxin.hwjy.api.dto.order.OrderSubmitCommandDto;
 import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
+
+import java.util.stream.Collectors;
 
 /**
  * @author duanxin
@@ -22,7 +26,16 @@ public class OrderAssembler {
         return orderDO;
     }
 
-    public static OrderListResponseDto do2ListResponseDto(OrderDO orderDO) {
+    public static OrderPageResponseDto do2PageResponseDto(PageInfo<OrderDO> orders) {
+        OrderPageResponseDto dto = new OrderPageResponseDto();
+        dto.setPageNum(orders.getPageNum());
+        dto.setPageSize(orders.getPageSize());
+        dto.setPages(orders.getPages());
+        dto.setOrders(orders.getList().stream().map(OrderAssembler::do2ListResponseDto).collect(Collectors.toList()));
+        return dto;
+    }
+
+    private static OrderListResponseDto do2ListResponseDto(OrderDO orderDO) {
         OrderListResponseDto dto = new OrderListResponseDto();
         BeanUtils.copyProperties(orderDO, dto);
         dto.setOrderDetails(orderDO.getOrderDetails().getProductInfos());

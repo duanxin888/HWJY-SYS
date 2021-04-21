@@ -57,7 +57,6 @@
         from T_USER_ORDER
         where USER_ID = #{userId}
         order by CDATE
-        limit #{pageNum}, #{pageSize}
     </select>
 
     <select id="selectByStatus" resultMap="UserOrderMap">
@@ -65,7 +64,7 @@
         <include refid="userOrder"/>
         from T_USER_ORDER
         where USER_ID = #{userId} and ORDER_STATUS = #{orderStatus}
-        order by CDATE limit #{pageNum}, #{pageSize}
+        order by CDATE
     </select>
 
 </mapper>

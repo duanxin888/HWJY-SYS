@@ -17,12 +17,8 @@ public interface UserOrderMapper {
 
     OrderCountsDto selectOrderCounts(@Param("userId") int userId);
 
-    List<UserOrderPO> selectAll(@Param("userId") Integer userId,
-                                @Param("pageNum") Integer pageNum,
-                                @Param("pageSize") Integer pageSize);
+    List<UserOrderPO> selectAll(@Param("userId") Integer userId);
 
     List<UserOrderPO> selectByStatus(@Param("userId") Integer userId,
-                          @Param("orderStatus") String orderStatus,
-                          @Param("pageNum") Integer pageNum,
-                          @Param("pageSize") Integer pageSize);
+                          @Param("orderStatus") String orderStatus);
 }

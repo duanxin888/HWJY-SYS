@@ -7,13 +7,12 @@ import com.duanxin.hwjy.application.service.command.OrderAppService;
 import com.duanxin.hwjy.application.service.query.OrderQueryAppService;
 import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
 import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
+import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author duanxin
@@ -43,9 +42,8 @@ public class OrderApi {
 
     @GetMapping("/list")
     public ResponseResult listOrder(OrderListRequestDto dto) {
-        List<OrderDO> orders = orderQueryAppService.listOrder(dto.getUserId(), dto.getOrderStatus(),
+        PageInfo<OrderDO> orders = orderQueryAppService.listOrder(dto.getUserId(), dto.getOrderStatus(),
                 dto.getPageNum(), dto.getPageSize());
-        return ResponseResult.success(orders.stream().
-                map(OrderAssembler::do2ListResponseDto).collect(Collectors.toList()));
+        return ResponseResult.success(OrderAssembler.do2PageResponseDto(orders));
     }
 }
