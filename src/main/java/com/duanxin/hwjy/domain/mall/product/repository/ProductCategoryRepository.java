@@ -14,4 +14,6 @@ public interface ProductCategoryRepository {
     void addProductCategory(ProductCategoryDO categoryDO);
 
     List<ProductCategoryDO> getCategories();
+
+    ProductCategoryDO selectByName(String name);
 }

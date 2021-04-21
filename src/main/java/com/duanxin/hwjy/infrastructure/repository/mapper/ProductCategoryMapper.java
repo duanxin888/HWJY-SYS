@@ -15,4 +15,6 @@ public interface ProductCategoryMapper {
     void insert(@Param("po") ProductCategoryPO po);
 
     List<ProductCategoryPO> selectAll();
+
+    ProductCategoryPO selectByName(@Param("name") String name);
 }

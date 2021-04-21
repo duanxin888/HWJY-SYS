@@ -16,21 +16,30 @@
         <result property="editor" column="EDITOR" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="test">
-        ID, PID, `NAME`, PIC_URL, `LEVEL`, DETAILS, SORTED, CDATE, CREATOR, EDATE, EDITOR
+    <sql id="category">
+        ID
+        , PID, `NAME`, PIC_URL, `LEVEL`, DETAILS, SORTED, CDATE, CREATOR, EDATE, EDITOR
     </sql>
 
     <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.ProductCategoryPO"
             useGeneratedKeys="true" keyProperty="id">
         insert into T_PRODUCT_CATEGORY(PID, `NAME`, PIC_URL, `LEVEL`, DETAILS, SORTED,
-        CDATE, CREATOR, EDATE, EDITOR)
+                                       CDATE, CREATOR, EDATE, EDITOR)
         values (#{po.pid}, #{po.name}, #{po.picUrl}, #{po.level}, #{po.details}, #{po.sorted},
-        #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
+                #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
     </insert>
 
     <select id="selectAll" resultMap="ProductCategoryMap">
-        select *
+        select
+        <include refid="category"/>
         from T_PRODUCT_CATEGORY
+    </select>
+
+    <select id="selectByName" resultMap="ProductCategoryMap">
+        select
+        <include refid="category"/>
+        from T_PRODUCT_CATEGORY
+        where NAME = #{name}
     </select>
 
 

@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -38,5 +39,11 @@ public class ProductCategoryRepositoryImpl implements ProductCategoryRepository 
     public List<ProductCategoryDO> getCategories() {
         return productCategoryMapper.selectAll().stream().
                 map(productCategoryFactory::po2DO).collect(Collectors.toList());
+    }
+
+    @Override
+    public ProductCategoryDO selectByName(String name) {
+        ProductCategoryPO po = productCategoryMapper.selectByName(name);
+        return Objects.isNull(po) ? null : productCategoryFactory.po2DO(po);
     }
 }
