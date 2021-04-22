@@ -3,6 +3,7 @@ package com.duanxin.hwjy.domain.mall.order.entity.valueobject;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -20,4 +21,6 @@ public class ShipInfo {
     private String shipChannel;
 
     private LocalDateTime shipTime;
+
+    private BigDecimal shipPrice;
 }

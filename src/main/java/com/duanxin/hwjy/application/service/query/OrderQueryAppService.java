@@ -37,6 +37,10 @@ public class OrderQueryAppService {
         return userOrderRepository.listOrder(userId, orderStatus, pageNum, pageSize);
     }
 
+    public OrderDO detailsOrder(String orderSn) {
+        return userOrderRepository.selectByOrderSn(orderSn);
+    }
+
     private void checkUser(int userId) {
         userRepository.selectById(userId);
     }

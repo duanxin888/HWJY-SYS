@@ -59,4 +59,10 @@ public class OrderApi {
         orderAppService.payOrder(dto.getIntegralAccountSn(), dto.getOrderSn());
         return ResponseResult.success();
     }
+
+    @GetMapping("/{orderSn}")
+    public ResponseResult detailsOrder(@PathVariable String orderSn) {
+        return ResponseResult.success(OrderAssembler.do2DetailsResponseDto(
+                orderQueryAppService.detailsOrder(orderSn)));
+    }
 }

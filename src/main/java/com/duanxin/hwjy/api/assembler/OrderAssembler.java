@@ -1,5 +1,6 @@
 package com.duanxin.hwjy.api.assembler;
 
+import com.duanxin.hwjy.api.dto.order.OrderDetailsResponseDto;
 import com.duanxin.hwjy.api.dto.order.OrderListResponseDto;
 import com.duanxin.hwjy.api.dto.order.OrderPageResponseDto;
 import com.duanxin.hwjy.api.dto.order.OrderSubmitCommandDto;
@@ -37,6 +38,14 @@ public class OrderAssembler {
 
     private static OrderListResponseDto do2ListResponseDto(OrderDO orderDO) {
         OrderListResponseDto dto = new OrderListResponseDto();
+        BeanUtils.copyProperties(orderDO, dto);
+        dto.setOrderDetails(orderDO.getOrderDetails().getProductInfos());
+        dto.setOrderStatus(orderDO.getOrderStatus().getCode());
+        return dto;
+    }
+
+    public static OrderDetailsResponseDto do2DetailsResponseDto(OrderDO orderDO) {
+        OrderDetailsResponseDto dto = new OrderDetailsResponseDto();
         BeanUtils.copyProperties(orderDO, dto);
         dto.setOrderDetails(orderDO.getOrderDetails().getProductInfos());
         dto.setOrderStatus(orderDO.getOrderStatus().getCode());
