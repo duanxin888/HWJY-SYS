@@ -15,6 +15,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -55,5 +57,18 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
         }
         return new PageInfo<>(userOrderMapper.selectByStatus(userId, orderStatus.name()).
                 stream().map(userOrderFactory::po2DO).collect(Collectors.toList()));
+    }
+
+    @Override
+    public List<OrderDO> selectOvertimeUnpaidOrders(LocalDateTime limitTime) {
+        return userOrderMapper.selectOvertimeUnpaid(limitTime).stream().
+                map(userOrderFactory::po2DO).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateWithCancelOrder(OrderDO orderDO) {
+        userOrderMapper.updateWithCancelOrder(orderDO.getId(), orderDO.getOrderStatus().name(),
+                orderDO.getOrderCloseTime(), orderDO.getEdate());
+        log.info("success to cancel order [{}]", orderDO.getOrderSn());
     }
 }

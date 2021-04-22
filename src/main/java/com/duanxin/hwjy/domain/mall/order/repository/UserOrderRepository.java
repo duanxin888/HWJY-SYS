@@ -5,6 +5,9 @@ import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderCounts;
 import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderStatus;
 import com.github.pagehelper.PageInfo;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 /**
  * @author duanxin
  * @version 1.0
@@ -18,4 +21,8 @@ public interface UserOrderRepository {
 
     PageInfo<OrderDO> listOrder(Integer userId, OrderStatus orderStatus,
                                 Integer pageNum, Integer pageSize);
+
+    List<OrderDO> selectOvertimeUnpaidOrders(LocalDateTime limitTime);
+
+    void updateWithCancelOrder(OrderDO orderDO);
 }

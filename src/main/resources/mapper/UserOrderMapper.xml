@@ -39,6 +39,14 @@
                 #{po.orderCloseTime}, #{po.orderDetails}, #{po.cdate}, #{po.creator}, #{po.edate}, #{po.editor})
     </insert>
 
+    <update id="updateWithCancelOrder">
+        update T_USER_ORDER
+        set ORDER_STATUS     = #{status},
+            ORDER_CLOSE_TIME = #{orderCloseTime},
+            EDATE            = #{edate}
+        where ID = #{id}
+    </update>
+
     <select id="selectOrderCounts" resultType="com.duanxin.hwjy.infrastructure.repository.OrderCountsDto">
         select COUNT(o.ID)                                                             AS allCount,
                COUNT(CASE WHEN o.ORDER_STATUS = 'UNPAY' THEN o.ID ELSE NULL END)       AS unPay,
@@ -65,6 +73,13 @@
         from T_USER_ORDER
         where USER_ID = #{userId} and ORDER_STATUS = #{orderStatus}
         order by CDATE
+    </select>
+
+    <select id="selectOvertimeUnpaid" resultMap="UserOrderMap">
+        select
+        <include refid="userOrder"/>
+        from T_USER_ORDER
+        where CDATE &lt;= #{limitTime}
     </select>
 
 </mapper>

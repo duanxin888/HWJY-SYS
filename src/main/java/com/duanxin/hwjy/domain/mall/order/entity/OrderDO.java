@@ -62,4 +62,10 @@ public class OrderDO {
                 map(ProductInfo::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
         this.setOrderStatus(OrderStatus.UNPAY);
     }
+
+    public void cancel() {
+        this.setOrderStatus(OrderStatus.CLOSE);
+        this.setOrderCloseTime(LocalDateTime.now());
+        this.setEdate(LocalDateTime.now());
+    }
 }

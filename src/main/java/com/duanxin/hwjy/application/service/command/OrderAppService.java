@@ -25,4 +25,8 @@ public class OrderAppService {
         cartDomainService.dealCarts4Order(orderDO.getUserId(), orderDO.getOrderDetails().getProductInfos());
         orderDomainService.submitOrder(orderDO);
     }
+
+    public void cancelOrder() {
+        orderDomainService.cancelOrder();
+    }
 }

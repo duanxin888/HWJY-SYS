@@ -10,4 +10,6 @@ import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
  */
 public interface OrderDomainService {
     void submitOrder(OrderDO orderDO);
+
+    void cancelOrder();
 }
