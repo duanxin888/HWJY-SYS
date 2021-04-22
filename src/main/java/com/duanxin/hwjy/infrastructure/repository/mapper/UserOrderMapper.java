@@ -29,4 +29,6 @@ public interface UserOrderMapper {
                                @Param("status") String status,
                                @Param("orderCloseTime") LocalDateTime orderCloseTime,
                                @Param("edate") LocalDateTime edate);
+
+    UserOrderPO selectByOrderSn(@Param("orderSn") String orderSn);
 }

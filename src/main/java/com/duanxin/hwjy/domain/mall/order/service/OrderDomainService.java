@@ -12,4 +12,6 @@ public interface OrderDomainService {
     void submitOrder(OrderDO orderDO);
 
     void cancelOrder();
+
+    void cancelOrder(String orderSn);
 }

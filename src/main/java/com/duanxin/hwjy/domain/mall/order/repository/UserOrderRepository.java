@@ -25,4 +25,6 @@ public interface UserOrderRepository {
     List<OrderDO> selectOvertimeUnpaidOrders(LocalDateTime limitTime);
 
     void updateWithCancelOrder(OrderDO orderDO);
+
+    OrderDO selectByOrderSn(String orderSn);
 }

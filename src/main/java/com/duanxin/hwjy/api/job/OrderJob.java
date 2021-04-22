@@ -5,7 +5,6 @@ import com.duanxin.hwjy.infrastructure.client.lock.LockClient;
 import com.duanxin.hwjy.infrastructure.common.constants.LockKeyConstants;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -24,7 +23,7 @@ public class OrderJob {
     private final LockClient lockClient;
     private final OrderAppService orderAppService;
 
-    @Scheduled(cron = "${job.cancelOrder.time}")
+    //@Scheduled(cron = "${job.cancelOrder.time}")
     public void cancelOrder() {
         log.info("begin to execute cancelOrder job");
         if (!lockClient.lock(LockKeyConstants.ORDER_CANCEL_JOB_KEY.getKey(),

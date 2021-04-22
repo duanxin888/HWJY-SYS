@@ -41,6 +41,13 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     }
 
     @Override
+    public void cancelOrder(String orderSn) {
+        OrderDO orderDO = userOrderRepository.selectByOrderSn(orderSn);
+        orderDO.cancel();
+        userOrderRepository.updateWithCancelOrder(orderDO);
+    }
+
+    @Override
     public void cancelOrder() {
         long start = System.currentTimeMillis();
         LocalDateTime now = LocalDateTime.now();

@@ -29,4 +29,8 @@ public class OrderAppService {
     public void cancelOrder() {
         orderDomainService.cancelOrder();
     }
+
+    public void cancelOrder(String orderSn) {
+        orderDomainService.cancelOrder(orderSn);
+    }
 }

@@ -46,4 +46,10 @@ public class OrderApi {
                 dto.getPageNum(), dto.getPageSize());
         return ResponseResult.success(OrderAssembler.do2PageResponseDto(orders));
     }
+
+    @PutMapping("/cancel/{orderSn}")
+    public ResponseResult cancelOrder(@PathVariable String orderSn) {
+        orderAppService.cancelOrder(orderSn);
+        return ResponseResult.success();
+    }
 }

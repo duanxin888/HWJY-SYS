@@ -71,4 +71,9 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
                 orderDO.getOrderCloseTime(), orderDO.getEdate());
         log.info("success to cancel order [{}]", orderDO.getOrderSn());
     }
+
+    @Override
+    public OrderDO selectByOrderSn(String orderSn) {
+        return userOrderFactory.po2DO(userOrderMapper.selectByOrderSn(orderSn));
+    }
 }

@@ -82,4 +82,11 @@
         where CDATE &lt;= #{limitTime}
     </select>
 
+    <select id="selectByOrderSn" resultMap="UserOrderMap">
+        select
+        <include refid="userOrder"/>
+        from T_USER_ORDER
+        where ORDER_SN = #{orderSn}
+    </select>
+
 </mapper>
