@@ -15,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -49,14 +48,12 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public PageInfo<OrderDO> listOrder(Integer userId, OrderStatus orderStatus,
                                        Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<OrderDO> res = null;
         if (OrderStatus.ALL.equals(orderStatus)) {
             // fetch all orders
-            res =  userOrderMapper.selectAll(userId).stream().
-                    map(userOrderFactory::po2DO).collect(Collectors.toList());
+            return new PageInfo<>(userOrderMapper.selectAll(userId).stream().
+                    map(userOrderFactory::po2DO).collect(Collectors.toList()));
         }
-        res = userOrderMapper.selectByStatus(userId, orderStatus.name()).
-                stream().map(userOrderFactory::po2DO).collect(Collectors.toList());
-        return new PageInfo<OrderDO>(res);
+        return new PageInfo<>(userOrderMapper.selectByStatus(userId, orderStatus.name()).
+                stream().map(userOrderFactory::po2DO).collect(Collectors.toList()));
     }
 }
