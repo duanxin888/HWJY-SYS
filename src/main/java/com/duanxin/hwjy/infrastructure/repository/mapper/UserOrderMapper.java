@@ -36,4 +36,8 @@ public interface UserOrderMapper {
                             @Param("status") String status,
                             @Param("payInfo") String payInfo,
                             @Param("edate") LocalDateTime edate);
+
+    void updateWithDeletedOrder(@Param("id") int id,
+                                @Param("status") String status,
+                                @Param("edate") LocalDateTime edate);
 }

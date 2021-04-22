@@ -29,4 +29,6 @@ public interface UserOrderRepository {
     OrderDO selectByOrderSn(String orderSn);
 
     void updateWithPayOrder(OrderDO orderDO);
+
+    void updateWithDeletedOrder(OrderDO orderDO);
 }

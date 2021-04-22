@@ -77,6 +77,25 @@ public class OrderDomainServiceImpl implements OrderDomainService {
         userOrderRepository.updateWithPayOrder(orderDO);
     }
 
+    @Override
+    public void deletedOrder(String orderSn) {
+        // check order valid
+        OrderDO orderDO = checkOrder(orderSn);
+        // deleted order
+        doDeletedOrder(orderDO);
+    }
+
+    private void doDeletedOrder(OrderDO orderDO) {
+        orderDO.deleted();
+        userOrderRepository.updateWithDeletedOrder(orderDO);
+    }
+
+    private OrderDO checkOrder(String orderSn) {
+        OrderDO orderDO = userOrderRepository.selectByOrderSn(orderSn);
+        orderDO.checkDeleted();
+        return orderDO;
+    }
+
     private boolean doCancelOrder(OrderDO orderDO) {
         try {
             orderDO.cancel();

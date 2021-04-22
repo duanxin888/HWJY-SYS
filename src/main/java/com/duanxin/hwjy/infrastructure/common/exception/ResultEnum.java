@@ -56,7 +56,9 @@ public enum ResultEnum {
     CART_STATUS_CODE_NOT_EXIST(414, "cart status code not exist"),
     USER_VALID_CART_NOT_EXIST(414, "user valid cart not exist"),
     USER_CART_PRODUCT_TRANS_ERROR(414, "user cart product trans error"),
-    USER_ORDER_STATUS_NOT_EXIST(414, "user order status not exist");
+    USER_ORDER_STATUS_NOT_EXIST(414, "user order status not exist"),
+    USER_ORDER_IS_DELETED(414, "user order is deleted"),
+    USER_ORDER_NOT_DELETE(414, "user order not delete");
 
     private final int code;
     private final String desc;

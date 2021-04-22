@@ -55,6 +55,13 @@
         where ID = #{id}
     </update>
 
+    <update id="updateWithDeletedOrder">
+        update T_USER_ORDER
+        set ORDER_STATUS = #{status},
+            EDATE        = #{edate}
+        where ID = #{id}
+    </update>
+
     <select id="selectOrderCounts" resultType="com.duanxin.hwjy.infrastructure.repository.OrderCountsDto">
         select COUNT(o.ID)                                                             AS allCount,
                COUNT(CASE WHEN o.ORDER_STATUS = 'UNPAY' THEN o.ID ELSE NULL END)       AS unPay,
@@ -65,6 +72,7 @@
                COUNT(CASE WHEN o.ORDER_STATUS = 'CLOSE' THEN o.ID ELSE NULL END)       AS `close`
         FROM T_USER_ORDER o
         where o.USER_ID = #{userId}
+          and o.ORDER_STATUS != 'DELETED'
     </select>
 
     <select id="selectAll" resultMap="UserOrderMap">

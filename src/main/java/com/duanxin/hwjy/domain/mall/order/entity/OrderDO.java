@@ -2,6 +2,8 @@ package com.duanxin.hwjy.domain.mall.order.entity;
 
 import com.duanxin.hwjy.domain.mall.order.entity.valueobject.*;
 import com.duanxin.hwjy.infrastructure.common.constants.Constants;
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -72,6 +74,17 @@ public class OrderDO {
     public void pay(String paySn) {
         this.setOrderStatus(OrderStatus.PADYED);
         this.setPayInfo(new PayInfo(paySn));
+        this.setEdate(LocalDateTime.now());
+    }
+
+    public void checkDeleted() {
+        if (!OrderStatus.SUCCESS.equals(this.getOrderStatus()) && !OrderStatus.CLOSE.equals(this.getOrderStatus())) {
+            throw new HWJYCheckException(ResultEnum.USER_ORDER_NOT_DELETE);
+        }
+    }
+
+    public void deleted() {
+        this.setOrderStatus(OrderStatus.DELETED);
         this.setEdate(LocalDateTime.now());
     }
 }

@@ -65,4 +65,10 @@ public class OrderApi {
         return ResponseResult.success(OrderAssembler.do2DetailsResponseDto(
                 orderQueryAppService.detailsOrder(orderSn)));
     }
+
+    @DeleteMapping("/{orderSn}")
+    public ResponseResult deletedOrder(@PathVariable String orderSn) {
+        orderAppService.deletedOrder(orderSn);
+        return ResponseResult.success();
+    }
 }

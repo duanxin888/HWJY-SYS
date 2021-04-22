@@ -5,6 +5,8 @@ import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderCounts;
 import com.duanxin.hwjy.domain.mall.order.entity.valueobject.OrderStatus;
 import com.duanxin.hwjy.domain.mall.order.repository.UserOrderRepository;
 import com.duanxin.hwjy.domain.mall.order.service.impl.UserOrderFactory;
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
 import com.duanxin.hwjy.infrastructure.repository.OrderCountsDto;
 import com.duanxin.hwjy.infrastructure.repository.mapper.UserOrderMapper;
 import com.duanxin.hwjy.infrastructure.repository.po.UserOrderPO;
@@ -53,16 +55,19 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
         if (OrderStatus.ALL.equals(orderStatus)) {
             // fetch all orders
             return new PageInfo<>(userOrderMapper.selectAll(userId).stream().
-                    map(userOrderFactory::po2DO).collect(Collectors.toList()));
+                    map(userOrderFactory::po2DO).filter(f -> OrderStatus.checkValid(f.getOrderStatus())).
+                    collect(Collectors.toList()));
         }
         return new PageInfo<>(userOrderMapper.selectByStatus(userId, orderStatus.name()).
-                stream().map(userOrderFactory::po2DO).collect(Collectors.toList()));
+                stream().map(userOrderFactory::po2DO).filter(f -> OrderStatus.checkValid(f.getOrderStatus())).
+                collect(Collectors.toList()));
     }
 
     @Override
     public List<OrderDO> selectOvertimeUnpaidOrders(LocalDateTime limitTime) {
         return userOrderMapper.selectOvertimeUnpaid(limitTime).stream().
-                map(userOrderFactory::po2DO).collect(Collectors.toList());
+                map(userOrderFactory::po2DO).filter(f -> OrderStatus.checkValid(f.getOrderStatus())).
+                collect(Collectors.toList());
     }
 
     @Override
@@ -74,7 +79,11 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
     @Override
     public OrderDO selectByOrderSn(String orderSn) {
-        return userOrderFactory.po2DO(userOrderMapper.selectByOrderSn(orderSn));
+        OrderDO orderDO = userOrderFactory.po2DO(userOrderMapper.selectByOrderSn(orderSn));
+        if (!OrderStatus.checkValid(orderDO.getOrderStatus())) {
+            throw new HWJYCheckException(ResultEnum.USER_ORDER_IS_DELETED);
+        }
+        return orderDO;
     }
 
     @Override
@@ -82,5 +91,12 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
         userOrderMapper.updateWithPayOrder(orderDO.getId(), orderDO.getOrderStatus().name(),
                 JsonUtil.toString(orderDO.getPayInfo()), orderDO.getEdate());
         log.info("success to pay order [{}]", JsonUtil.toString(orderDO));
+    }
+
+    @Override
+    public void updateWithDeletedOrder(OrderDO orderDO) {
+        userOrderMapper.updateWithDeletedOrder(orderDO.getId(), orderDO.getOrderStatus().name(),
+                orderDO.getEdate());
+        log.info("success to deleted order [{}]", JsonUtil.toString(orderDO));
     }
 }

@@ -16,4 +16,6 @@ public interface OrderDomainService {
     void cancelOrder(String orderSn);
 
     void pay4Order(OrderDO orderDO);
+
+    void deletedOrder(String orderSn);
 }

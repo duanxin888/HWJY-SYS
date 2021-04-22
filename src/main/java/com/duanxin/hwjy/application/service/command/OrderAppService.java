@@ -53,6 +53,10 @@ public class OrderAppService {
         orderDomainService.pay4Order(orderDO);
     }
 
+    public void deletedOrder(String orderSn) {
+        orderDomainService.deletedOrder(orderSn);
+    }
+
     private Consumption4OrderEvent assemblerEvent(String integralAccountSn,
                                                   BigDecimal totalPrice,
                                                   String orderSn) {
@@ -64,5 +68,4 @@ public class OrderAppService {
         event.setData(JsonUtil.toString(event));
         return event;
     }
-
 }
