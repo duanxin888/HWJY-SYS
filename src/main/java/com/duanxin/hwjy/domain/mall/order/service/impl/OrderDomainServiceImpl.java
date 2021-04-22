@@ -4,9 +4,10 @@ import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
 import com.duanxin.hwjy.domain.mall.order.repository.UserOrderRepository;
 import com.duanxin.hwjy.domain.mall.order.service.OrderDomainService;
 import com.duanxin.hwjy.infrastructure.client.sn.OrderSnGenerator;
+import com.duanxin.hwjy.infrastructure.client.sn.PaySnGenerator;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +24,18 @@ import java.util.stream.Collectors;
  * @date 2021/04/13 10:11
  */
 @Service
-@AllArgsConstructor
 @Slf4j
 public class OrderDomainServiceImpl implements OrderDomainService {
 
-    private final UserOrderRepository userOrderRepository;
-    private final OrderSnGenerator orderSnGenerator;
+    @Autowired
+    private UserOrderRepository userOrderRepository;
+    @Autowired
+    private OrderSnGenerator orderSnGenerator;
+    @Autowired
+    private PaySnGenerator paySnGenerator;
     @Qualifier("cancelOrderThreadPoolExecutor")
-    private final ThreadPoolExecutor cancelOrderExecutor;
+    @Autowired
+    private ThreadPoolExecutor cancelOrderExecutor;
 
     @Override
     public void submitOrder(OrderDO orderDO) {
@@ -63,6 +68,13 @@ public class OrderDomainServiceImpl implements OrderDomainService {
         }
         log.info("spend [{}]s to complete cancelOrder tasks [{}]",
                 (System.currentTimeMillis() - start) / 1000, overtimeUnpaidOrders.size());
+    }
+
+    @Override
+    public void pay4Order(OrderDO orderDO) {
+        // pay for order
+        orderDO.pay(paySnGenerator.generate());
+        userOrderRepository.updateWithPayOrder(orderDO);
     }
 
     private boolean doCancelOrder(OrderDO orderDO) {

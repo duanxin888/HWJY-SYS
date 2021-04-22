@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.domain.mall.order.entity.valueobject;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -13,11 +14,16 @@ import java.time.LocalDateTime;
  */
 @Setter
 @Getter
+@NoArgsConstructor
 public class PayInfo {
 
     private String paySn;
 
-    private String payType;
+    private PayType payType = PayType.POINTS_PAYMENT;
 
-    private LocalDateTime payTime;
+    private LocalDateTime payTime = LocalDateTime.now();
+
+    public PayInfo(String paySn) {
+        this.paySn = paySn;
+    }
 }

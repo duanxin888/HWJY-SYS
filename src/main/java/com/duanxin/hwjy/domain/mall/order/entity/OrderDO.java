@@ -68,4 +68,10 @@ public class OrderDO {
         this.setOrderCloseTime(LocalDateTime.now());
         this.setEdate(LocalDateTime.now());
     }
+
+    public void pay(String paySn) {
+        this.setOrderStatus(OrderStatus.PADYED);
+        this.setPayInfo(new PayInfo(paySn));
+        this.setEdate(LocalDateTime.now());
+    }
 }

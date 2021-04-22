@@ -2,6 +2,7 @@ package com.duanxin.hwjy.api.facade;
 
 import com.duanxin.hwjy.api.assembler.OrderAssembler;
 import com.duanxin.hwjy.api.dto.order.OrderListRequestDto;
+import com.duanxin.hwjy.api.dto.order.OrderPayRequestDto;
 import com.duanxin.hwjy.api.dto.order.OrderSubmitCommandDto;
 import com.duanxin.hwjy.application.service.command.OrderAppService;
 import com.duanxin.hwjy.application.service.query.OrderQueryAppService;
@@ -50,6 +51,12 @@ public class OrderApi {
     @PutMapping("/cancel/{orderSn}")
     public ResponseResult cancelOrder(@PathVariable String orderSn) {
         orderAppService.cancelOrder(orderSn);
+        return ResponseResult.success();
+    }
+
+    @PutMapping("/pay")
+    public ResponseResult payOrder(@RequestBody OrderPayRequestDto dto) {
+        orderAppService.payOrder(dto.getIntegralAccountSn(), dto.getOrderSn());
         return ResponseResult.success();
     }
 }

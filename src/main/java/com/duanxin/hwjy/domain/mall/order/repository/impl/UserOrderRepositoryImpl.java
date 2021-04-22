@@ -76,4 +76,11 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public OrderDO selectByOrderSn(String orderSn) {
         return userOrderFactory.po2DO(userOrderMapper.selectByOrderSn(orderSn));
     }
+
+    @Override
+    public void updateWithPayOrder(OrderDO orderDO) {
+        userOrderMapper.updateWithPayOrder(orderDO.getId(), orderDO.getOrderStatus().name(),
+                JsonUtil.toString(orderDO.getPayInfo()), orderDO.getEdate());
+        log.info("success to pay order [{}]", JsonUtil.toString(orderDO));
+    }
 }

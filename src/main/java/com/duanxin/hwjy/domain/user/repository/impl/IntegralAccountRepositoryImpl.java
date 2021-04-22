@@ -55,4 +55,12 @@ public class IntegralAccountRepositoryImpl implements IntegralAccountRepository 
         log.info("success to update integralBalance [{}] by integralAccountSn [{}]",
                 integralBalance, integralAccountSn);
     }
+
+    @Override
+    public void update4Consumption(IntegralAccountDO accountDO) {
+        integralAccountMapper.update4Consumption(accountDO.getIntegralAccountSn(),
+                accountDO.getIntegralBalance(), accountDO.getEdate());
+        log.info("success to consumption integral [{}] balance [{}]",
+                accountDO.getIntegralAccountSn(), accountDO.getIntegralBalance());
+    }
 }

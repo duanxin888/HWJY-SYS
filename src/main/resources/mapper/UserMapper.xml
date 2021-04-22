@@ -19,15 +19,17 @@
     </resultMap>
 
     <sql id="user">
-        ID, PHONE, USER_IMG_URL, NICKNAME, INTEGRAL_ACCOUNT_SN, WX_OPENID, WX_SESSION_KEY, STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR
+        ID
+        , PHONE, USER_IMG_URL, NICKNAME, INTEGRAL_ACCOUNT_SN, WX_OPENID, WX_SESSION_KEY, STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR
     </sql>
 
     <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.UserPO"
             keyProperty="id" useGeneratedKeys="true">
         insert into T_USER(PHONE, USER_IMG_URL, NICKNAME, INTEGRAL_ACCOUNT_SN, WX_OPENID, WX_SESSION_KEY,
-         STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR)
-         values(#{user.phone}, #{user.userImgUrl}, #{user.nickname}, #{user.integralAccountSn}, #{user.wxOpenid}, #{user.wxSessionKey},
-         #{user.status}, #{user.deleted}, #{user.cdate}, #{user.creator}, #{user.edate}, #{user.editor})
+                           STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR)
+        values (#{user.phone}, #{user.userImgUrl}, #{user.nickname}, #{user.integralAccountSn}, #{user.wxOpenid},
+                #{user.wxSessionKey},
+                #{user.status}, #{user.deleted}, #{user.cdate}, #{user.creator}, #{user.edate}, #{user.editor})
     </insert>
 
     <update id="updateSessionKey">
@@ -37,14 +39,22 @@
     </update>
 
     <select id="selectByOpenId" resultMap="TUserMap">
-        select <include refid="user"/>
+        select
+        <include refid="user"/>
         from T_USER
         where WX_OPENID = #{openid}
     </select>
 
     <select id="selectById" resultMap="TUserMap">
-        select <include refid="user"/>
+        select
+        <include refid="user"/>
         from T_USER
         where ID = #{userId}
+    </select>
+    <select id="selectByIntegralAccountSn" resultMap="TUserMap">
+        select
+        <include refid="user"/>
+        from T_USER
+        where INTEGRAL_ACCOUNT_SN = #{integralAccountSn}
     </select>
 </mapper>

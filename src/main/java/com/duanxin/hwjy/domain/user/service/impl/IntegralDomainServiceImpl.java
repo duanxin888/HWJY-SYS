@@ -48,4 +48,18 @@ public class IntegralDomainServiceImpl implements IntegralDomainService {
     public void checkIntegralValidity(IntegralLogDO logDO) {
         integralLogRepository.checkIntegralValidity(logDO);
     }
+
+    @Override
+    public void consumptionIntegral(IntegralAccountDO accountDO, BigDecimal integralNumber) {
+        accountDO.reduceBalance(integralNumber);
+        integralAccountRepository.update4Consumption(accountDO);
+    }
+
+    @Override
+    public void appendConsumptionLog(IntegralAccountDO accountDO, BigDecimal integralNumber,
+                                     String operateParam, int userId) {
+        IntegralLogDO logDO = new IntegralLogDO(userId, accountDO.getIntegralAccountSn(),
+                integralNumber, operateParam);
+        integralLogRepository.insert(logDO);
+    }
 }

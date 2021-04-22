@@ -45,4 +45,17 @@ public class IntegralLogDO {
         this.setOperateType(IntegralOperateType.POINTS_COLLECTION);
         this.setIntegralNumber(integralNumber);
     }
+
+    public IntegralLogDO() {
+    }
+
+    public IntegralLogDO(int userId, String integralAccountSn,
+                         BigDecimal integralNumber, String operateParam) {
+        this.userId = userId;
+        this.integralAccountSn = integralAccountSn;
+        this.integralNumber = integralNumber;
+        this.operateParam = operateParam;
+        this.operateType = IntegralOperateType.POINTS_CONSUMPTION;
+        this.integralOperateChannel = IntegralOperateChannel.CONSUMPTION_BY_PAY_ORDER;
+    }
 }

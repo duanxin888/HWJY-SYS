@@ -18,4 +18,6 @@ public interface UserMapper {
                           @Param("wxSessionKey") String wxSessionKey);
 
     UserPO selectById(@Param("userId") int userId);
+
+    UserPO selectByIntegralAccountSn(@Param("integralAccountSn") String integralAccountSn);
 }

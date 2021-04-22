@@ -47,6 +47,14 @@
         where ID = #{id}
     </update>
 
+    <update id="updateWithPayOrder">
+        update T_USER_ORDER
+        set ORDER_STATUS = #{status},
+            PAY_INFO     = #{payInfo},
+            EDATE        = #{edate}
+        where ID = #{id}
+    </update>
+
     <select id="selectOrderCounts" resultType="com.duanxin.hwjy.infrastructure.repository.OrderCountsDto">
         select COUNT(o.ID)                                                             AS allCount,
                COUNT(CASE WHEN o.ORDER_STATUS = 'UNPAY' THEN o.ID ELSE NULL END)       AS unPay,

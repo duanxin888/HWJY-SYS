@@ -18,4 +18,6 @@ public interface UserRepository {
     void updateSessionKey(UserPO userPO);
 
     UserDO selectById(int userId);
+
+    UserDO selectByIntegralAccountSn(String integralAccountSn);
 }

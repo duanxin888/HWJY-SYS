@@ -2,6 +2,8 @@ package com.duanxin.hwjy.domain.user.service.impl.factory;
 
 import com.duanxin.hwjy.domain.user.entity.IntegralAccountDO;
 import com.duanxin.hwjy.domain.user.entity.UserDO;
+import com.duanxin.hwjy.domain.user.entity.valueobject.UserStatus;
+import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
 import com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO;
 import com.duanxin.hwjy.infrastructure.repository.po.UserPO;
 import org.springframework.beans.BeanUtils;
@@ -20,6 +22,14 @@ public class UserFactory {
         UserDO userDO = new UserDO();
         BeanUtils.copyProperties(po, userDO);
         userDO.setIntegralAccount(integralAccountDO);
+        return userDO;
+    }
+
+    public UserDO po2DO(UserPO po) {
+        UserDO userDO = new UserDO();
+        BeanUtils.copyProperties(po, userDO);
+        userDO.setStatus(UserStatus.formatByCode(po.getStatus()));
+        userDO.setDeleted(Deleted.formatByCode(po.getDeleted()));
         return userDO;
     }
 

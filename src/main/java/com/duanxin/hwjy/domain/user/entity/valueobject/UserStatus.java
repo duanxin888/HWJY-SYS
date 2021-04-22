@@ -21,4 +21,13 @@ public enum UserStatus {
     public static boolean isAvailable(int status) {
         return AVAILABLE.code == status;
     }
+
+    public static UserStatus formatByCode(int status) {
+        for (UserStatus value : values()) {
+            if (value.code == status) {
+                return value;
+            }
+        }
+        return AVAILABLE;
+    }
 }

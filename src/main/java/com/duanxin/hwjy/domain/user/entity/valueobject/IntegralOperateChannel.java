@@ -8,5 +8,5 @@ package com.duanxin.hwjy.domain.user.entity.valueobject;
  */
 public enum IntegralOperateChannel {
 
-    COLLECTION_BY_WATCH_NEWS
+    COLLECTION_BY_WATCH_NEWS, CONSUMPTION_BY_PAY_ORDER
 }

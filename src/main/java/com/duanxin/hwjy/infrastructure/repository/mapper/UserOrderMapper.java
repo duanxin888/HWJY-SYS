@@ -31,4 +31,9 @@ public interface UserOrderMapper {
                                @Param("edate") LocalDateTime edate);
 
     UserOrderPO selectByOrderSn(@Param("orderSn") String orderSn);
+
+    void updateWithPayOrder(@Param("id") int id,
+                            @Param("status") String status,
+                            @Param("payInfo") String payInfo,
+                            @Param("edate") LocalDateTime edate);
 }

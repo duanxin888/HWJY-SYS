@@ -4,6 +4,7 @@ import com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * @author duanxin
@@ -18,4 +19,8 @@ public interface IntegralAccountMapper {
 
     void updateBalanceBySn(@Param("integralAccountSn") String integralAccountSn,
                            @Param("integralBalance") BigDecimal integralBalance);
+
+    void update4Consumption(@Param("integralAccountSn") String integralAccountSn,
+                            @Param("integralBalance") BigDecimal integralBalance,
+                            @Param("edate") LocalDateTime edate);
 }

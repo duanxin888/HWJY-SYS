@@ -28,4 +28,15 @@ public class ThreadPoolConfiguration {
     public ThreadPoolExecutor cancelOrderExecutor(@Qualifier("cancelOrderThreadPool") ThreadPoolConfig config) {
         return ThreadPoolUtils.threadPoolExecutor(config);
     }
+
+    @Bean("consumptionIntegralThreadPool")
+    @ConfigurationProperties(prefix = "thread.integral.consumption")
+    public ThreadPoolConfig consumptionIntegralThreadPool() {
+        return new ThreadPoolConfig();
+    }
+
+    @Bean("consumptionIntegralExecutor")
+    public ThreadPoolExecutor consumptionIntegralExecutor(@Qualifier("consumptionIntegralThreadPool") ThreadPoolConfig config) {
+        return ThreadPoolUtils.threadPoolExecutor(config);
+    }
 }

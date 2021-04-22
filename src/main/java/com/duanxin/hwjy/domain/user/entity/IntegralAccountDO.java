@@ -61,4 +61,9 @@ public class IntegralAccountDO {
         this.setIntegralBalance(this.getIntegralBalance().add(integralNumber).setScale(2));
         this.setEdate(LocalDateTime.now());
     }
+
+    public void reduceBalance(BigDecimal integralNumber) {
+        this.setIntegralBalance(this.getIntegralBalance().subtract(integralNumber).setScale(2));
+        this.setEdate(LocalDateTime.now());
+    }
 }

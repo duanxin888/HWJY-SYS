@@ -18,4 +18,6 @@ public interface IntegralAccountRepository {
     IntegralAccountDO selectBySn(String integralAccountSn);
 
     void updateBalanceBySn(String integralAccountSn, BigDecimal integralBalance);
+
+    void update4Consumption(IntegralAccountDO accountDO);
 }

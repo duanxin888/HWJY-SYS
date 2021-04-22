@@ -16,16 +16,19 @@
     </resultMap>
 
     <sql id="integralAccount">
-        ID, INTEGRAL_ACCOUNT_SN, INTEGRAL_BALANCE, INTEGRAL_VALIDITY_DATE, STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR
+        ID
+        , INTEGRAL_ACCOUNT_SN, INTEGRAL_BALANCE, INTEGRAL_VALIDITY_DATE, STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR
     </sql>
 
     <insert id="insert" parameterType="com.duanxin.hwjy.infrastructure.repository.po.IntegralAccountPO"
             useGeneratedKeys="true" keyProperty="id">
         insert into T_INTEGRAL_ACCOUNT(INTEGRAL_ACCOUNT_SN, INTEGRAL_BALANCE, INTEGRAL_VALIDITY_DATE,
-         STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR)
-        values(#{integralAccount.integralAccountSn}, #{integralAccount.integralBalance}, #{integralAccount.integralValidityDate},
-        #{integralAccount.status}, #{integralAccount.deleted}, #{integralAccount.cdate}, #{integralAccount.creator},
-        #{integralAccount.edate}, #{integralAccount.editor})
+                                       STATUS, DELETED, CDATE, CREATOR, EDATE, EDITOR)
+        values (#{integralAccount.integralAccountSn}, #{integralAccount.integralBalance},
+                #{integralAccount.integralValidityDate},
+                #{integralAccount.status}, #{integralAccount.deleted}, #{integralAccount.cdate},
+                #{integralAccount.creator},
+                #{integralAccount.edate}, #{integralAccount.editor})
     </insert>
     <update id="updateBalanceBySn">
         update T_INTEGRAL_ACCOUNT
@@ -33,8 +36,16 @@
         where INTEGRAL_ACCOUNT_SN = #{integralAccountSn}
     </update>
 
+    <update id="update4Consumption">
+        update T_INTEGRAL_ACCOUNT
+        set INTEGRAL_BALANCE = #{integralBalance},
+            EDATE            = #{edate}
+        where INTEGRAL_ACCOUNT_SN = #{integralAccountSn}
+    </update>
+
     <select id="selectBySn" resultMap="TIntegralAccountMap">
-        select <include refid="integralAccount"/>
+        select
+        <include refid="integralAccount"/>
         from T_INTEGRAL_ACCOUNT
         where INTEGRAL_ACCOUNT_SN = #{integralAccountSn}
     </select>

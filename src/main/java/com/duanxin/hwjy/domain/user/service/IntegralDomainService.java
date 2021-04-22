@@ -18,4 +18,9 @@ public interface IntegralDomainService {
     void collectIntegral(IntegralLogDO logDO, BigDecimal integralNumber);
 
     void checkIntegralValidity(IntegralLogDO logDO);
+
+    void consumptionIntegral(IntegralAccountDO accountDO, BigDecimal integralNumber);
+
+    void appendConsumptionLog(IntegralAccountDO accountDO, BigDecimal integralNumber,
+                              String operateParam, int userId);
 }

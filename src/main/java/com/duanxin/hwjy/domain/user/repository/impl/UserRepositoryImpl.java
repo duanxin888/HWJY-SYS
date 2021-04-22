@@ -73,4 +73,10 @@ public class UserRepositoryImpl implements UserRepository {
                 integralAccountRepository.selectBySn(userPO.getIntegralAccountSn());
         return userFactory.createUserDO(userPO, integralAccountDO);
     }
+
+    @Override
+    public UserDO selectByIntegralAccountSn(String integralAccountSn) {
+        UserPO userPO = userMapper.selectByIntegralAccountSn(integralAccountSn);
+        return userFactory.po2DO(userPO);
+    }
 }

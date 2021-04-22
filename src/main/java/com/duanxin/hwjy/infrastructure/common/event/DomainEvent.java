@@ -3,7 +3,7 @@ package com.duanxin.hwjy.infrastructure.common.event;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author duanxin
@@ -15,7 +15,7 @@ import java.util.Date;
 @Setter
 public class DomainEvent {
     String id;
-    Date timestamp;
+    LocalDateTime timestamp = LocalDateTime.now();
     String source;
     String data;
 }
