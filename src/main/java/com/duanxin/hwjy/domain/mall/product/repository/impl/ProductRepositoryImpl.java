@@ -14,6 +14,8 @@ import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
 import com.duanxin.hwjy.infrastructure.repository.mapper.ProductMapper;
 import com.duanxin.hwjy.infrastructure.repository.po.ProductPO;
 import com.duanxin.hwjy.infrastructure.util.JsonUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -54,10 +56,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize) {
-        List<ProductPO> pos = productMapper.selectProductsByCid(cid, (pageNum - 1) * pageSize, pageSize);
-        return pos.stream().filter(f -> Deleted.isValid(f.getDeleted()) && OnSale.isOnSale(f.getOnSale())).
-                map(productFactory::po2DO).collect(Collectors.toList());
+    public PageInfo<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return new PageInfo<>(productMapper.selectProductsByCid(cid).stream().
+                filter(f -> Deleted.isValid(f.getDeleted()) && OnSale.isOnSale(f.getOnSale())).
+                map(productFactory::po2DO).collect(Collectors.toList()));
     }
 
     @Override

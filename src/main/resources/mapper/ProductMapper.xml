@@ -48,7 +48,6 @@
         from T_PRODUCT
         where CID = #{cid}
         order by SORTED
-        limit #{offset}, #{rows}
     </select>
 
     <select id="selectById" resultMap="ProductMap">

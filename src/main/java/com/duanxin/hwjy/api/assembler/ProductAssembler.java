@@ -5,10 +5,12 @@ import com.duanxin.hwjy.domain.mall.product.entity.ProductAttributeDO;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductSpecificationDO;
 import com.duanxin.hwjy.domain.mall.product.entity.valueobject.OnSale;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author duanxin
@@ -45,8 +47,18 @@ public class ProductAssembler {
         return productDO;
     }
 
-    public static ProductsQueryResponseDto do2ProductsQueryResponseDto(ProductDO productDO) {
-        ProductsQueryResponseDto dto = new ProductsQueryResponseDto();
+    public static ProductsPageResponseDto do2PageResponseDto(PageInfo<ProductDO> pageInfo) {
+        ProductsPageResponseDto dto = new ProductsPageResponseDto();
+        dto.setPageNum(pageInfo.getPageNum());
+        dto.setPageSize(pageInfo.getPageSize());
+        dto.setPages(pageInfo.getPages());
+        dto.setProductsQueryDtos(pageInfo.getList().stream().
+                map(ProductAssembler::do2ProductsQueryDto).collect(Collectors.toList()));
+        return dto;
+    }
+
+    public static ProductsQueryDto do2ProductsQueryDto(ProductDO productDO) {
+        ProductsQueryDto dto = new ProductsQueryDto();
         BeanUtils.copyProperties(productDO, dto);
         return dto;
     }

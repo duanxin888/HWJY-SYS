@@ -4,6 +4,7 @@ import com.duanxin.hwjy.domain.mall.product.entity.ProductCategoryDO;
 import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
 import com.duanxin.hwjy.domain.mall.product.repository.ProductCategoryRepository;
 import com.duanxin.hwjy.domain.mall.product.repository.ProductRepository;
+import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class ProductQueryAppService {
         return productCategoryRepository.getCategories();
     }
 
-    public List<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize) {
+    public PageInfo<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize) {
         return productRepository.getProductsByCid(cid, pageNum, pageSize);
     }
 

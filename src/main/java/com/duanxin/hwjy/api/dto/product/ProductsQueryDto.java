@@ -12,7 +12,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class ProductsQueryResponseDto {
+public class ProductsQueryDto {
 
     private int id;
 

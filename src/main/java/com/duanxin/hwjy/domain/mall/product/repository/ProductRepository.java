@@ -1,8 +1,7 @@
 package com.duanxin.hwjy.domain.mall.product.repository;
 
 import com.duanxin.hwjy.domain.mall.product.entity.ProductDO;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 /**
  * @author duanxin
@@ -15,7 +14,7 @@ public interface ProductRepository {
 
     ProductDO selectByName(String name);
 
-    List<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize);
+    PageInfo<ProductDO> getProductsByCid(int cid, int pageNum, int pageSize);
 
     ProductDO detailsProduct(int id);
 }

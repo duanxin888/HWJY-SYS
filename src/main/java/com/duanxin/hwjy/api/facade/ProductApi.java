@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.stream.Collectors;
-
 /**
  * @author duanxin
  * @version 1.0
@@ -30,9 +28,8 @@ public class ProductApi {
     @GetMapping("/category/{cid}")
     public ResponseResult getProductsByCid(@PathVariable int cid,
                                            int pageNum, int pageSize) {
-        return ResponseResult.success(productQueryAppService.getProductsByCid(cid, pageNum, pageSize).
-                stream().map(ProductAssembler::do2ProductsQueryResponseDto).
-                collect(Collectors.toList()));
+        return ResponseResult.success(ProductAssembler.do2PageResponseDto(
+                productQueryAppService.getProductsByCid(cid, pageNum, pageSize)));
     }
 
     @GetMapping("/{id}")
