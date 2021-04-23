@@ -4,6 +4,7 @@ import com.duanxin.hwjy.api.assembler.UserAddressAssembler;
 import com.duanxin.hwjy.api.dto.user.address.AddressAddCommandDto;
 import com.duanxin.hwjy.api.dto.user.address.UserAddressDto;
 import com.duanxin.hwjy.application.service.command.UserAddressAppService;
+import com.duanxin.hwjy.application.service.query.AddressQueryAppService;
 import com.duanxin.hwjy.application.service.query.UserQueryAppService;
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
 import com.duanxin.hwjy.infrastructure.common.api.ResponseResult;
@@ -29,6 +30,7 @@ public class UserAddressApi {
 
     private final UserAddressAppService userAddressAppService;
     private final UserQueryAppService userQueryAppService;
+    private final AddressQueryAppService addressQueryAppService;
 
     @PostMapping
     public ResponseResult addAddress(@RequestBody @Valid AddressAddCommandDto addressAddCommandDto) {
@@ -61,5 +63,11 @@ public class UserAddressApi {
     public ResponseResult deleteAddress(@PathVariable int addressId) {
         userAddressAppService.deleteAddress(addressId);
         return ResponseResult.success();
+    }
+
+    @GetMapping("/addressId/{addressId}")
+    public ResponseResult getAddressById(@PathVariable int addressId) {
+        return ResponseResult.success(UserAddressAssembler.do2Dto(
+                addressQueryAppService.getAddressById(addressId)));
     }
 }
