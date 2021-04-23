@@ -32,6 +32,7 @@ public class ProductAssembler {
         dto.getProductSpecifications().forEach(specification -> {
             ProductSpecificationDO specificationDO = new ProductSpecificationDO();
             BeanUtils.copyProperties(specification, specificationDO);
+            specificationDO.setGallery(specification.getGalleries());
             specificationDOS.add(specificationDO);
         });
         productDO.setProductSpecifications(specificationDOS);
@@ -81,6 +82,7 @@ public class ProductAssembler {
         productDO.getProductSpecifications().forEach(f -> {
             ProductSpecificationDto specificationDto = new ProductSpecificationDto();
             BeanUtils.copyProperties(f, specificationDto);
+            specificationDto.setGalleries(f.getGallery());
             specificationDtos.add(specificationDto);
         });
         dto.setSpecificationDtos(specificationDtos);
