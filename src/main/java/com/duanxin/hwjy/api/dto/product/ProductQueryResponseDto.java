@@ -39,4 +39,6 @@ public class ProductQueryResponseDto {
     private List<ProductSpecificationDto> specificationDtos;
 
     private List<ProductStockDto> stockDtos;
+
+    private List<SkuDto> skuList;
 }

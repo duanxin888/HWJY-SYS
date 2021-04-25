@@ -95,6 +95,18 @@ public class ProductAssembler {
             stockDtos.add(stockDto);
         });
         dto.setStockDtos(stockDtos);
+
+        // assembler sku list
+        List<SkuDto> skuDtos = new ArrayList<>();
+        productDO.getProductSpecifications().forEach(s -> {
+            productDO.getProductAttributes().forEach(a -> {
+                SkuDto skuDto = new SkuDto();
+                skuDto.setProperties(s.getSpecification() + ":" + s.getValue() + ";" +
+                        a.getAttribute() + ":" + a.getValue());
+                skuDtos.add(skuDto);
+            });
+        });
+        dto.setSkuList(skuDtos);
         return dto;
     }
 }
