@@ -23,4 +23,7 @@ public interface UserAddressMapper {
     UserAddressPO selectById(@Param("id") int id);
 
     void updateWithDelete(@Param("userAddress") UserAddressPO userAddress);
+
+    UserAddressPO selectDefaultAddress(@Param("userId") int userId,
+                                       @Param("acquiescence") int acquiescence);
 }

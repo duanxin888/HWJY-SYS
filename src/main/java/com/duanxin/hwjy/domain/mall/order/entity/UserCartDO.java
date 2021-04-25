@@ -77,4 +77,9 @@ public class UserCartDO {
                 map(CartEventLogDO::getOperateQuantity).reduce(0, Integer::sum);
         return cartOperateQuantity == orderOperateQuantity;
     }
+
+    public int countCart() {
+        return this.getEventLogs().stream().
+                map(CartEventLogDO::getOperateQuantity).reduce(0, Integer::sum);
+    }
 }

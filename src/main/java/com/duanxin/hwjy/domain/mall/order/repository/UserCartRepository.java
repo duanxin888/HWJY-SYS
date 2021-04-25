@@ -17,4 +17,6 @@ public interface UserCartRepository {
     UserCartDO selectCartByUserId(int userId);
 
     void updateStatus2Invalid(UserCartDO cartDO);
+
+    int getCartCount(int userId);
 }

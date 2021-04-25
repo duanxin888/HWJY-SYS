@@ -24,6 +24,11 @@ public class CartQueryAppService {
         return userCartRepository.selectCartByUserId(userId);
     }
 
+    public int getCartCount(int userId) {
+        checkUser(userId);
+        return userCartRepository.getCartCount(userId);
+    }
+
     private void checkUser(int userId) {
         userRepository.selectById(userId);
     }

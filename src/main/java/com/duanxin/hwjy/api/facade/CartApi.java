@@ -41,4 +41,9 @@ public class CartApi {
                 map(CartEventLogAssembler::do2QueryResDto).
                 collect(Collectors.toList()));
     }
+
+    @GetMapping("/count/{userId}")
+    public ResponseResult getCartCount(@PathVariable int userId) {
+        return ResponseResult.success(cartQueryAppService.getCartCount(userId));
+    }
 }

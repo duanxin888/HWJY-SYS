@@ -66,6 +66,12 @@ public class UserCartRepositoryImpl implements UserCartRepository {
         log.info("success to update cart [{}] status to invalid", JsonUtil.toString(cartDO));
     }
 
+    @Override
+    public int getCartCount(int userId) {
+        UserCartDO cartDO = this.selectCartByUserId(userId);
+        return cartDO.countCart();
+    }
+
     private List<CartEventLogDO> fetchEventLog(UserCartDO cartDO) {
         List<CartEventLogDO> logDOS = cartEventLogRepository.selectByCartId(cartDO.getId());
         if (CollectionUtils.isEmpty(logDOS)) {

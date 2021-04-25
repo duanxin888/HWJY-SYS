@@ -23,4 +23,6 @@ public interface UserAddressRepository {
     UserAddressDO selectById(int id);
 
     void updateWithDelete(UserAddressDO userAddressDO);
+
+    UserAddressDO selectDefaultAddress(int userId);
 }

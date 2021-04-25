@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.domain.user.repository.impl;
 
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
+import com.duanxin.hwjy.domain.user.entity.valueobject.Acquiescence;
 import com.duanxin.hwjy.domain.user.repository.UserAddressRepository;
 import com.duanxin.hwjy.domain.user.service.impl.factory.UserAddressFactory;
 import com.duanxin.hwjy.infrastructure.common.enums.Deleted;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -76,5 +78,12 @@ public class UserAddressRepositoryImpl implements UserAddressRepository {
         userAddressMapper.updateWithDelete(userAddressFactory.createUserAddressPO(userAddressDO));
         log.info("success to delete user [{}] address [{}]",
                 userAddressDO.getUserId(), JsonUtil.toString(userAddressDO));
+    }
+
+    @Override
+    public UserAddressDO selectDefaultAddress(int userId) {
+        return userAddressFactory.createUserAddressDO(Optional.ofNullable(
+                userAddressMapper.selectDefaultAddress(userId, Acquiescence.ACQUIESCENCE.getCode())).
+                orElseThrow(() -> new HWJYCheckException(ResultEnum.USER_DEFAULT_ADDRESS_NOT_EXIST)));
     }
 }

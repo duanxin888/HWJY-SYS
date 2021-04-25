@@ -2,6 +2,7 @@ package com.duanxin.hwjy.application.service.query;
 
 import com.duanxin.hwjy.domain.user.entity.UserAddressDO;
 import com.duanxin.hwjy.domain.user.repository.UserAddressRepository;
+import com.duanxin.hwjy.domain.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,18 @@ import org.springframework.stereotype.Service;
 public class AddressQueryAppService {
 
     private final UserAddressRepository userAddressRepository;
+    private final UserRepository userRepository;
 
     public UserAddressDO getAddressById(int addressId) {
         return userAddressRepository.selectById(addressId);
+    }
+
+    public UserAddressDO getDefaultAddress(int userId) {
+        checkUser(userId);
+        return userAddressRepository.selectDefaultAddress(userId);
+    }
+
+    private void checkUser(int userId) {
+        userRepository.selectById(userId);
     }
 }

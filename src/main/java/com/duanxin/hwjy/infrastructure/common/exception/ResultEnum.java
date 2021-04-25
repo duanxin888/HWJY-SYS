@@ -30,6 +30,7 @@ public enum ResultEnum {
 
     USER_ADDRESS_UPDATE_ACQUIESCENCE_FAILED(406, "user address update acquiescence failed"),
     USER_ADDRESS_UPDATE_FAILED(406, "user address update failed"),
+    USER_DEFAULT_ADDRESS_NOT_EXIST(406, "user default address not exist"),
 
 
     JOB_ACTION_NOT_SUPPORT_SERVICE(407, "job action not support service"),

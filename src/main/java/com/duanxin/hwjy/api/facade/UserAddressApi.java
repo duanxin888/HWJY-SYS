@@ -70,4 +70,10 @@ public class UserAddressApi {
         return ResponseResult.success(UserAddressAssembler.do2Dto(
                 addressQueryAppService.getAddressById(addressId)));
     }
+
+    @GetMapping("/acquiescence/{userId}")
+    public ResponseResult getDefaultAddress(@PathVariable int userId) {
+        return ResponseResult.success(UserAddressAssembler.do2Dto(
+                addressQueryAppService.getDefaultAddress(userId)));
+    }
 }
