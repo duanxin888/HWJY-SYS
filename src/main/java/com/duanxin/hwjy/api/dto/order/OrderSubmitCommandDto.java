@@ -25,4 +25,7 @@ public class OrderSubmitCommandDto {
 
     @NotNull(message = "orderDetails NotNull")
     private OrderDetails orderDetails;
+
+    @NotNull(message = "orderEntry NotNull")
+    private Integer orderEntry;
 }

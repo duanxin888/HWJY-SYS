@@ -38,11 +38,12 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     private ThreadPoolExecutor cancelOrderExecutor;
 
     @Override
-    public void submitOrder(OrderDO orderDO) {
+    public OrderDO submitOrder(OrderDO orderDO) {
         // init order
         orderDO.init(orderSnGenerator.generate());
         // insert order
         userOrderRepository.submitOrder(orderDO);
+        return orderDO;
     }
 
     @Override

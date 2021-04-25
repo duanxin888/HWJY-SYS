@@ -32,8 +32,8 @@ public class OrderApi {
 
     @PostMapping
     public ResponseResult submitOrder(@RequestBody @Valid OrderSubmitCommandDto dto) {
-        orderAppService.submitOrder(OrderAssembler.submitCommandDto2DO(dto));
-        return ResponseResult.success();
+        return ResponseResult.success(OrderAssembler.do2DetailsResponseDto(
+                orderAppService.submitOrder(OrderAssembler.submitCommandDto2DO(dto))));
     }
 
     @GetMapping("/counts/{userId}")

@@ -9,7 +9,7 @@ import com.duanxin.hwjy.domain.mall.order.entity.OrderDO;
  * @date 2021/04/13 10:11
  */
 public interface OrderDomainService {
-    void submitOrder(OrderDO orderDO);
+    OrderDO submitOrder(OrderDO orderDO);
 
     void cancelOrder();
 

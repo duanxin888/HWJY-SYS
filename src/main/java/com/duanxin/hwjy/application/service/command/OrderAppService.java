@@ -30,9 +30,11 @@ public class OrderAppService {
     private final ApplicationContext applicationContext;
 
     @Transactional
-    public void submitOrder(OrderDO orderDO) {
-        cartDomainService.dealCarts4Order(orderDO.getUserId(), orderDO.getOrderDetails().getProductInfos());
-        orderDomainService.submitOrder(orderDO);
+    public OrderDO submitOrder(OrderDO orderDO) {
+        if (orderDO.isCart2Order()) {
+            cartDomainService.dealCarts4Order(orderDO.getUserId(), orderDO.getOrderDetails().getProductInfos());
+        }
+        return orderDomainService.submitOrder(orderDO);
     }
 
     public void cancelOrder() {

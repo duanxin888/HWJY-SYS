@@ -56,6 +56,8 @@ public class OrderDO {
 
     private OrderCounts orderCounts;
 
+    private int orderEntry;
+
     public void init(String orderSn) {
         this.setOrderSn(orderSn);
         this.setTotalQuantity(this.getOrderDetails().getProductInfos().stream().
@@ -86,5 +88,9 @@ public class OrderDO {
     public void deleted() {
         this.setOrderStatus(OrderStatus.DELETED);
         this.setEdate(LocalDateTime.now());
+    }
+
+    public boolean isCart2Order() {
+        return this.getOrderEntry() == 0;
     }
 }
