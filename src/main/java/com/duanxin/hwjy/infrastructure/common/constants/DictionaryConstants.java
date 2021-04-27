@@ -8,5 +8,6 @@ package com.duanxin.hwjy.infrastructure.common.constants;
  */
 public enum DictionaryConstants {
 
-    INTEGRAL_DICTIONARY
+    INTEGRAL_DICTIONARY,
+    INTEGRAL_COLLECT_LIMIT
 }

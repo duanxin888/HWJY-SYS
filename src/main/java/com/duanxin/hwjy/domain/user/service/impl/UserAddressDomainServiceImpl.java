@@ -28,7 +28,7 @@ public class UserAddressDomainServiceImpl implements UserAddressDomainService {
 
     @Override
     public void addAddress(UserAddressDO addressDO) {
-        List<UserAddressDO> userAddressDOS = userAddressRepository.selectByUserId(addressDO.getUserId());
+            List<UserAddressDO> userAddressDOS = userAddressRepository.selectByUserId(addressDO.getUserId());
         if (CollectionUtils.isEmpty(userAddressDOS)) {
             addressDO.acquiesceIn();
             log.info("user first add address, then acquiesceIn address [{}]", JsonUtil.toString(addressDO));

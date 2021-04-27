@@ -44,16 +44,16 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
 
     @Override
     public DictionaryDO selectBySn(String dictionarySn) {
-        return dictionaryFactory.creDictionaryDO(dictionaryMapper.selectBySn(dictionarySn));
+        return dictionaryFactory.createDictionaryDO(dictionaryMapper.selectBySn(dictionarySn));
     }
 
     @Override
     public List<DictionaryDO> getDictionary() {
-        return dictionaryMapper.select().stream().map(dictionaryFactory::creDictionaryDO).collect(Collectors.toList());
+        return dictionaryMapper.select().stream().map(dictionaryFactory::createDictionaryDO).collect(Collectors.toList());
     }
 
     @Override
     public DictionaryDO selectByName(String dictionaryName) {
-        return dictionaryFactory.creDictionaryDO(dictionaryMapper.selectByName(dictionaryName));
+        return dictionaryFactory.createDictionaryDO(dictionaryMapper.selectByName(dictionaryName));
     }
 }

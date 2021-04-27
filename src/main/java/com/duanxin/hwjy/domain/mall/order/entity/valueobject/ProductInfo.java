@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  */
 @Setter
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "quantity")
 public class ProductInfo {
 
     private String productSn;

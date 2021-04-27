@@ -2,14 +2,20 @@ package com.duanxin.hwjy.application.service.command;
 
 import com.duanxin.hwjy.domain.system.service.DictionaryDomainService;
 import com.duanxin.hwjy.domain.user.entity.IntegralLogDO;
+import com.duanxin.hwjy.domain.user.entity.valueobject.IntegralOperateChannel;
 import com.duanxin.hwjy.domain.user.service.IntegralDomainService;
 import com.duanxin.hwjy.domain.user.service.UserDomainService;
+import com.duanxin.hwjy.infrastructure.client.counter.CounterClient;
 import com.duanxin.hwjy.infrastructure.common.constants.DictionaryConstants;
+import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
+import com.duanxin.hwjy.infrastructure.common.exception.ResultEnum;
+import com.duanxin.hwjy.infrastructure.util.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * @author duanxin
@@ -25,26 +31,51 @@ public class IntegralAppService {
     private final UserDomainService userDomainService;
     private final IntegralDomainService integralDomainService;
     private final DictionaryDomainService dictionaryDomainService;
+    private final CounterClient counterClient;
 
     public void collectIntegral(IntegralLogDO logDO) {
-        // check user & account exist
-        checkValidity(logDO.getUserId(), logDO.getIntegralAccountSn());
-        // check integral channel is validity
-        checkIntegralValidity(logDO);
+        // do check
+        check(logDO);
         // fetch integral number
-        BigDecimal integralNumber = fetchIntegralNumber(logDO.getIntegralOperateChannel().name());
+        BigDecimal integralNumber = Objects.isNull(logDO.getIntegralNumber()) ?
+                fetchIntegralNumber(logDO.getIntegralOperateChannel().name()) : logDO.getIntegralNumber();
         // update account & append log
         integralDomainService.collectIntegral(logDO, integralNumber);
     }
 
-    private void checkIntegralValidity(IntegralLogDO logDO) {
-        integralDomainService.checkIntegralValidity(logDO);
+    private void check(IntegralLogDO logDO) {
+        // check integral channel is validity
+        checkIntegralValidity(logDO);
+        // check user & account exist
+        checkValidity(logDO.getUserId(), logDO.getIntegralAccountSn());
+        // check points collection limit
+        checkCollectLimit(logDO);
+    }
+
+    private void checkCollectLimit(IntegralLogDO logDO) {
+        IntegralOperateChannel integralOperateChannel = logDO.getIntegralOperateChannel();
+        if (counterClient.counter(integralOperateChannel + "_COUNTER").
+                orElseThrow(() -> new HWJYCheckException(ResultEnum.INTEGRAL_COLLECT_IS_INVALIDITY)) >
+                fetchCollectLimit(integralOperateChannel.name())) {
+            log.info("integral [{}] collect reaches the upper limit", JsonUtil.toString(logDO));
+            throw new HWJYCheckException(ResultEnum.INTEGRAL_COLLECT_REACHES_THE_UPPER_LIMIT);
+        }
+    }
+
+    private Long fetchCollectLimit(String itemValue) {
+        String dictionaryValue =
+                dictionaryDomainService.getItemValue(DictionaryConstants.INTEGRAL_COLLECT_LIMIT.name(), itemValue);
+        return Long.parseLong(dictionaryValue);
     }
 
     private BigDecimal fetchIntegralNumber(String itemValue) {
         String dictionaryValue =
                 dictionaryDomainService.getItemValue(DictionaryConstants.INTEGRAL_DICTIONARY.name(), itemValue);
         return BigDecimal.valueOf(Double.parseDouble(dictionaryValue));
+    }
+
+    private void checkIntegralValidity(IntegralLogDO logDO) {
+        integralDomainService.checkIntegralValidity(logDO);
     }
 
     private void checkValidity(int userId, String integralAccountSn) {

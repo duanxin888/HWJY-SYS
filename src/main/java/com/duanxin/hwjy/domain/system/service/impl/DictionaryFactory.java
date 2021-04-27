@@ -25,7 +25,7 @@ public class DictionaryFactory {
         return po;
     }
 
-    public DictionaryDO creDictionaryDO(DictionaryPO po) {
+    public DictionaryDO createDictionaryDO(DictionaryPO po) {
         DictionaryDO dictionaryDO = new DictionaryDO();
         BeanUtils.copyProperties(po, dictionaryDO);
         dictionaryDO.setDictionaryStatus(DictionaryStatus.formatByName(po.getDictionaryStatus()));

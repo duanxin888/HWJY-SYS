@@ -30,10 +30,10 @@
     <select id="checkIntegralValidity" resultMap="TIntegralLogMap">
         select <include refid="integralLog"/>
         from T_INTEGRAL_LOG
-        where USER_ID = #{logDO.userId} and
-        OPERATE_TYPE = 'POINTS_COLLECTION' and
-        INTEGRAL_OPERATE_CHANNEL = #{logDO.integralOperateChannel} and
-        OPERATE_PARAM = #{logDO.operateParam}
+        where USER_ID = #{userId} and
+        OPERATE_TYPE = #{operateType} and
+        INTEGRAL_OPERATE_CHANNEL = #{integralOperateChannel} and
+        OPERATE_PARAM = #{operateParam}
     </select>
 
 

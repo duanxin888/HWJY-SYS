@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.domain.user.repository.impl;
 
 import com.duanxin.hwjy.domain.user.entity.IntegralLogDO;
+import com.duanxin.hwjy.domain.user.entity.valueobject.IntegralOperateType;
 import com.duanxin.hwjy.domain.user.repository.IntegralLogRepository;
 import com.duanxin.hwjy.domain.user.service.impl.factory.IntegralFactory;
 import com.duanxin.hwjy.infrastructure.common.exception.HWJYCheckException;
@@ -36,7 +37,8 @@ public class IntegralLogRepositoryImpl implements IntegralLogRepository {
 
     @Override
     public void checkIntegralValidity(IntegralLogDO logDO) {
-        IntegralLogPO po = integralLogMapper.checkIntegralValidity(logDO);
+        IntegralLogPO po = integralLogMapper.checkIntegralValidity(logDO.getUserId(), logDO.getIntegralOperateChannel(),
+                logDO.getOperateParam(), IntegralOperateType.POINTS_COLLECTION);
         if (Objects.nonNull(po)) {
             log.info("channel integral [{}] is invalidity", JsonUtil.toString(po));
             throw new HWJYCheckException(ResultEnum.INTEGRAL_COLLECT_IS_INVALIDITY);

@@ -1,6 +1,7 @@
 package com.duanxin.hwjy.infrastructure.repository.mapper;
 
-import com.duanxin.hwjy.domain.user.entity.IntegralLogDO;
+import com.duanxin.hwjy.domain.user.entity.valueobject.IntegralOperateChannel;
+import com.duanxin.hwjy.domain.user.entity.valueobject.IntegralOperateType;
 import com.duanxin.hwjy.infrastructure.repository.po.IntegralLogPO;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,5 +14,8 @@ import org.apache.ibatis.annotations.Param;
 public interface IntegralLogMapper {
     void insert(@Param("po") IntegralLogPO po);
 
-    IntegralLogPO checkIntegralValidity(@Param("logDO") IntegralLogDO logDO);
+    IntegralLogPO checkIntegralValidity(@Param("userId") int userId,
+                                        @Param("integralOperateChannel") IntegralOperateChannel integralOperateChannel,
+                                        @Param("operateParam") String operateParam,
+                                        @Param("operateType") IntegralOperateType operateType);
 }

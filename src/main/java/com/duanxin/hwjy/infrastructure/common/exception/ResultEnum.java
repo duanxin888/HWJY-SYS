@@ -38,7 +38,8 @@ public enum ResultEnum {
     DICTIONARY_NOT_EXIST(408, "dictionary not exist"),
     DICTIONARY_ITEM_NOT_EXIST(408, "dictionary item not exist"),
 
-    INTEGRAL_COLLECT_IS_INVALIDITY(410, "integral collect is invalidity"),
+    INTEGRAL_COLLECT_IS_INVALIDITY(410, "积分收集失败"),
+    INTEGRAL_COLLECT_REACHES_THE_UPPER_LIMIT(410, "积分收集达到上线"),
 
     TEST_COLLECT_BY_THIRD_PARTY_ERROR_CODE(411, "test collect by third party error code"),
 
