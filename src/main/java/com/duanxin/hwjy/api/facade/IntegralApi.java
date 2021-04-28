@@ -28,8 +28,7 @@ public class IntegralApi {
 
     @PostMapping
     public ResponseResult collectIntegral(@RequestBody @Valid IntegralAddCommandDto dto) {
-        integralAppService.collectIntegral(IntegralAssembler.addCommand2LogDO(dto));
-        return ResponseResult.success();
+        return ResponseResult.success(integralAppService.collectIntegral(IntegralAssembler.addCommand2LogDO(dto)));
     }
 
     @GetMapping("/{integralAccountSn}")

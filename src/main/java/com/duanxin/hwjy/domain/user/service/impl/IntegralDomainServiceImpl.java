@@ -33,7 +33,7 @@ public class IntegralDomainServiceImpl implements IntegralDomainService {
 
     @Override
     @Transactional
-    public void collectIntegral(IntegralLogDO logDO, BigDecimal integralNumber) {
+    public BigDecimal collectIntegral(IntegralLogDO logDO, BigDecimal integralNumber) {
         // update account
         IntegralAccountDO integralAccountDO = integralAccountRepository.selectBySn(logDO.getIntegralAccountSn());
         integralAccountDO.increaseIncome(integralNumber);
@@ -42,6 +42,7 @@ public class IntegralDomainServiceImpl implements IntegralDomainService {
         // append log
         logDO.create4Collect(integralNumber);
         integralLogRepository.insert(logDO);
+        return logDO.getIntegralNumber();
     }
 
     @Override

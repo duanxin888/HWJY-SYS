@@ -15,7 +15,7 @@ public interface IntegralDomainService {
 
     IntegralAccountDO selectBySn(String integralAccountSn);
 
-    void collectIntegral(IntegralLogDO logDO, BigDecimal integralNumber);
+    BigDecimal collectIntegral(IntegralLogDO logDO, BigDecimal integralNumber);
 
     void checkIntegralValidity(IntegralLogDO logDO);
 

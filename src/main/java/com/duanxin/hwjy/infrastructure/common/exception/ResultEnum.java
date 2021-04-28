@@ -60,7 +60,9 @@ public enum ResultEnum {
     USER_CART_PRODUCT_TRANS_ERROR(414, "user cart product trans error"),
     USER_ORDER_STATUS_NOT_EXIST(414, "user order status not exist"),
     USER_ORDER_IS_DELETED(414, "user order is deleted"),
-    USER_ORDER_NOT_DELETE(414, "user order not delete");
+    USER_ORDER_NOT_DELETE(414, "user order not delete"),
+
+    INTEGRAL_COLLECT_SERVICE_NOT_SUPPORT(415, "integral collect service not support");
 
     private final int code;
     private final String desc;
